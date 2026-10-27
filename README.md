@@ -17,12 +17,18 @@ They do not measure layout accuracy, table structure or financial field associat
 
 ## Inspect the saved experiment
 
-Python 3.12 and [uv](https://docs.astral.sh/uv/) are sufficient for offline scoring.
+Install [Git](https://git-scm.com/downloads) and
+[uv](https://docs.astral.sh/uv/getting-started/installation/) first.
+The initial clone and dependency installation need internet access.
+uv can install Python 3.12 if it is missing.
+After setup, scoring uses the saved responses without a GPU, model download or network connection.
 Use a new output filename each time.
 
 ```sh
+git clone https://github.com/Alberto-Codes/inference-lab.git
+cd inference-lab
 uv sync --locked
-uv run python scripts/score_receipts.py \
+uv run --offline python scripts/score_receipts.py \
   --input evidence/cord-test-24 --output runs/inspection/scores.json
 ```
 
@@ -38,7 +44,10 @@ The parser needs Linux x86-64, rootless Podman, NVIDIA CDI and at least
 Allow tens of GB for model weights and container layers.
 The [serving reference](docs/reference/serving.md) records the pinned model and image.
 
-Judgevet → Typevet → local Gemma provides an optional advisory review.
+[Judgevet](https://github.com/Alberto-Codes/judgevet) →
+[Typevet](https://github.com/Alberto-Codes/typevet) → Gemma provides an optional advisory review.
+Judgevet applies the review rubric. Typevet sends it to the configured model endpoint.
+See [optional model review](docs/how-to/review-with-a-model.md) for installation and configuration.
 It is not needed to reproduce the deterministic scores.
 The parser and judge use the GPU at separate times.
 

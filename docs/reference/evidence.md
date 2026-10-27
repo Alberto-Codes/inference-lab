@@ -6,7 +6,7 @@ Observation date: 2026-10-26 in America/Phoenix. The run timestamps use UTC on 2
 
 ## Outcome
 
-**Nemotron OCR ran successfully on the local RTX 4090.**
+**Nemotron-3.5-Parse completed the synthetic test on an RTX 4090.**
 All 32 measured requests passed the known-text checks.
 The four sweeps had no failures or timeouts.
 Eight separate warmup requests also passed.
@@ -14,11 +14,6 @@ Eight separate warmup requests also passed.
 The offline suite passed 29 tests.
 The separate GPU test passed against the actual server.
 The standalone `ocr` command saved a correct output and its JSON receipt.
-
-The user approved a temporary shutdown of `llama-cpp-tuned.service`.
-The test removed its OCR container afterward.
-The runner restored llama.cpp and reloaded `gemma-4-31b-kv9-text`.
-The final receipt records the model as loaded and the service as healthy.
 
 ## Measured results
 
@@ -75,7 +70,6 @@ The result metadata contains the resolved Python package list and input SHA-256 
 
 GPU: RTX 4090, 24564 MiB total memory, compute capability 8.9.
 Driver: 610.57.04. Host tools: uv 0.11.20 and Podman 5.8.4.
-Initial free disk space was 507 GiB on the workspace filesystem.
 NVIDIA CDI exposed GPU 0.
 
 The model and plugin share revision `62cb1e4ba153d113ff64aaf2be6e068c377cf53c`.
@@ -92,9 +86,6 @@ It does not validate MTP, every input size or all supported vLLM versions.
 
 ## Setup findings
 
-The first startup check refused to run with only 3121 MiB of free GPU memory.
-The existing llama.cpp process used approximately 19796 MiB.
-After user approval, the runner stopped that service through systemd.
 The configured 11000 MiB guard is a reservation policy, not a measured model minimum.
 
 The first image build failed `pip check` on two upstream-image issues.
@@ -123,10 +114,6 @@ All model files below were inspected at revision
 - [vLLM FA implementation](https://github.com/vllm-project/vllm/blob/v0.26.0/vllm/vllm_flash_attn/flash_attn_interface.py): hardware capability checks for FA2 and FA3.
 - [AXI guidelines](https://github.com/kunchenguid/axi/blob/main/.agents/skills/axi/SKILL.md) and [TOON specification](https://github.com/toon-format/spec/blob/main/SPEC.md): CLI output/error/help conventions.
 
-The background gateway series spec was read. Its Gemma workload, scheduler,
-cloud spillover and full roadmap are intentionally outside this repository.
-Sibling practice selections are in [practices.md](../explanation/engineering-practices.md).
-
 ## Next smallest experiment
 
 Repeat the warmed sweep three times with more pages per level.
@@ -143,5 +130,4 @@ The primary run recovered 212 of 241 annotated numeric strings exactly.
 Its corrected diagnostic ROUGE-L F1 was 0.801.
 These partial-reference metrics are not official CORD benchmark scores.
 Three cases also received advisory judgments through Judgevet, Typevet and local Gemma.
-The previous llama.cpp model was restored and verified.
 See [receipt results](receipt-results.md) and [evaluation procedure](../how-to/evaluate-receipts.md).

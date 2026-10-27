@@ -21,29 +21,6 @@ Use a new directory for the next preparation attempt.
 Do not remove unrelated containers.
 The container ownership label prevents this checkout from managing another checkout's parser.
 
-## Restore llama.cpp after interrupted handover
-
-1. Read the run's `lifecycle.json` for the original service state and model IDs.
-2. Remove the owned parser.
-
-   ```sh
-   uv run inference-axi stop
-   ```
-
-3. If the service was active, start it.
-
-   ```sh
-   systemctl --user start llama-cpp-tuned.service
-   ```
-
-4. Load each recorded model through `/models/load`.
-5. Poll `/models` until each recorded ID reports `loaded`.
-6. Stop polling after 180 seconds and inspect the service logs if loading fails.
-
-Use a request timeout of at most 10 seconds for each status check.
-A successful load response can precede completed model loading.
-If the service was inactive before the run, leave it inactive.
-
 ## Scores differ from the article
 
 1. Check the run directory supplied to the scorer.

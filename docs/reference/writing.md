@@ -20,6 +20,5 @@ Keep procedural sentences within 20 words where possible.
 Keep descriptive sentences within 25 words where possible.
 Code, commands and identifiers retain their required syntax.
 
-These rules adapt the established typevet writing practices.
 They do not establish full compliance with the ASD-STE100 controlled dictionary.
 Review terminology and sentence structure manually.

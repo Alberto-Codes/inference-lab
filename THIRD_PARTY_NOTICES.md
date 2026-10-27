@@ -17,7 +17,4 @@ It does not replace licences for datasets, models or third-party output.
   Weights and container images are not redistributed by this repository.
 - **Synthetic corpus:** original fictional text and layouts are dedicated under CC0-1.0.
   Its manifest records provenance.
-- **Elephant–Goldfish:** Google, Apache-2.0. The design reviews use the upstream method and reviewer personas.
-  No plugin code is vendored. [Source](https://github.com/google/elephant-goldfish-model).
 - **Documentation:** MkDocs Material and dependencies retain their package licences.
-  The site uses the same documentation stack as Saucier without copying its product branding.
