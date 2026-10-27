@@ -15,15 +15,38 @@ build-backend = "uv_build"
 data = [
     "pyarrow==26.0.0",
 ]
-dev = ["pytest==9.1.1", "ruff==0.16.10"]
+dev = [
+    "docvet[griffe]==3.0.1",
+    "pre-commit==4.6.2",
+    "pytest==9.1.1",
+    "pytest-cov==7.1.0",
+    "ruff==0.16.10",
+    "ty==0.0.92",
+]
 docs = [
     "mkdocs-material==9.8.0",
+    "mkdocstrings-python==2.0.10",
 ]
-[tool.ruff]
-target-version = "py312"
-[tool.ruff.lint]
-select = ["E4", "E7", "E9", "F", "I", "B", "UP"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra --strict-markers -m 'not gpu'"
 markers = ["gpu: requires the explicitly started local Nemotron server"]
+
+[tool.docvet]
+fail-on = ["presence", "enrichment", "freshness", "coverage", "griffe"]
+exclude = ["tests", "scripts"]
+
+[tool.docvet.presence]
+min-coverage = 100.0
+
+[tool.ty.src]
+include = ["src", "tests"]
+
+[tool.coverage.run]
+source = ["inference_lab"]
+branch = true
+
+[tool.coverage.report]
+# The offline suite measures 87%; retain a regression floor below that baseline.
+fail_under = 85
+show_missing = true

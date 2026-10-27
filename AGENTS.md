@@ -17,7 +17,10 @@ Keep the scope to this first demo; no gateway, second model or dashboard stack.
 - Real inference checks use `pytest -m gpu` and require the demo server.
 
 Validation: `uv lock --check`, `uv run ruff check .`,
-`uv run ruff format --check .`, `uv run pytest`, `uv build`.
+`uv run ruff format --check .`, `uv run ty check`,
+`uv run docvet check --all`, `uv run pytest --cov`, `uv build`.
+Document public Python APIs with Google-style docstrings.
+MkDocs renders them from source in `docs/reference/api.md`.
 Record actual integration status and unresolved limitations in `docs/reference/evidence.md`.
 
 Public documentation uses MkDocs Material. Run `uv run --group docs mkdocs build --strict`.

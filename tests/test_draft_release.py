@@ -11,6 +11,7 @@ def module(monkeypatch, tmp_path):
     spec = importlib.util.spec_from_file_location(
         "draft_release", ROOT / "scripts/draft_release.py"
     )
+    assert spec is not None and spec.loader is not None
     m = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(m)
     monkeypatch.chdir(tmp_path)

@@ -11,8 +11,11 @@ from dataclasses import asdict
 from pathlib import Path
 from urllib.parse import urlsplit
 
+PILOT_SIZE = 24
+
 
 def configure_judge():
+    """Require an explicit judge endpoint and model before opening output."""
     backend = os.environ.get("TYPEVET_BACKEND", "llama_cpp").strip()
     if backend != "llama_cpp":
         raise ValueError("Receipt review requires TYPEVET_BACKEND=llama_cpp")
@@ -28,6 +31,7 @@ def configure_judge():
 
 
 def main():
+    """Review three selected cases and save progressive completion status."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--input", required=True, type=Path, help="Scores JSON from the selected run"
@@ -55,15 +59,26 @@ def main():
         for r in scores["requests"]
         if r["phase"] == "measured" and r["concurrency"] == 1
     ]
-    if len(records) != 24 or sorted(r["id"] for r in records) != list(range(24)):
+    if len(records) != PILOT_SIZE or sorted(r["id"] for r in records) != list(
+        range(PILOT_SIZE)
+    ):
         raise ValueError("Review requires all 24 measured concurrency-one cases")
     records = sorted(records, key=lambda r: (r["scores"]["rouge_l_f1"], r["id"]))[:3]
     saved = json.loads(args.rubric.read_text())
 
-    from judgevet import Score
-    from typevet.adapters.inbound.backend_settings import open_judgment
-    from typevet.adapters.inbound.judgevet import TypevetSystemOnePort
-    from typevet.adapters.inbound.settings import load_llama_settings
+    # Optional script dependencies load only after local input validation.
+    from judgevet import (  # noqa: PLC0415
+        Score,
+    )
+    from typevet.adapters.inbound.backend_settings import (  # noqa: PLC0415
+        open_judgment,
+    )
+    from typevet.adapters.inbound.judgevet import (  # noqa: PLC0415
+        TypevetSystemOnePort,
+    )
+    from typevet.adapters.inbound.settings import (  # noqa: PLC0415
+        load_llama_settings,
+    )
 
     load_llama_settings()  # Validate Typevet options before reserving the output file.
     report = {k: saved[k] for k in ("instruction", "criteria")}

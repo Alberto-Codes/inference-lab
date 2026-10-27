@@ -67,7 +67,9 @@ uv sync --locked --group docs --group data
 uv lock --check
 uv run ruff check .
 uv run ruff format --check .
-uv run pytest
+uv run ty check
+uv run docvet check --all
+uv run pytest --cov --cov-report=term-missing --cov-report=xml
 uv build
 uv run --group docs mkdocs build --strict
 ```

@@ -1,0 +1,26 @@
+target-version = "py312"
+line-length = 88
+
+[lint]
+select = ["E4", "E7", "E9", "F", "E402", "E501", "I", "D", "B", "SIM", "UP", "RUF", "PL", "C901", "TRY", "PERF", "S", "G"]
+# Contextual validation messages belong beside the failed invariant.
+ignore = ["TRY003"]
+
+[lint.mccabe]
+max-complexity = 12
+
+[lint.pylint]
+max-args = 7
+
+[lint.pycodestyle]
+max-line-length = 100
+
+[lint.pydocstyle]
+convention = "google"
+
+[lint.per-file-ignores]
+# Assertions and literal expected values express test behavior.
+"tests/**/*.py" = ["S101", "D100", "D101", "D102", "D103", "D104", "PLR2004"]
+
+[format]
+docstring-code-format = true

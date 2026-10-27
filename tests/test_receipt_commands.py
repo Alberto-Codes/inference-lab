@@ -1,3 +1,4 @@
+import asyncio
 import hashlib
 import importlib.util
 import json
@@ -12,16 +13,18 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def script(name):
     spec = importlib.util.spec_from_file_location(name, ROOT / "scripts" / f"{name}.py")
+    assert spec is not None and spec.loader is not None
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
 
 
 def command(name, *args):
-    return subprocess.run(
+    return subprocess.run(  # noqa: S603 - repository script and pytest paths, no shell
         [sys.executable, str(ROOT / "scripts" / name), *map(str, args)],
         capture_output=True,
         text=True,
+        check=False,
     )
 
 
@@ -109,8 +112,6 @@ def test_experiment_refuses_existing_run_without_touching_bytes(tmp_path):
 
 
 def test_image_validation_precedes_requests(tmp_path, monkeypatch):
-    import asyncio
-
     module = script("receipt_experiment")
     corpus = tmp_path / "corpus"
     corpus.mkdir()

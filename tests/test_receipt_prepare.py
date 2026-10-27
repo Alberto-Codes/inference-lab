@@ -7,14 +7,13 @@ import pytest
 from PIL import Image
 from test_receipt_commands import script
 
+pa = pytest.importorskip("pyarrow", reason="Run with --group data to test preparation")
 parquet = pytest.importorskip(
     "pyarrow.parquet", reason="Run with --group data to test preparation"
 )
 
 
 def test_pinned_download_matches_archived_images_and_labels(tmp_path, monkeypatch):
-    import pyarrow as pa
-
     module = script("prepare_receipts")
     image = Image.new("RGB", (4, 4), "red")
     png, jpeg = io.BytesIO(), io.BytesIO()
@@ -55,9 +54,11 @@ def test_preparation_never_overwrites_existing_corpus(tmp_path):
     target = tmp_path / "old"
     target.mkdir()
     (target / "manifest.json").write_text("historical")
-    with httpx.Client(
-        transport=httpx.MockTransport(lambda _: pytest.fail("Must not download"))
-    ) as client:
-        with pytest.raises(FileExistsError):
-            module.prepare_corpus(target, client)
+    with (
+        httpx.Client(
+            transport=httpx.MockTransport(lambda _: pytest.fail("Must not download"))
+        ) as client,
+        pytest.raises(FileExistsError),
+    ):
+        module.prepare_corpus(target, client)
     assert (target / "manifest.json").read_text() == "historical"

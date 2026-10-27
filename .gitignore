@@ -13,3 +13,8 @@ corpus/
 site/
 .env
 .env.*
+
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
