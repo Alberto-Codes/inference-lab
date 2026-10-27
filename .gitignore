@@ -8,3 +8,8 @@ dist/
 runs/
 corpus/
 .lavish/
+
+.serena/
+site/
+.env
+.env.*

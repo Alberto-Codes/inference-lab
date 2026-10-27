@@ -1,73 +1,72 @@
 # inference-lab
 
-A small OCR service demo for Nemotron-3.5-Parse on a local RTX 4090.
-The Python client sends page images to vLLM in a Podman container.
-The experiment submits eight synthetic pages at concurrency levels 1, 2, 4 and 8.
-It saves outputs, failures, latency observations and throughput results.
+Reproducible document-parsing experiments with **NVIDIA Nemotron-3.5-Parse**,
+vLLM and one RTX 4090. Each experiment keeps its inputs' provenance,
+raw outputs, measurements and limits beside its code.
 
-**Status:** the local GPU demo passed all 32 measured OCR requests.
-The offline suite passed 29 tests. The separate GPU test passed.
-llama.cpp and its previously loaded model were restored after the test.
-See the [evidence record](docs/reference/evidence.md) for results and limits.
+[Documentation](https://alberto-codes.github.io/inference-lab/) ·
+[Receipt results](docs/reference/receipt-results.md) ·
+[Experiment releases](https://github.com/Alberto-Codes/inference-lab/releases)
 
-## Requirements
+The first receipt pilot used 24 CORD test images.
+All 48 measured requests completed, but one amount changed from `79,500` to `79,300`.
+At concurrency one, diagnostic ROUGE-L F1 was 0.801.
+Exact numeric-string recall was 212/241, or 88.0%.
+These partial-reference scores assess extracted text and numbers.
+They do not measure layout accuracy, table structure or financial field association.
 
-- Linux x86-64, Python 3.12 and uv.
-- Rootless Podman with NVIDIA CDI access.
-- At least 11000 MiB of free GPU memory for the current profile.
-- Internet access and tens of GB of disk space for image layers and model weights.
+## Inspect the saved experiment
 
-The pinned model is public and ungated.
-Its weights and NVIDIA code use OpenMDW-1.1.
-The tokenizer has separate MIT attribution.
-The image retains these notices.
-
-## Commands
-
-Run these commands from this checkout.
-Read the [run procedure](docs/how-to/run-demo.md) before the GPU test.
+Python 3.12 and [uv](https://docs.astral.sh/uv/) are sufficient for offline scoring.
+Use a new output filename each time.
 
 ```sh
 uv sync --locked
-uv run inference-axi
-uv run inference-axi corpus
-uv run inference-axi build
-uv run inference-axi start
-uv run inference-axi ocr corpus/page-01.png --output runs/page-01.txt --expect LAB401
-uv run inference-axi bench corpus --output runs/first
-uv run inference-axi stop
+uv run python scripts/score_receipts.py \
+  --input evidence/cord-test-24 --output runs/inspection/scores.json
 ```
 
-The CLI follows [AXI](https://github.com/kunchenguid/axi) output principles.
-It shows live state without arguments.
-It gives compact TOON output, structured errors and command help.
-It installs no agent hooks.
+The [quickstart](docs/tutorials/first-result.md) explains the outputs.
+The [receipt procedure](docs/how-to/evaluate-receipts.md) covers a fresh GPU run.
+Preparation, inference, scoring and optional judge review use explicit paths.
+Existing output directories and files are protected from replacement.
 
-## Documentation
+## Run locally
 
-- [Run the demo](docs/how-to/run-demo.md): setup, test and shutdown steps.
-- [Serving profile](docs/reference/serving.md): runtime pins and resource settings.
-- [CLI and results](docs/reference/cli.md): commands, output files and exit codes.
-- [Evidence](docs/reference/evidence.md): observed facts, sources and unresolved issues.
-- [Measurement method](docs/explanation/measurement.md): timing and quality limits.
-- [Engineering practices](docs/explanation/engineering-practices.md): choices from sibling projects.
-- [Writing rules](docs/reference/writing.md): Diátaxis and ASD-STE100 guidance.
+The parser needs Linux x86-64, rootless Podman, NVIDIA CDI and at least
+11000 MiB of free GPU memory with the current profile.
+Allow tens of GB for model weights and container layers.
+The [serving reference](docs/reference/serving.md) records the pinned model and image.
 
-## Validation
+Judgevet → Typevet → local Gemma provides an optional advisory review.
+It is not needed to reproduce the deterministic scores.
+The parser and judge use the GPU at separate times.
+
+## Experiments and companion posts
+
+An immutable tag identifies each experiment's code and evidence.
+Its GitHub Release links to the companion post, which links back to the release.
+The first release remains a draft until its post is ready.
+This repository does not publish a Python package to PyPI.
+Pages is a living documentation site built from validated `main`.
+See [release procedure](docs/how-to/cut-a-release.md).
+
+## Validate
 
 ```sh
+uv sync --locked --group docs --group data
 uv lock --check
 uv run ruff check .
 uv run ruff format --check .
 uv run pytest
 uv build
+uv run --group docs mkdocs build --strict
 ```
 
-The default tests use mocked HTTP transport.
-They do not prove model inference.
-Run `uv run pytest -m gpu` only after the demo server is ready.
+Offline tests do not establish live model inference.
+Run `uv run pytest -m gpu` only with the parser server ready.
+Keep new observations separate from the saved historical pilot.
 
-This experiment uses a small synthetic corpus.
-It is not a general OCR benchmark or evidence for production latency guarantees.
-The generated text and layouts use CC0-1.0.
-The corpus manifest records their source.
+Project code uses the [MIT licence](LICENSE).
+CORD annotations use CC BY 4.0; model assets have separate licences.
+See [third-party notices](THIRD_PARTY_NOTICES.md) and [contributing](CONTRIBUTING.md).
