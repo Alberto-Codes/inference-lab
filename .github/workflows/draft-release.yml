@@ -1,0 +1,36 @@
+name: Draft Experiment Release
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'New experiment tag, for example v0.1.0'
+        required: true
+        type: string
+      commit:
+        description: 'Full SHA on main with successful CI'
+        required: true
+        type: string
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: draft-experiment-release
+  cancel-in-progress: false
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.commit }}
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: '0.11.20'
+      - run: uv python install 3.12
+      - name: Create draft without publishing a tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPERIMENT_TAG: ${{ inputs.tag }}
+          EXPERIMENT_COMMIT: ${{ inputs.commit }}
+        run: uv run python scripts/draft_release.py --tag "$EXPERIMENT_TAG" --commit "$EXPERIMENT_COMMIT"

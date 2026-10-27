@@ -1,0 +1,18 @@
+{
+  "experiment_error": null,
+  "restoration_errors": [
+    "AssertionError()"
+  ],
+  "previous_models": [
+    "gemma-4-31b-kv9-text"
+  ],
+  "service_was_active": true,
+  "demo_cleanup": {
+    "status": "stopped and removed demo container"
+  },
+  "restored_models": [
+    "gemma-4-31b-kv9-text"
+  ],
+  "restoration_verified": true,
+  "restoration_note": "Initial verification ran before asynchronous model load finished. Bounded follow-up confirmed loaded state."
+}

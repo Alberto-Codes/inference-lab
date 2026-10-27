@@ -1,0 +1,13 @@
+{
+  "offline_tests": 35,
+  "live_gpu_tests": 1,
+  "ruff_check": "passed",
+  "ruff_format": "passed",
+  "uv_lock_check": "passed",
+  "uv_build": "passed",
+  "ocr_terminal_records": 72,
+  "judgevet_reviews": 3,
+  "nemotron_container": "absent",
+  "llama_model": "gemma-4-31b-kv9-text",
+  "llama_model_loaded": true
+}
