@@ -2,7 +2,6 @@ import asyncio
 import fcntl
 import hashlib
 import json
-import time
 
 import httpx
 import pytest
@@ -196,43 +195,34 @@ def test_queue_deadline_and_http_failures_remain_in_quality_denominator(
 def test_failure_review_keeps_unsuccessful_outcomes_out_of_ocr_suspects(
     tmp_path, monkeypatch
 ):
-    runner, manifest, pages, config, output = setup_run(
-        tmp_path, monkeypatch, count=10, concurrency=1, queue=20, timeout=0.01
+    runner, manifest, _pages, _config, output = setup_run(
+        tmp_path, monkeypatch, count=10
     )
-    calls = 0
-
-    async def respond(request):
-        nonlocal calls
-        calls += 1
-        if calls <= 6:
-            content = "OK" if calls <= 3 else "Total 13.00"
-            return httpx.Response(
-                200,
-                json={
-                    "choices": [
-                        {"message": {"content": content}, "finish_reason": "stop"}
-                    ]
-                },
-            )
-        if calls == 7:
-            return httpx.Response(
-                200,
-                json={
-                    "choices": [
-                        {"message": {"content": "Total"}, "finish_reason": "length"}
-                    ]
-                },
-            )
-        if calls == 8:
-            return httpx.Response(503, text="server overloaded")
-        # Block the loop past every queued deadline, so later requests expire waiting.
-        time.sleep(0.05)
-        await asyncio.sleep(0.1)
-        return httpx.Response(200)
-
-    asyncio.run(
-        runner.execute(output, manifest, pages, config, httpx.MockTransport(respond))
-    )
+    # The scorer consumes durable terminal records, independently of scheduling.
+    statuses = ["success"] * 3 + [
+        "incomplete",
+        "error",
+        "timeout",
+        "queue_timeout",
+        "queue_full",
+        "interrupted",
+        "quality_failed",
+    ]
+    for index, status in enumerate(statuses):
+        item = manifest["pages"][index % len(manifest["pages"])]
+        runner.save(
+            output / "terminal" / f"{index:09}.json",
+            {
+                "index": index,
+                "id": item["id"],
+                "sha256": item["sha256"],
+                "reference": item["reference"],
+                "status": status,
+                "text": "Total 13.00" if status == "success" else "",
+                "e2e_s": 0.1,
+                "arrival_lag_s": 0,
+            },
+        )
     scorer = script("score_scaling")
     result = scorer.summarize(output)
     review = scorer.review(result)
