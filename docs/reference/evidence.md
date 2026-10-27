@@ -50,7 +50,7 @@ The report retains individual latencies and output text.
 ## Reproduction and artifacts
 
 Follow [Run the demo](../how-to/run-demo.md) from the repository root.
-Use [the serving configuration](../../serving/config.json) without changes to reproduce this profile.
+Use [the serving configuration](https://github.com/Alberto-Codes/inference-lab/blob/main/serving/config.json) without changes to reproduce this profile.
 
 Exact measured command:
 
@@ -58,12 +58,12 @@ Exact measured command:
 uv run inference-axi bench corpus --output runs/local-4090-final
 ```
 
-- [Final machine-readable results](../../evidence/local-demo/results.json).
-- [Generated summary](../../evidence/local-demo/summary.md).
-- [GPU test and restoration receipt](../../evidence/local-demo/gpu-attempt.json).
-- [Server logs](../../evidence/local-demo/gpu-server-log.toon).
-- [Standalone extraction](../../evidence/local-demo/local-4090-page-01.txt).
-- [Offline test output](../../evidence/tests.txt).
+- [Final machine-readable results](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/local-demo/results.json).
+- [Generated summary](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/local-demo/summary.md).
+- [GPU test and restoration receipt](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/local-demo/gpu-attempt.json).
+- [Server logs](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/local-demo/gpu-server-log.toon).
+- [Standalone extraction](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/local-demo/local-4090-page-01.txt).
+- [Offline test output](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/tests.txt).
 
 Source commit: `b3df45155609747b9191bcc25df5699a6438d29f`.
 The run records a dirty working tree because the runner creates evidence files.
@@ -134,3 +134,14 @@ Keep the server profile and synthetic corpus fixed.
 Record run-to-run variation before changing model or serving settings.
 Use longer runs before drawing conclusions about throughput scaling.
 A separate cold-cache experiment can measure document preparation and image-cache costs.
+
+## Public receipt pilot
+
+The CORD-v2 pilot adds 24 public receipt images with source annotations.
+It completed 24 warmups and 48 measured requests on the local RTX 4090.
+The primary run recovered 212 of 241 annotated numeric strings exactly.
+Its corrected diagnostic ROUGE-L F1 was 0.801.
+These partial-reference metrics are not official CORD benchmark scores.
+Three cases also received advisory judgments through Judgevet, Typevet and local Gemma.
+The previous llama.cpp model was restored and verified.
+See [receipt results](receipt-results.md) and [evaluation procedure](../how-to/evaluate-receipts.md).

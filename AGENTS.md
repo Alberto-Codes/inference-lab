@@ -1,6 +1,6 @@
 # inference-lab
 
-Small image OCR/concurrency demo using nvidia/Nemotron-3.5-Parse and vLLM.
+Small document-parsing/concurrency experiment using nvidia/Nemotron-3.5-Parse and vLLM.
 Keep the scope to this first demo; no gateway, second model or dashboard stack.
 
 - Use `uv` and Python 3.12. Package is in `src/inference_lab`.
@@ -19,3 +19,6 @@ Keep the scope to this first demo; no gateway, second model or dashboard stack.
 Validation: `uv lock --check`, `uv run ruff check .`,
 `uv run ruff format --check .`, `uv run pytest`, `uv build`.
 Record actual integration status and unresolved limitations in `docs/reference/evidence.md`.
+
+Public documentation uses MkDocs Material. Run `uv run --group docs mkdocs build --strict`.
+Experiment tags are immutable. Keep the first release and companion blog in draft until publication is authorized.
