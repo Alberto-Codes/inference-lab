@@ -72,9 +72,9 @@ def main():
         "--output", required=True, type=Path, help="New score JSON file; must not exist"
     )
     args = parser.parse_args()
+    result = rescore(args.input)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("x") as output:
-        result = rescore(args.input)
         output.write(json.dumps(result, indent=2))
     print(json.dumps(result["summaries"], indent=2))
 

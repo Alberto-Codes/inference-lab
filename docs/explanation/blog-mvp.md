@@ -4,7 +4,7 @@ Kind: explanation.
 
 ## Purpose
 
-Show a reproducible local OCR experiment and explain what its results mean.
+Show a reproducible local document-parsing experiment and explain what its results mean.
 The audience is developers who want to try document inference on one GPU.
 This audience is an assumption for this draft.
 The user described this project as an MVP for a blog.
@@ -37,7 +37,7 @@ Sources: [receipt results](../reference/receipt-results.md),
 
 ## Working recommendation
 
-Build the article around this question: does a successful OCR request preserve the numbers?
+Build the article around this question: does a successful parse request preserve the numbers?
 Keep concurrency as a secondary observation.
 Show the image, reference and Nemotron output for receipts 20, 22 and 13.
 These were the three lowest-overlap cases selected for the existing judge review.
@@ -87,7 +87,7 @@ Upstream source: https://github.com/google/elephant-goldfish-model
 
 ## Proposed article outline
 
-Working title: I ran Nemotron OCR on a 4090. Then I checked the numbers.
+Working title: I ran Nemotron Parse on a 4090. Then I checked the numbers.
 
 1. Open with receipt 20 and the changed amount.
 2. Show the local setup and the request path.
