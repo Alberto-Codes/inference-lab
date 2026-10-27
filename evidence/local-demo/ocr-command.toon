@@ -1,0 +1,5 @@
+status: success
+output: runs/local-4090-page-01.txt
+characters: 455
+preview: "<x_0.0703><y_0.0703>INFERENCE LAB PAGE 1<x_0.418><y_0.0969><class_Section-header>\n\n<x_0.0693><y_0.1539>Synthetic inventory record<x_0.4473><y_0.1828><class_Text>\n\n<x_0.0684><y_0.2367>Item: cobalt notebook 1<x_0.4121><y_0.2641><class_Text>\n\n<x_0.0684><y_0.3203>Quantity: 12<x_0.2422><y_0.3492><class_Text>\n\n<x_0.0713><y_0.4031>Reference: LAB401<x_0.3438><y_0.4297><class_Text>\n\n<x_0.0674><y_0.4867>All entries are fictional.<x_0.3906><y_0.5133><class_Text>"
+quality: expected-text sanity check

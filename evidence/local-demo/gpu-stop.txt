@@ -1,0 +1,1 @@
+status: stopped and removed demo container

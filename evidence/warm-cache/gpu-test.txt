@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.1.1, pluggy-1.7.0
+rootdir: /var/home/Alberto-Codes/Projects/inference-lab
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1
+collected 30 items / 29 deselected / 1 selected
+
+tests/test_gpu.py .                                                      [100%]
+
+======================= 1 passed, 29 deselected in 0.67s =======================
