@@ -73,6 +73,7 @@ def main():
     report["selection"] = (
         "three lowest diagnostic ROUGE-L F1 at concurrency 1; ties by ID"
     )
+    report["status"] = "incomplete"
     report["reviews"] = []
     questions = {
         "numeric_fidelity": Score(
@@ -97,6 +98,8 @@ def main():
             )
             args.output.write_text(json.dumps(report, indent=2))
             print(f"id: {item['id']}\nstatus: complete", flush=True)
+    report["status"] = "complete"
+    args.output.write_text(json.dumps(report, indent=2))
 
 
 if __name__ == "__main__":
