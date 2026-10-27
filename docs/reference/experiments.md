@@ -21,7 +21,7 @@ The warmed-cache sweeps used concurrency one and four.
 The roughly six receipts/s observed at concurrency four is not established sustained capacity.
 
 - **Publication:** [published prerelease](https://github.com/Alberto-Codes/inference-lab/releases/tag/v0.1.0), published 2026-10-27.
-- **Companion article:** [I ran Nemotron Parse on a 4090. Then I checked the numbers.](https://alberto.codes/blog/2026-10-26-nemotron-ocr-on-a-4090).
+- **Companion article:** [I ran Nemotron Parse on a 4090. Then I checked the numbers.](https://alberto.codes/blog/2026-10-26-nemotron-ocr-on-a-4090)
 - **Results:** [pilot results and limitations](receipt-results.md).
 - **Tagged snapshot:** [code](https://github.com/Alberto-Codes/inference-lab/tree/v0.1.0) and [saved evidence](https://github.com/Alberto-Codes/inference-lab/tree/v0.1.0/evidence/cord-test-24).
 - **Historical instructions:** [offline scoring](https://github.com/Alberto-Codes/inference-lab/blob/v0.1.0/docs/tutorials/first-result.md) and [GPU reproduction](https://github.com/Alberto-Codes/inference-lab/blob/v0.1.0/docs/how-to/evaluate-receipts.md).

@@ -70,6 +70,9 @@ This repository does not publish a Python package to PyPI.
 
 ## Validate
 
+These checks require a current `main` checkout and its development dependencies.
+They are not the validation commands shipped with the `v0.1.0` quickstart above.
+
 ```sh
 uv sync --locked --group docs --group data
 uv lock --check
