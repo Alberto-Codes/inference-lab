@@ -2,6 +2,13 @@
 
 Kind: reference.
 
+These are the **v0.2.0 scaling experiment** results.
+[Experiment index](experiments.md) ·
+[Tagged results snapshot](https://github.com/Alberto-Codes/inference-lab/blob/v0.2.0/docs/reference/scaling-results.md) ·
+[Tagged evidence](https://github.com/Alberto-Codes/inference-lab/tree/v0.2.0/evidence/scaling-4090)
+
+Historical reproduction: [instructions at v0.2.0](https://github.com/Alberto-Codes/inference-lab/blob/v0.2.0/docs/how-to/run-scaling.md).
+
 Observation date: 2026-10-27.
 
 Five offered pages/s sustained low client queueing for five minutes.

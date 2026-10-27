@@ -2,6 +2,10 @@
 
 Kind: how-to.
 
+This is the current guide for the **v0.1.0** experiment.
+For the original wording and commands, use the [instructions at v0.1.0](https://github.com/Alberto-Codes/inference-lab/blob/v0.1.0/docs/how-to/evaluate-receipts.md).
+See the [experiment index](../reference/experiments.md) to choose a different study.
+
 This procedure installs and runs Nemotron-3.5-Parse on a fixed receipt corpus.
 It needs no judge model or existing model server.
 For a GPU-free start, [inspect the saved results](../tutorials/first-result.md).
@@ -38,7 +42,7 @@ It refuses insufficient memory and does not stop other workloads.
 1. Clone the repository.
 
    ```sh
-   git clone https://github.com/Alberto-Codes/inference-lab.git
+   git clone --branch v0.1.0 https://github.com/Alberto-Codes/inference-lab.git
    cd inference-lab
    ```
 

@@ -2,9 +2,21 @@
 
 Kind: how-to.
 
+This is the current guide for the **v0.2.0** experiment.
+For the original wording and commands, use the [instructions at v0.2.0](https://github.com/Alberto-Codes/inference-lab/blob/v0.2.0/docs/how-to/run-scaling.md).
+See the [experiment index](../reference/experiments.md) to choose a different study.
+
+For historical reproduction, clone the tagged checkout first:
+
+```sh
+git clone --branch v0.2.0 https://github.com/Alberto-Codes/inference-lab.git
+cd inference-lab
+```
+
 Use Python 3.12 and `uv` from the repository root.
 Use the pinned image in `serving/config.json`.
-See [the service procedure](evaluate-receipts.md) to build that image.
+Use the [GPU prerequisites](evaluate-receipts.md#install-the-prerequisites).
+Build the image from this checkout with `uv run inference-axi build`.
 The runner does not change the serving profile.
 
 ## Prepare coverage inputs

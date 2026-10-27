@@ -2,6 +2,13 @@
 
 Kind: reference.
 
+These are the **v0.1.0 pilot** results.
+[Experiment index](experiments.md) ·
+[Tagged results snapshot](https://github.com/Alberto-Codes/inference-lab/blob/v0.1.0/docs/reference/receipt-results.md) ·
+[Tagged evidence](https://github.com/Alberto-Codes/inference-lab/tree/v0.1.0/evidence/cord-test-24)
+
+Historical reproduction: [instructions at v0.1.0](https://github.com/Alberto-Codes/inference-lab/blob/v0.1.0/docs/how-to/evaluate-receipts.md).
+
 ## Dataset and scope
 
 Dataset: [NAVER CLOVA CORD-v2](https://huggingface.co/datasets/naver-clova-ix/cord-v2).
@@ -94,13 +101,13 @@ One additional live GPU test passed before the receipt requests.
 
 All paths below are relative to `evidence/cord-test-24/`.
 
-- [manifest.json](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/cord-test-24/manifest.json): dataset provenance, image hashes and source annotations.
-- [requests.jsonl](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/cord-test-24/requests.jsonl): all 72 terminal request records.
-- [results.json](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/cord-test-24/results.json): run settings, timing and initial score calculation.
-- [scores.json](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/cord-test-24/scores.json): final normalized scores and raw text.
-- [judgevet-review.json](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/cord-test-24/judgevet-review.json): three reviews through the configured Judgevet integration.
-- [local-review.json](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/cord-test-24/local-review.json): earlier direct chat observations, retained for audit.
-- [lifecycle.json](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/cord-test-24/lifecycle.json): service shutdown and restoration evidence.
-- [server.log](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/cord-test-24/server.log): Nemotron server log.
+- [manifest.json](https://github.com/Alberto-Codes/inference-lab/blob/v0.1.0/evidence/cord-test-24/manifest.json): dataset provenance, image hashes and source annotations.
+- [requests.jsonl](https://github.com/Alberto-Codes/inference-lab/blob/v0.1.0/evidence/cord-test-24/requests.jsonl): all 72 terminal request records.
+- [results.json](https://github.com/Alberto-Codes/inference-lab/blob/v0.1.0/evidence/cord-test-24/results.json): run settings, timing and initial score calculation.
+- [scores.json](https://github.com/Alberto-Codes/inference-lab/blob/v0.1.0/evidence/cord-test-24/scores.json): final normalized scores and raw text.
+- [judgevet-review.json](https://github.com/Alberto-Codes/inference-lab/blob/v0.1.0/evidence/cord-test-24/judgevet-review.json): three reviews through the configured Judgevet integration.
+- [local-review.json](https://github.com/Alberto-Codes/inference-lab/blob/v0.1.0/evidence/cord-test-24/local-review.json): earlier direct chat observations, retained for audit.
+- [lifecycle.json](https://github.com/Alberto-Codes/inference-lab/blob/v0.1.0/evidence/cord-test-24/lifecycle.json): service shutdown and restoration evidence.
+- [server.log](https://github.com/Alberto-Codes/inference-lab/blob/v0.1.0/evidence/cord-test-24/server.log): Nemotron server log.
 
 See [scoring explanation](../explanation/receipt-evaluation.md) for interpretation.
