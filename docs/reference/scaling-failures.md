@@ -44,6 +44,7 @@ The strange arithmetic on receipt 71 is not repaired or inferred from other fiel
 The offline review groups missing annotated numeric strings into two broad queues.
 One queue contains possible separator or sign changes.
 The other contains possible omissions or changed digits.
+Only successful outputs enter these queues; [scoring](../how-to/run-scaling.md) counts other outcomes apart.
 These are review queues, not confirmed counts of OCR errors.
 A number elsewhere on the page can match by coincidence.
 Repeated requests increase occurrence counts without increasing unique reviewed documents.
