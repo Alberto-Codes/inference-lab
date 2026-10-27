@@ -109,10 +109,14 @@ def summarize(source: Path):
 
 
 def review(result):
-    """Group numeric discrepancies as suspects, without claiming visual verification."""
+    """Group successful-output discrepancies as suspects and count other outcomes apart."""
     groups = Counter()
+    unscored = Counter()
     examples = {}
     for record in result["requests"]:
+        if record["status"] != "success":
+            unscored[record["status"]] += 1
+            continue
         missing = record["scores"]["missing_numbers"]
         predicted = receipt_metrics.numbers(record["plain_prediction"])
         for number in missing:
@@ -135,6 +139,7 @@ def review(result):
     return {
         "counts_are_occurrences_not_unique_documents": True,
         "suspected_categories": dict(groups),
+        "unscored_outcomes": dict(unscored),
         "examples": {
             category: list(items.values())[:5] for category, items in examples.items()
         },

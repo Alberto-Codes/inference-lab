@@ -192,6 +192,63 @@ def test_queue_deadline_and_http_failures_remain_in_quality_denominator(
     assert result["summary"]["status_counts"]["timeout"] > 0
 
 
+def test_failure_review_keeps_unsuccessful_outcomes_out_of_ocr_suspects(
+    tmp_path, monkeypatch
+):
+    runner, manifest, pages, config, output = setup_run(
+        tmp_path, monkeypatch, count=10, concurrency=1, queue=20, timeout=0.01
+    )
+    calls = 0
+
+    async def respond(request):
+        nonlocal calls
+        calls += 1
+        if calls <= 6:
+            content = "OK" if calls <= 3 else "Total 13.00"
+            return httpx.Response(
+                200,
+                json={
+                    "choices": [
+                        {"message": {"content": content}, "finish_reason": "stop"}
+                    ]
+                },
+            )
+        if calls == 7:
+            return httpx.Response(
+                200,
+                json={
+                    "choices": [
+                        {"message": {"content": "Total"}, "finish_reason": "length"}
+                    ]
+                },
+            )
+        if calls == 8:
+            return httpx.Response(503, text="server overloaded")
+        await asyncio.sleep(0.1)
+        return httpx.Response(200)
+
+    asyncio.run(
+        runner.execute(output, manifest, pages, config, httpx.MockTransport(respond))
+    )
+    scorer = script("score_scaling")
+    result = scorer.summarize(output)
+    review = scorer.review(result)
+    counts = result["summary"]["status_counts"]
+    assert counts["success"] == 3
+    assert {"incomplete", "error", "timeout", "queue_timeout"} <= set(counts)
+    assert review["unscored_outcomes"] == {
+        status: n for status, n in counts.items() if status != "success"
+    }
+    assert review["suspected_categories"] == {"omission or changed digits": 3}
+    assert {
+        example["prediction"]
+        for items in review["examples"].values()
+        for example in items
+    } == {"Total 13.00"}
+    assert result["summary"]["numeric_total"] == 10
+    assert result["summary"]["requests_with_missing_numbers"] == 10
+
+
 def test_validation_and_fresh_inputs(tmp_path):
     runner = script("scaling_experiment")
     root = corpus(tmp_path)

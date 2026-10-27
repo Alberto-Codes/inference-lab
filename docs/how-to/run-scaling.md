@@ -120,6 +120,12 @@ The command reads saved terminal records.
 It preserves raw output and scores failures with an empty prediction.
 It records the metric source hash and the terminal-evidence hash.
 Its failure review lists suspected discrepancies for image inspection.
+Only successful outputs enter its suspect categories.
+`unscored_outcomes` counts rejected, failed, truncated and interrupted requests by status.
+Those requests still count against the offered-work quality denominators.
+Archived `scores.json` files in `raw-evidence.tar.gz` predate this split.
+Their suspect categories also count each missing number of non-success requests.
+Rescore an archived run to obtain the separated review without editing its evidence.
 It does not declare extra text an error or repair model outputs.
 
 Open the original image named in `plan.json` when reviewing a suspect.
