@@ -98,7 +98,11 @@ def normalized(text: str) -> str:
 
 # Response validation errors are caught and recorded, not raised to callers.
 async def infer(  # docvet: ignore[missing-raises]
-    client: httpx.AsyncClient, page: Page, timeout: float
+    client: httpx.AsyncClient,
+    page: Page,
+    timeout: float,
+    *,
+    retain_response: bool = False,
 ) -> dict:
     """Return one terminal record, including failure and observed latency.
 
@@ -109,6 +113,7 @@ async def infer(  # docvet: ignore[missing-raises]
         client: Async HTTP client configured with the server base URL.
         page: Image and expected text prepared before timing.
         timeout: Total request deadline in seconds.
+        retain_response: Save the HTTP status and full response body for later review.
 
     Returns:
         Record with page name, digest, status, text and latency in seconds.
@@ -141,6 +146,9 @@ async def infer(  # docvet: ignore[missing-raises]
                     "skip_special_tokens": False,
                 },
             )
+            if retain_response:
+                record["http_status"] = response.status_code
+                record["response_body"] = response.text
             response.raise_for_status()
             choice = response.json()["choices"][0]
             text = choice["message"]["content"]

@@ -59,6 +59,10 @@ nav:
       - Run on your GPU: how-to/evaluate-receipts.md
   - Results and methods:
       - Receipt results: reference/receipt-results.md
+      - Scaling results: reference/scaling-results.md
+      - Scaling procedure: how-to/run-scaling.md
+      - Scaling method: explanation/scaling-method.md
+      - Scaling failure review: reference/scaling-failures.md
       - Commands and scoring: reference/receipts.md
       - What the scores mean: explanation/receipt-evaluation.md
       - How the experiment works: explanation/how-it-works.md

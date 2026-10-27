@@ -1,0 +1,72 @@
+{
+  "reviewer": "Codex direct image inspection; no independent human adjudication",
+  "source": "exploratory fresh-0, retained separately from final matrix",
+  "findings": [
+    {
+      "id": 32,
+      "category": "separator change",
+      "visible_or_reference": "24.000 / 50.000 / 26.000",
+      "observed": "24,000 / 50,000 / 26,000",
+      "note": "Visible subtotal, cash and change use dots.",
+      "status": "visually verified",
+      "image_sha256": "1ff069117e26f1742907192475affdfb5b997e12dc6a1209156d1d10c1c9b94e",
+      "terminal_path": "runs/scaling-4090-20261027/fresh-0/terminal/000000008.json",
+      "terminal_sha256": "e8d41fdf09113bc8426a9dcc7a1a47af418a2fad89702febf6362a2301c41f9f"
+    },
+    {
+      "id": 49,
+      "category": "changed digit",
+      "visible_or_reference": "CASH 50,000",
+      "observed": "CASH30,000",
+      "note": "Cash amount changes its first digit.",
+      "status": "visually verified",
+      "image_sha256": "586d99b4bbdaed4f0aa9f9514eaa1bb0d306d270490eed8ddace08e6cdf804ac",
+      "terminal_path": "runs/scaling-4090-20261027/fresh-0/terminal/000000025.json",
+      "terminal_sha256": "9739a99d7dbe184e9a1bd5f9c6e9e523669db5b1000e21b6581a7782d8963ccd"
+    },
+    {
+      "id": 66,
+      "category": "changed digit",
+      "visible_or_reference": "TOTAL 40,000",
+      "observed": "TOTAL 40,800",
+      "note": "Total changes its hundreds digit.",
+      "status": "visually verified",
+      "image_sha256": "c1107b942305c7f4399c346b734905e6cfeab64bcfa9fce2f35780f23ee8e586",
+      "terminal_path": "runs/scaling-4090-20261027/fresh-0/terminal/000000042.json",
+      "terminal_sha256": "f122d360db5b504badf98e862bd6d70dc278d8ec2b3309ce3f5081402e821370"
+    },
+    {
+      "id": 71,
+      "category": "omission and unrelated generation",
+      "visible_or_reference": "Cuka Apel Tetes 1; 198000",
+      "observed": "repeated ଛ; finish_reason=length",
+      "note": "Visible text is not transcribed.",
+      "status": "visually verified",
+      "image_sha256": "2c73d02e1528bd76ecdfeae8e3e56fa2eaee5997f0473be80a56738e59350dff",
+      "terminal_path": "runs/scaling-4090-20261027/fresh-0/terminal/000000047.json",
+      "terminal_sha256": "c9e3c3a767f9c1c09f99f8ee7b4d30d7d6cf73b4d747c8b4022907713a18f532"
+    },
+    {
+      "id": 53,
+      "category": "annotation discrepancy",
+      "visible_or_reference": "Servi Charge 5%",
+      "observed": "annotation: Servi Charge 57",
+      "note": "Reference is not literal visible text.",
+      "status": "visually verified",
+      "image_sha256": "def32b0764325a94ef34f733308bbc477d15bda95928eec41bcf541fef346c5d",
+      "terminal_path": "runs/scaling-4090-20261027/fresh-0/terminal/000000029.json",
+      "terminal_sha256": "fdadabc4fd6fbb2f30ad276ec37b57b570e00066e33970e2e28af1dcfe97d990"
+    },
+    {
+      "id": 53,
+      "category": "annotation gap",
+      "visible_or_reference": "Kopi Legit",
+      "observed": "brand absent from reference",
+      "note": "Extra brand text alone cannot establish hallucination.",
+      "status": "visually verified",
+      "image_sha256": "def32b0764325a94ef34f733308bbc477d15bda95928eec41bcf541fef346c5d",
+      "terminal_path": "runs/scaling-4090-20261027/fresh-0/terminal/000000029.json",
+      "terminal_sha256": "fdadabc4fd6fbb2f30ad276ec37b57b570e00066e33970e2e28af1dcfe97d990"
+    }
+  ]
+}

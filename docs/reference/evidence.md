@@ -131,3 +131,24 @@ Its corrected diagnostic ROUGE-L F1 was 0.801.
 These partial-reference metrics are not official CORD benchmark scores.
 Three cases also received advisory judgments through Judgevet, Typevet and local Gemma.
 See [receipt results](receipt-results.md) and [evaluation procedure](../how-to/evaluate-receipts.md).
+
+## Scaling increment, 2026-10-27
+
+The [scaling results](scaling-results.md) extend the immutable pilot with 56 new CORD documents.
+The evaluation reservation keeps test rows 80–99 untouched.
+The 18-condition matrix completed 5,928 measured outcomes.
+Two five-minute trials add 3,300 measured outcomes.
+Five offered pages/s avoided queue rejection; six pages/s accumulated backlog and rejected 15 requests.
+Generation failures remain, including 26 timeouts on receipt 71 at five pages/s.
+The results do not establish zero-failure capacity or general OCR accuracy.
+
+Each suite passed the real `pytest -m gpu` check before inference.
+All lifecycle receipts verify restoration of the prior llama.cpp service and `gemma-4-31b-kv9-text`.
+The local offline validation passed 90 tests with 87.33% package coverage.
+Lock, Ruff, type, docstring, build and strict MkDocs checks passed.
+These offline checks are separate from the saved GPU observations.
+
+The [failure report](scaling-failures.md) distinguishes image-verified errors, suspects and annotation gaps.
+The exact serving bottleneck inside generation remains unresolved.
+Fresh-input capacity, longer-run repetition, production latency and automatic correction remain unmeasured.
+See the [procedure](../how-to/run-scaling.md) for reproduction, interruption recovery and GPU-free rescoring.

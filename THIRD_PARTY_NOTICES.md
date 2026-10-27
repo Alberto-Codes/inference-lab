@@ -8,6 +8,8 @@ It does not replace licences for datasets, models or third-party output.
   [author repository](https://github.com/clovaai/cord),
   [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
   `evidence/cord-test-24/manifest.json` contains original annotations for test rows 0–23.
+  The scaling evidence archive retains original annotations for test rows 24–79.
+  Reserved evaluation rows 80–99 contribute identities only, not inspected annotations.
   Score and judgment files include derived text and reference excerpts.
   Normalization changes and model errors are recorded separately from the original annotations.
   Receipt images are downloaded into ignored corpus directories, not included in the code package.

@@ -1,0 +1,17 @@
+{
+  "file": "raw-evidence.tar.gz",
+  "sha256": "9588a1e1f64ae229b69b022a26577dbcfc37d63fc57385c837fe7e2513a7665e",
+  "bytes": 23533525,
+  "verified_member_files": 21786,
+  "roots": [
+    "scaling-4090-20261027",
+    "scaling-4090-matrix-v2",
+    "scaling-4090-stability-6",
+    "scaling-4090-stability-5"
+  ],
+  "final_measured_outcomes": 9228,
+  "final_warmups": 955,
+  "exploratory_measured_outcomes": 56,
+  "images": "Not included; regenerate from pinned CORD source and compare manifest hashes.",
+  "contents": "Raw responses, terminal and intent records, warmups, references/annotations, plans, telemetry, logs, GPU test receipts, source/lockfile snapshots, restoration receipts."
+}

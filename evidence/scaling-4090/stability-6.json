@@ -1,0 +1,169 @@
+{
+  "conditions": [
+    {
+      "condition": "stability",
+      "cache": "repeated",
+      "complete": true,
+      "capacity_eligible": true,
+      "planned": 1800,
+      "terminal": 1800,
+      "unattempted": 0,
+      "unique_documents": 56,
+      "status_counts": {
+        "success": 1751,
+        "timeout": 34,
+        "queue_full": 15
+      },
+      "offered_rate": 6.0,
+      "elapsed_s": 327.19076808798127,
+      "offered_window_s": 300.0,
+      "completed_per_s_including_drain": 5.351617987978065,
+      "completed_per_s_during_arrivals": 5.593333333333334,
+      "all_e2e_p50_s": 11.010970400529914,
+      "all_e2e_p95_s": 14.201792754931375,
+      "all_e2e_p99_s": 30.012512573273852,
+      "success_e2e_p95_s": 13.8687018759083,
+      "queue_p95_s": 10.96491374692414,
+      "arrival_lag_max_s": 0.1837908698944375,
+      "numeric_matched": 16433,
+      "numeric_total": 20419,
+      "micro_numeric_recall": 0.8047896566922964,
+      "macro_rouge_l_f1": 0.7704811924598951,
+      "requests_with_missing_numbers": 1294,
+      "correct_output_count": null,
+      "resources": {
+        "samples": 279,
+        "errors": {},
+        "client_cpu_cores": 0.046538287638363145,
+        "gpu_percent": {
+          "mean": 68.96415770609319,
+          "max": 100.0
+        },
+        "power_w": {
+          "mean": 277.898458781362,
+          "max": 332.7
+        },
+        "temperature_c": {
+          "mean": 66.73118279569893,
+          "max": 75.0
+        },
+        "memory_mib": {
+          "mean": 12417.874551971327,
+          "max": 13057.0
+        },
+        "container_cpu_cores": {
+          "mean": 1.0631742201697383,
+          "max": 1.4237450387201902
+        },
+        "server_waiting": {
+          "mean": 6.827956989247312,
+          "max": 8.0
+        },
+        "server_running": {
+          "mean": 7.888888888888889,
+          "max": 8.0
+        },
+        "vllm:mm_cache_queries_total_observed_delta": 1716.0,
+        "vllm:mm_cache_hits_total_observed_delta": 1716.0,
+        "vllm:generation_tokens_total_observed_delta": 391958.0
+      },
+      "http_200": 1751,
+      "output_tokens": 291371,
+      "returned_output_tokens_by_document": {
+        "24": 5676,
+        "25": 5275,
+        "26": 6930,
+        "27": 2912,
+        "28": 4785,
+        "29": 8679,
+        "30": 3234,
+        "31": 4917,
+        "32": 3134,
+        "33": 5824,
+        "34": 4631,
+        "35": 3689,
+        "36": 7872,
+        "37": 1984,
+        "38": 8686,
+        "39": 8032,
+        "40": 5164,
+        "41": 6595,
+        "42": 4402,
+        "43": 4352,
+        "44": 1824,
+        "45": 3938,
+        "46": 3744,
+        "47": 7236,
+        "48": 2976,
+        "49": 4630,
+        "51": 8736,
+        "52": 4757,
+        "53": 18036,
+        "54": 1710,
+        "55": 1984,
+        "56": 2784,
+        "57": 1184,
+        "58": 3440,
+        "59": 10269,
+        "60": 3270,
+        "61": 11877,
+        "62": 2976,
+        "63": 3379,
+        "64": 1519,
+        "65": 1952,
+        "66": 4000,
+        "67": 2790,
+        "68": 1581,
+        "69": 4767,
+        "70": 11156,
+        "72": 3998,
+        "73": 4480,
+        "74": 21101,
+        "75": 4352,
+        "76": 2624,
+        "77": 3008,
+        "78": 2281,
+        "79": 1440,
+        "50": 14799
+      }
+    }
+  ],
+  "ranges": [
+    {
+      "cache": "repeated",
+      "rate": 6.0,
+      "repeats": 1,
+      "completed_per_s_including_drain": {
+        "mean": 5.351617987978065,
+        "min": 5.351617987978065,
+        "max": 5.351617987978065
+      },
+      "completed_per_s_during_arrivals": {
+        "mean": 5.593333333333334,
+        "min": 5.593333333333334,
+        "max": 5.593333333333334
+      },
+      "all_e2e_p95_s": {
+        "mean": 14.201792754931375,
+        "min": 14.201792754931375,
+        "max": 14.201792754931375
+      },
+      "queue_p95_s": {
+        "mean": 10.96491374692414,
+        "min": 10.96491374692414,
+        "max": 10.96491374692414
+      },
+      "micro_numeric_recall": {
+        "mean": 0.8047896566922964,
+        "min": 0.8047896566922964,
+        "max": 0.8047896566922964
+      },
+      "status_counts": {
+        "success": 1751,
+        "timeout": 34,
+        "queue_full": 15
+      }
+    }
+  ],
+  "limits": "Repetition ranges, not confidence intervals. Repeated documents are dependent."
+}

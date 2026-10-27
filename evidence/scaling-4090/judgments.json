@@ -1,0 +1,134 @@
+{
+  "scope": "Pre-commit advisory judgment; excluded raw evidence and generated SVG from diff input; full changed-file list supplied.",
+  "reviewed_tree": "8874cd4da29a6504af05802a0b39ab9a18e64f72",
+  "caution": "Probabilities are not measured accuracy. Local Gemma kv9 judgment is advisory, not a substitute for review or a quality ground truth.",
+  "commit": {
+    "question": {
+      "type": "choice",
+      "instructions": "Which Conventional Commits type fits this change?",
+      "criteria": {
+        "build": "The change alters how the package is built, packaged or locked, such as build settings, the lock file or a dependency version.",
+        "chore": "The change is repository upkeep that alters no shipped code, test, documentation, build or CI behaviour, such as tool or agent settings, hook settings or release bookkeeping.",
+        "ci": "The change alters the continuous integration workflows, jobs or scripts that run on the CI service.",
+        "docs": "The change alters only documentation, such as README text, docs pages, docstrings, comments or status notes.",
+        "feat": "The change adds a new capability that users of the library, CLI or server can call or observe.",
+        "fix": "The change corrects behaviour that was wrong, broken or did not match its documented contract.",
+        "perf": "The change makes existing behaviour faster or use fewer resources without changing what it does.",
+        "refactor": "The change restructures code without changing its behaviour, and it neither adds a capability nor fixes a defect.",
+        "test": "The change adds or corrects tests, test fixtures or test helpers, and it changes no production code."
+      }
+    },
+    "answer": {
+      "choice": "feat",
+      "confidence": 0.9999813683763705,
+      "probabilities": {
+        "build": 0.000003596684141309393,
+        "chore": 3.060512651589122e-7,
+        "ci": 2.5620507340856153e-7,
+        "docs": 5.735523428976979e-7,
+        "feat": 0.9999813683763705,
+        "fix": 0.000002352620947716516,
+        "perf": 0.000006382328564670473,
+        "refactor": 0.000001106138497718029,
+        "test": 0.000004058042796575947
+      },
+      "model": "gemma-4-31b-kv9-text",
+      "usage": {
+        "input_tokens": 33799,
+        "output_tokens": 1
+      }
+    },
+    "supervisor": "feat",
+    "agreement": true,
+    "reason": "Adds callable manifest preparation, open-loop execution, resume, scoring and reporting capabilities."
+  },
+  "acceptance": {
+    "questions": {
+      "allowed_paths": {
+        "type": "noul",
+        "instructions": "The diff changes only the allowed paths named in the contract",
+        "criteria": {
+          "true": "Every file in the changed-file list is one of the allowed paths, sits under an allowed directory, or is a file the contract names or plainly requires, such as a test, fixture or docs page for the behaviour it asks for. When no allowed paths are listed, every changed file serves the contract's stated change.",
+          "false": "At least one changed file is outside the allowed paths and is not needed by the contract. Examples: an unrelated module, a policy or settings file the contract does not mention, a status or ledger file, a gate configuration change, or a suppression list such as per-file-ignores."
+        }
+      },
+      "tests_kept": {
+        "type": "noul",
+        "instructions": "No existing test was weakened or removed",
+        "criteria": {
+          "true": "No removed line in a test file deletes a test function, an assertion or a test case without an equal or stricter replacement. Renamed, moved or reworded tests keep what they check, and a changed expected value follows a contract change.",
+          "false": "A removed or changed test line makes a test check less. Examples: a deleted test function or assertion, an assertion loosened to accept more outcomes, an added skip, xfail, noqa or type ignore, a narrowed parametrize list, or an expected value changed only so that the test passes."
+        }
+      },
+      "test_fails_without": {
+        "type": "noul",
+        "instructions": "A new or changed test would fail without the production change",
+        "criteria": {
+          "true": "The diff adds or changes a test that calls the changed behaviour and asserts its new result, so the test fails if the production hunks are removed. A change with no production code, such as a docs or configuration change, counts when a test or check pins the new content.",
+          "false": "No added or changed test exercises the new behaviour, or each new test would pass on the old code. Examples: a production change with no test hunk, a test that only checks a file exists, a test wrapped in a try that passes whether or not an error is raised, or assertions on values the change does not affect."
+        }
+      }
+    },
+    "answer": {
+      "model": "gemma-4-31b-kv9-text",
+      "usage": {
+        "input_tokens": 101221,
+        "output_tokens": 3
+      },
+      "answers": {
+        "allowed_paths": {
+          "name": "allowed_paths",
+          "type": "noul",
+          "noul": 0.9999963975885213
+        },
+        "tests_kept": {
+          "name": "tests_kept",
+          "type": "noul",
+          "noul": 0.999981590372874
+        },
+        "test_fails_without": {
+          "name": "test_fails_without",
+          "type": "noul",
+          "noul": 0.999995205451639
+        }
+      },
+      "policy": {
+        "result": "pass",
+        "rules": [
+          {
+            "question": "allowed_paths",
+            "pass": true,
+            "detail": "noul 0.9999963975885213 >= 0.8 -> pass"
+          },
+          {
+            "question": "tests_kept",
+            "pass": true,
+            "detail": "noul 0.999981590372874 >= 0.8 -> pass"
+          },
+          {
+            "question": "test_fails_without",
+            "pass": true,
+            "detail": "noul 0.999995205451639 >= 0.8 -> pass"
+          }
+        ]
+      }
+    },
+    "supervisor": {
+      "allowed_paths": {
+        "decision": true,
+        "agreement": true,
+        "reason": "Each changed path implements, tests, documents or preserves requested experiment evidence."
+      },
+      "tests_kept": {
+        "decision": true,
+        "agreement": true,
+        "reason": "Existing tests retain their assertions; new cases extend coverage."
+      },
+      "test_fails_without": {
+        "decision": true,
+        "agreement": true,
+        "reason": "New tests execute queue overload, resume/cancellation persistence, raw-response retention, manifest validation and offline scoring behavior absent from baseline."
+      }
+    }
+  }
+}
