@@ -8,8 +8,11 @@ from pathlib import Path
 
 from inference_lab import receipt_metrics
 
+PILOT_SIZE = 24
+
 
 def rescore(source: Path) -> dict:
+    """Score a complete saved run without changing its raw requests."""
     raw = (source / "requests.jsonl").read_bytes()
     records = [json.loads(line) for line in raw.splitlines()]
     for record in records:
@@ -28,7 +31,9 @@ def rescore(source: Path) -> dict:
             for r in records
             if r["phase"] == phase and r["concurrency"] == concurrency
         ]
-        if len(selected) != 24 or sorted(r["id"] for r in selected) != list(range(24)):
+        if len(selected) != PILOT_SIZE or sorted(r["id"] for r in selected) != list(
+            range(PILOT_SIZE)
+        ):
             raise RuntimeError(
                 "Missing or duplicate requests; refusing complete-run summary"
             )
@@ -49,7 +54,10 @@ def rescore(source: Path) -> dict:
             }
         )
     result = {
-        "normalizer": "v3: remove Nemotron controls, HTML tags, LaTeX commands and tabular/multicolumn layout syntax",
+        "normalizer": (
+            "v3: remove Nemotron controls, HTML tags, LaTeX commands "
+            "and tabular/multicolumn layout syntax"
+        ),
         "source_requests_sha256": hashlib.sha256(raw).hexdigest(),
         "metric_source_sha256": hashlib.sha256(
             Path(receipt_metrics.__file__).read_bytes()
@@ -61,6 +69,7 @@ def rescore(source: Path) -> dict:
 
 
 def main():
+    """Write corrected scores into a new output file."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--input",

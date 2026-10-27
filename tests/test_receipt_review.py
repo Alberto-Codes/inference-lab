@@ -20,6 +20,7 @@ def review(monkeypatch):
     spec = importlib.util.spec_from_file_location(
         "review_receipts", ROOT / "scripts/review_receipts.py"
     )
+    assert spec is not None and spec.loader is not None
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module

@@ -1,6 +1,6 @@
 import asyncio
 import json
-from types import SimpleNamespace
+from argparse import Namespace
 
 import httpx
 import pytest
@@ -46,7 +46,7 @@ def test_benchmark_persists_accounting_and_metadata(tmp_path, monkeypatch):
     )
     monkeypatch.setattr(serving, "gpu", lambda: {"name": "fake GPU - no inference"})
     monkeypatch.setattr(serving, "command", lambda argv: "fake evidence")
-    args = SimpleNamespace(
+    args = Namespace(
         input=corpus,
         output=tmp_path / "run",
         timeout=1,
@@ -87,7 +87,7 @@ def test_ocr_writes_output_and_failure_receipt(tmp_path, monkeypatch):
         "AsyncClient",
         lambda **kw: real_client(**kw, transport=httpx.MockTransport(handler)),
     )
-    args = SimpleNamespace(
+    args = Namespace(
         input=tmp_path / "corpus/page-01.png",
         output=tmp_path / "output.txt",
         expect=["LAB401"],
@@ -121,7 +121,7 @@ def test_failed_warmup_leaves_explicit_aborted_report(tmp_path, monkeypatch):
     )
     monkeypatch.setattr(serving, "gpu", lambda: {})
     monkeypatch.setattr(serving, "command", lambda argv: "fake")
-    args = SimpleNamespace(
+    args = Namespace(
         input=corpus,
         output=tmp_path / "run",
         timeout=1,

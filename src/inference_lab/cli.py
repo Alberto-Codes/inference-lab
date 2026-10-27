@@ -1,4 +1,18 @@
-"""AXI-style CLI: compact TOON views, JSON evidence, no interactive prompts."""
+"""Run parsing experiments with compact status views and JSON evidence.
+
+Examples:
+    Inspect the available commands without starting a server:
+
+    ```python
+    from inference_lab.cli import parser
+
+    print(parser().format_help())
+    ```
+
+See Also:
+    - [Serving lifecycle][inference_lab.serving].
+    - [Request execution][inference_lab.client].
+"""
 
 import argparse
 import asyncio
@@ -9,7 +23,9 @@ import re
 import subprocess
 import sys
 import time
+from contextlib import suppress
 from datetime import UTC, datetime
+from http import HTTPStatus
 from pathlib import Path
 
 import httpx
@@ -19,8 +35,19 @@ from inference_lab.client import infer, prepare
 from inference_lab.corpus import generate
 from inference_lab.experiment import load_corpus, render, sweep
 
+CONTROL_CHARACTER_LIMIT = 32
+PREVIEW_CHARACTERS = 500
 
-def scalar(value) -> str:
+
+def scalar(value: str | int | float | bool | None) -> str:
+    """Encode one scalar for the CLI's flat TOON views.
+
+    Args:
+        value: A string or JSON-compatible scalar.
+
+    Returns:
+        A quoted or bare scalar with control characters escaped.
+    """
     if not isinstance(value, str):
         return json.dumps(value, allow_nan=False)
     if (
@@ -35,7 +62,10 @@ def scalar(value) -> str:
         return (
             '"'
             + "".join(
-                escapes.get(c, f"\\u{ord(c):04x}" if ord(c) < 32 else c) for c in value
+                escapes.get(
+                    c, f"\\u{ord(c):04x}" if ord(c) < CONTROL_CHARACTER_LIMIT else c
+                )
+                for c in value
             )
             + '"'
         )
@@ -43,19 +73,57 @@ def scalar(value) -> str:
 
 
 def emit(data: dict) -> None:
+    """Print a flat status mapping to standard output.
+
+    Args:
+        data: Ordered keys and scalar values to display.
+    """
     # Deliberately limited to this CLI's flat scalar views, not a generic codec.
     for key, value in data.items():
         print(f"{key}: {scalar(value)}")
 
 
 class Parser(argparse.ArgumentParser):
-    def error(self, message):
+    """Report argument errors in the same flat format as command results.
+
+    Examples:
+        Parse options without contacting hardware:
+
+        ```python
+        from inference_lab.cli import parser
+
+        options = parser().parse_args(["logs", "--full"])
+        assert options.full
+        ```
+    """
+
+    def error(self, message: str):
+        """Print argument guidance and exit with usage status two.
+
+        Args:
+            message: The argument parser's diagnostic.
+
+        Raises:
+            SystemExit: Always, with exit status two.
+        """
         flags = ", ".join(s for a in self._actions for s in a.option_strings)
         emit({"error": message, "valid_flags": flags, "help": f"{self.prog} --help"})
         raise SystemExit(2)
 
 
 def positive(value: str) -> float:
+    """Parse a finite, strictly positive timeout.
+
+    Args:
+        value: Numeric command-line argument.
+
+    Returns:
+        The parsed timeout in seconds.
+
+    Raises:
+        ValueError: The input is not numeric.
+        argparse.ArgumentTypeError: The value is nonpositive or nonfinite.
+    """
     result = float(value)
     if not math.isfinite(result) or result <= 0:
         raise argparse.ArgumentTypeError("must be a finite positive number")
@@ -63,6 +131,11 @@ def positive(value: str) -> float:
 
 
 def parser() -> Parser:
+    """Build the argument parser without probing the host or GPU.
+
+    Returns:
+        The parser with all supported subcommands.
+    """
     root = Parser(
         prog="inference-axi",
         description="Local Nemotron OCR smoke demo; no arguments shows live state.",
@@ -95,7 +168,15 @@ def parser() -> Parser:
     return root
 
 
-async def run_ocr(args) -> int:
+async def run_ocr(args: argparse.Namespace) -> int:
+    """Extract one image and save its text and terminal request record.
+
+    Args:
+        args: Parsed OCR options, including input, output, URL and timeout.
+
+    Returns:
+        Zero for a successful request, otherwise one.
+    """
     page = prepare(args.input, tuple(args.expect))
     async with httpx.AsyncClient(base_url=args.url, timeout=args.timeout) as client:
         record = await infer(client, page, args.timeout)
@@ -110,16 +191,19 @@ async def run_ocr(args) -> int:
             "status": record["status"],
             "output": str(args.output),
             "characters": len(text),
-            "preview": text if args.full else text[:500],
+            "preview": text if args.full else text[:PREVIEW_CHARACTERS],
             "quality": "expected-text sanity check"
             if args.expect
             else "nonempty output only; supply --expect for known text",
         }
     )
-    if len(text) > 500 and not args.full:
+    if len(text) > PREVIEW_CHARACTERS and not args.full:
         emit(
             {
-                "help": f"Read {args.output} for complete output; --full prints all text on a new request"
+                "help": (
+                    f"Read {args.output} for complete output; "
+                    "--full prints all text on a new request"
+                )
             }
         )
     if "error" in record:
@@ -127,7 +211,20 @@ async def run_ocr(args) -> int:
     return 0 if record["status"] == "success" else 1
 
 
-async def run_bench(args) -> int:
+async def run_bench(args: argparse.Namespace) -> int:
+    """Warm the corpus and record bounded concurrency sweeps.
+
+    Args:
+        args: Parsed benchmark options and a new output directory.
+
+    Returns:
+        Zero if every measured request succeeds, otherwise one.
+
+    Raises:
+        RuntimeError: The owned server is unavailable or a warmup fails.
+        ValueError: The URL differs from the managed server.
+        BaseException: Run failures propagate after partial evidence is saved.
+    """
     preparation_start = time.perf_counter()
     pages = load_corpus(args.input)
     preparation_s = time.perf_counter() - preparation_start
@@ -187,7 +284,7 @@ async def run_bench(args) -> int:
                 report["warmup"].append(record)
                 save()
                 if record["status"] != "success":
-                    raise RuntimeError(
+                    raise RuntimeError(  # noqa: TRY301 - outer handler records aborted evidence
                         f"warmup failed; inspect {args.output}/results.json"
                     )
             for concurrency in args.concurrency:
@@ -213,29 +310,79 @@ async def run_bench(args) -> int:
     return 1 if any(s["failures"] for s in report["sweeps"]) else 0
 
 
+def _show_status() -> None:
+    state = serving.status()
+    ready = False
+    if state["container"] == "running":
+        with suppress(httpx.RequestError):
+            ready = (
+                httpx.get("http://127.0.0.1:8017/health", timeout=3).status_code
+                == HTTPStatus.OK
+            )
+    emit(
+        {
+            "container": state["container"],
+            "ready": ready,
+            "gpu": state["gpu"]["name"],
+            "free_mib": int(state["gpu"]["memory.free"]),
+            "help": "inference-axi corpus; inference-axi start; inference-axi --help",
+        }
+    )
+
+
+def _build_image() -> None:
+    result = subprocess.run(  # noqa: S603 - fixed Podman command, no shell
+        [  # noqa: S607 - resolve the installed Podman executable from PATH
+            "podman",
+            "build",
+            "-t",
+            serving.config()["image"],
+            "-f",
+            str(serving.ROOT / "serving/Containerfile"),
+            str(serving.ROOT / "serving"),
+        ],
+        stdout=sys.stderr,
+        check=False,
+    )
+    if result.returncode:
+        raise RuntimeError(
+            "image build failed; inspect build diagnostics and docs/reference/evidence.md"
+        )
+    emit({"image": serving.config()["image"], "help": "inference-axi start"})
+
+
+def _show_logs(full: bool) -> None:
+    item = serving.inspect()
+    if not item:
+        emit({"logs": "0 containers; demo has not started"})
+    else:
+        argv = ["podman", "logs"] + ([] if full else ["--tail", "40"]) + [item["Id"]]
+        result = subprocess.run(  # noqa: S603 - fixed Podman command, no shell
+            argv, capture_output=True, text=True, timeout=20, check=False
+        )
+        if result.returncode:
+            raise RuntimeError("cannot read demo logs")
+        emit(
+            {
+                "logs": result.stdout + result.stderr,
+                "help": "inference-axi logs --full; inference-axi stop",
+            }
+        )
+
+
 def main() -> int:
+    """Dispatch a command and report recoverable failures as status views.
+
+    Returns:
+        Zero on success, one on command failure, or 130 on interruption.
+
+    Raises:
+        SystemExit: Argument parsing requests help or rejects usage.
+    """
     args = parser().parse_args()
     try:
         if args.action in (None, "status"):
-            state = serving.status()
-            ready = False
-            if state["container"] == "running":
-                try:
-                    ready = (
-                        httpx.get("http://127.0.0.1:8017/health", timeout=3).status_code
-                        == 200
-                    )
-                except httpx.RequestError:
-                    pass
-            emit(
-                {
-                    "container": state["container"],
-                    "ready": ready,
-                    "gpu": state["gpu"]["name"],
-                    "free_mib": int(state["gpu"]["memory.free"]),
-                    "help": "inference-axi corpus; inference-axi start; inference-axi --help",
-                }
-            )
+            _show_status()
         elif args.action == "corpus":
             emit(
                 {
@@ -247,44 +394,9 @@ def main() -> int:
         elif args.action in ("start", "stop"):
             emit(getattr(serving, args.action)())
         elif args.action == "build":
-            result = subprocess.run(
-                [
-                    "podman",
-                    "build",
-                    "-t",
-                    serving.config()["image"],
-                    "-f",
-                    str(serving.ROOT / "serving/Containerfile"),
-                    str(serving.ROOT / "serving"),
-                ],
-                stdout=sys.stderr,
-            )
-            if result.returncode:
-                raise RuntimeError(
-                    "image build failed; inspect build diagnostics and docs/reference/evidence.md"
-                )
-            emit({"image": serving.config()["image"], "help": "inference-axi start"})
+            _build_image()
         elif args.action == "logs":
-            item = serving.inspect()
-            if not item:
-                emit({"logs": "0 containers; demo has not started"})
-            else:
-                argv = (
-                    ["podman", "logs"]
-                    + ([] if args.full else ["--tail", "40"])
-                    + [item["Id"]]
-                )
-                result = subprocess.run(
-                    argv, capture_output=True, text=True, timeout=20
-                )
-                if result.returncode:
-                    raise RuntimeError("cannot read demo logs")
-                emit(
-                    {
-                        "logs": result.stdout + result.stderr,
-                        "help": "inference-axi logs --full; inference-axi stop",
-                    }
-                )
+            _show_logs(args.full)
         elif args.action == "ocr":
             return asyncio.run(run_ocr(args))
         elif args.action == "bench":

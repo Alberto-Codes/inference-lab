@@ -1,4 +1,21 @@
-"""One prepared image per bounded HTTP request; no retries."""
+"""Send one prepared image per bounded HTTP request without retries.
+
+Attributes:
+    PROMPT: Control tokens for Nemotron layout and text extraction.
+    MODEL: Model name exposed by the demo server.
+
+Examples:
+    Normalize expected text for a case-insensitive sanity check:
+
+    ```python
+    from inference_lab.client import normalized
+
+    text = normalized("Total: 12.00")  # "total 12 00"
+    ```
+
+See Also:
+    [`inference_lab.experiment`][]: Preparation and measured concurrency sweeps.
+"""
 
 import asyncio
 import base64
@@ -18,6 +35,25 @@ MODEL = "nemotron-parse"
 
 @dataclass(frozen=True)
 class Page:
+    """Hold an image prepared outside the measured request interval.
+
+    Attributes:
+        name (str): Source image filename used in request records.
+        sha256 (str): SHA-256 digest of the original file bytes.
+        data_url (str): Base64 PNG data URL submitted to the server.
+        expected (tuple[str, ...]): Text snippets required by the synthetic quality check.
+
+    Examples:
+        Prepare a real image rather than constructing its data URL manually:
+
+        ```python
+        from pathlib import Path
+        from inference_lab.client import prepare
+
+        page = prepare(Path("corpus/page-01.png"), ("LAB401",))
+        ```
+    """
+
     name: str
     sha256: str
     data_url: str
@@ -25,7 +61,15 @@ class Page:
 
 
 def prepare(path: Path, expected: tuple[str, ...] = ()) -> Page:
-    """Decode and normalize before inference timing begins."""
+    """Decode and normalize before inference timing begins.
+
+    Args:
+        path: Image file to read and convert to RGB PNG.
+        expected: Required text snippets for response validation.
+
+    Returns:
+        Prepared image with the original file digest and encoded PNG.
+    """
     raw = path.read_bytes()
     with Image.open(io.BytesIO(raw)) as image:
         image.load()
@@ -41,11 +85,35 @@ def prepare(path: Path, expected: tuple[str, ...] = ()) -> Page:
 
 
 def normalized(text: str) -> str:
+    """Casefold text and join word tokens with single spaces.
+
+    Args:
+        text: Expected or extracted text.
+
+    Returns:
+        Normalized text for substring sanity checks.
+    """
     return " ".join(re.findall(r"\w+", text.casefold()))
 
 
-async def infer(client: httpx.AsyncClient, page: Page, timeout: float) -> dict:
-    """Return one terminal record, including failure and observed latency."""
+# Response validation errors are caught and recorded, not raised to callers.
+async def infer(  # docvet: ignore[missing-raises]
+    client: httpx.AsyncClient, page: Page, timeout: float
+) -> dict:
+    """Return one terminal record, including failure and observed latency.
+
+    HTTP, timeout and malformed-response failures become records rather than
+    escaping to the caller. Task cancellation still propagates.
+
+    Args:
+        client: Async HTTP client configured with the server base URL.
+        page: Image and expected text prepared before timing.
+        timeout: Total request deadline in seconds.
+
+    Returns:
+        Record with page name, digest, status, text and latency in seconds.
+        Failure records include an error description.
+    """
     start = time.perf_counter()
     record = {"page": page.name, "sha256": page.sha256, "status": "error", "text": ""}
     try:
@@ -77,7 +145,7 @@ async def infer(client: httpx.AsyncClient, page: Page, timeout: float) -> dict:
             choice = response.json()["choices"][0]
             text = choice["message"]["content"]
             if not isinstance(text, str):
-                raise ValueError("response content is not text")
+                raise TypeError("response content is not text")  # noqa: TRY301 - record below
             record["text"] = text
             record["finish_reason"] = choice.get("finish_reason")
             missing = [

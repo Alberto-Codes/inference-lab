@@ -24,6 +24,20 @@ theme:
     - content.code.copy
 plugins:
   - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            docstring_style: google
+            show_root_heading: true
+            heading_level: 2
+            show_signature_annotations: true
+            show_submodules: false
+validation:
+  links:
+    anchors: warn
+    unrecognized_links: warn
 markdown_extensions:
   - admonition
   - tables
@@ -45,6 +59,7 @@ nav:
       - What the scores mean: explanation/receipt-evaluation.md
       - How the experiment works: explanation/how-it-works.md
       - Serving profile: reference/serving.md
+      - Python API: reference/api.md
       - Data and licences: reference/public-audit.md
   - More guides:
       - Optional model review: how-to/review-with-a-model.md
@@ -55,6 +70,7 @@ nav:
       - Measurement limits: explanation/measurement.md
       - Advanced service handover: how-to/service-handover.md
   - Maintainers:
+      - Run quality checks: how-to/check-quality.md
       - Prepare an experiment release: how-to/cut-a-release.md
       - Writing rules: reference/writing.md
       - v0.1.0 (draft): releases/v0.1.0.md

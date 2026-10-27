@@ -9,6 +9,8 @@ from pathlib import Path
 import httpx
 from PIL import Image
 
+TEST_SPLIT_ROWS = 100
+
 REVISION = "7f0115a4b758a71d6473b8d085751692da2fef98"
 DATASET = "naver-clova-ix/cord-v2"
 SOURCE = "data/test-00000-of-00001-9c204eb3f4e11791.parquet"
@@ -16,7 +18,8 @@ ARCHIVE = Path(__file__).resolve().parents[1] / "evidence/cord-test-24/manifest.
 
 
 def prepare_corpus(root: Path, client: httpx.Client) -> dict:
-    import pyarrow.parquet as parquet
+    """Download the pinned corpus and verify every saved input identity."""
+    from pyarrow import parquet  # noqa: PLC0415 - optional preparation dependency
 
     root.mkdir(parents=True, exist_ok=False)
     manifest = json.loads(ARCHIVE.read_text())
@@ -25,7 +28,7 @@ def prepare_corpus(root: Path, client: httpx.Client) -> dict:
     )
     response.raise_for_status()
     table = parquet.read_table(io.BytesIO(response.content))
-    if table.num_rows != 100:
+    if table.num_rows != TEST_SPLIT_ROWS:
         raise ValueError("Pinned test source must contain 100 rows")
     rows = table.slice(0, 24).to_pylist()
     for item, row in zip(manifest["pages"], rows, strict=True):
@@ -51,6 +54,7 @@ def prepare_corpus(root: Path, client: httpx.Client) -> dict:
 
 
 def main():
+    """Prepare the selected new corpus directory."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--output",

@@ -1,6 +1,7 @@
 import json
 import subprocess
 
+from inference_lab.cli import scalar
 from inference_lab.client import prepare
 from inference_lab.corpus import generate
 from inference_lab.experiment import load_corpus
@@ -8,7 +9,10 @@ from inference_lab.experiment import load_corpus
 
 def test_unknown_flag_is_structured_and_fails_before_hardware_access():
     result = subprocess.run(
-        ["inference-axi", "start", "--typo"], capture_output=True, text=True
+        ["inference-axi", "start", "--typo"],  # noqa: S607 - test installed entry point
+        capture_output=True,
+        text=True,
+        check=False,
     )
     assert result.returncode == 2
     assert "error:" in result.stdout
@@ -34,18 +38,17 @@ def test_corpus_rejects_empty_expectations(tmp_path):
     data = json.loads(path.read_text())
     data["pages"][0]["expected"] = []
     path.write_text(json.dumps(data))
-    result = subprocess.run(
-        ["inference-axi", "bench", str(tmp_path), "--output", str(tmp_path / "run")],
+    result = subprocess.run(  # noqa: S603 - fixed CLI and pytest-owned paths, no shell
+        ["inference-axi", "bench", str(tmp_path), "--output", str(tmp_path / "run")],  # noqa: S607
         capture_output=True,
         text=True,
+        check=False,
     )
     assert result.returncode == 1
     assert "nonempty expected text" in result.stdout
 
 
 def test_toon_escaping_does_not_corrupt_literal_backslashes():
-    from inference_lab.cli import scalar
-
     for text in ["a\\bar", "a\\foo", "a\b", "a\f", "a\n", '🧪,"x"', "#tag"]:
         assert json.loads(scalar(text)) == text
     assert scalar("hello world") == "hello world"

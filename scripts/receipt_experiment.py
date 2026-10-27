@@ -19,6 +19,7 @@ from inference_lab.receipt_metrics import plain_text, score
 
 
 async def run(corpus: Path, output: Path, url: str = "http://127.0.0.1:8017"):
+    """Validate the fixed corpus, warm each image, and save measured requests."""
     manifest = json.loads((corpus / "manifest.json").read_text())
     if [p["id"] for p in manifest["pages"]] != list(range(24)):
         raise ValueError("Expected exactly CORD test rows 0 through 23")
@@ -126,6 +127,7 @@ async def run(corpus: Path, output: Path, url: str = "http://127.0.0.1:8017"):
 
 
 def main():
+    """Run the selected corpus with optional explicit GPU handover."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--input", required=True, type=Path, help="Prepared CORD corpus directory"
@@ -137,7 +139,10 @@ def main():
     parser.add_argument(
         "--release-llama",
         action="store_true",
-        help="Temporarily stop local llama.cpp, start the parser and restore previous service/model state",
+        help=(
+            "Temporarily stop local llama.cpp, start the parser "
+            "and restore previous service/model state"
+        ),
     )
     args = parser.parse_args()
     if args.release_llama and args.url != "http://127.0.0.1:8017":
