@@ -58,6 +58,17 @@ metadata. Direct runtime pins follow the upstream reference receipt.
 The image and package list identify resolved transitive dependencies.
 This does not establish a bit-for-bit reproducible rebuild.
 
+## Image build findings
+
+The first build failed its `pip check` step.
+The base image lacked `pycairo`, required by its installed PyGObject package.
+Its NIXL meta-package also required a different CUDA backend version.
+The image recipe now installs the missing distribution package, `python3-cairo`.
+It removes the unused NIXL meta-package.
+The single-GPU vLLM package does not require that meta-package.
+The recipe retains `pip check`.
+These changes affect only the demo image.
+
 ## Verified offline behavior
 
 - Deterministic generation of eight fictional pages with per-page known text;
