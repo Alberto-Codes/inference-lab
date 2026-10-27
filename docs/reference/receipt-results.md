@@ -58,8 +58,9 @@ Locale-aware equivalence requires a separate, explicit rule.
 
 ## Local model review
 
-The configured `judgevet-gemma` MCP tool reviewed the three lowest-overlap receipts.
-Its path is Judgevet → Typevet → Gemma on local llama.cpp.
+The recorded Judgevet review assessed the three lowest-overlap receipts.
+Its path is [Judgevet](https://github.com/Alberto-Codes/judgevet) →
+[Typevet](https://github.com/Alberto-Codes/typevet) → Gemma on local llama.cpp.
 The resolved model was `gemma-4-31b-kv9-text`.
 The configured versions are Judgevet 0.23.0 and Typevet 0.11.0.
 The rubric has four ordered levels, from multiple numeric errors to exact preservation.
@@ -79,30 +80,27 @@ The review had text only and could not verify the source image.
 Prompts, states and complete answers are in `judgevet-review.json`.
 
 An earlier direct chat review remains in `local-review.json` for audit.
-It bypassed the existing integration and claimed all receipt 13 numbers matched.
+It used direct chat and claimed all receipt 13 numbers matched.
 The configured Judgevet review supersedes that route for this experiment.
 
-## Validation and restoration
+See [optional model review](../how-to/review-with-a-model.md) to configure your own judge.
+
+## Validation at the recorded run
 
 Offline checks passed: Ruff, lock validation, package build and 35 tests.
 One additional live GPU test passed before the receipt requests.
-The owned Nemotron container was removed after the run.
-The first restoration check ran before asynchronous model loading finished.
-A bounded follow-up confirmed that the previous Gemma model was loaded.
-`lifecycle.json` retains the initial error and the successful verification.
 
 ## Evidence
 
 All paths below are relative to `evidence/cord-test-24/`.
 
-- `manifest.json`: dataset provenance, image hashes and source annotations.
-- `requests.jsonl`: all 72 terminal request records.
-- `results.json`: run settings, timing and initial score calculation.
-- `scores.json`: final normalized scores and raw text.
-- `judgevet-review.json`: three reviews through the configured Judgevet integration.
-- `local-review.json`: earlier direct chat observations, retained for audit.
-- `lifecycle.json`: service shutdown and restoration evidence.
-- `server.log`: Nemotron server log.
+- [manifest.json](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/cord-test-24/manifest.json): dataset provenance, image hashes and source annotations.
+- [requests.jsonl](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/cord-test-24/requests.jsonl): all 72 terminal request records.
+- [results.json](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/cord-test-24/results.json): run settings, timing and initial score calculation.
+- [scores.json](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/cord-test-24/scores.json): final normalized scores and raw text.
+- [judgevet-review.json](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/cord-test-24/judgevet-review.json): three reviews through the configured Judgevet integration.
+- [local-review.json](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/cord-test-24/local-review.json): earlier direct chat observations, retained for audit.
+- [lifecycle.json](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/cord-test-24/lifecycle.json): service shutdown and restoration evidence.
+- [server.log](https://github.com/Alberto-Codes/inference-lab/blob/main/evidence/cord-test-24/server.log): Nemotron server log.
 
-The design used one isolated Elephant–Goldfish critique before implementation.
-See [evaluation design](../explanation/receipt-evaluation.md) for decisions and resolved findings.
+See [scoring explanation](../explanation/receipt-evaluation.md) for interpretation.

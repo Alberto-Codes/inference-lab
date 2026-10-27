@@ -1,34 +1,29 @@
-# Licences and public audit
+# Data and licences
 
 Kind: reference.
 
 Project code and original documentation use MIT.
-CORD source annotations and derived reference excerpts use CC BY 4.0.
+CORD source annotations and reference excerpts use CC BY 4.0.
 Credit NAVER CLOVA and Park et al., CORD (2019).
-Model weights, plugin code and tokenizer notices retain their upstream licences.
 
 [Full third-party notices](https://github.com/Alberto-Codes/inference-lab/blob/main/THIRD_PARTY_NOTICES.md).
 
-## Public content review
+## Dataset provenance
 
-The initial four-commit history passed Gitleaks 8.30.1 with no detected secrets.
-The proposed public tree also passed the scanner with no detected secrets.
-The scanner binary was checked against its release checksum.
-The scan is a detection check, not proof that every possible secret format is covered.
+The pilot uses CORD-v2 test rows 0–23 from a pinned dataset revision.
+The manifest records source annotations and the hashes of the submitted images.
+Preparation reproduces the viewer's JPEG encoding from the pinned PNG source.
+Every image hash and annotation must match before preparation succeeds.
 
-Historical logs retain the public author name, local checkout paths, GPU UUID and container names.
-These are benign provenance and local environment observations, not credentials.
-Their presence does not configure a reader's machine.
-The original evidence remains unchanged so its hashes and observations can be checked.
-Local assistant state, caches, corpus images, weights and generated site files are ignored.
-No API credential is needed for the public dataset download or offline scoring.
+Receipt images and model weights are downloaded separately.
+They are not included in the Python package.
+Model weights, plugin code and tokenizer notices retain their upstream licences.
+See the [serving profile](serving.md) for the selected revision.
 
-The original CORD viewer images were JPEG encodings of PNG source images.
-Pinned preparation reproduces those encodings and verifies all 24 archived hashes and annotations.
-A fresh preparation run verified this behavior before public delivery.
+## Evidence handling
 
-## Release state
-
-The first experiment is prepared as a draft release.
-Its companion post remains unpublished until separately authorized.
-Pages deploys from validated main and does not require publishing the first tag.
+Raw parser outputs, timing, scores and input hashes remain available for inspection.
+An unrelated host-service inventory was removed from public evidence.
+Checkout paths in operational test logs are explicitly redacted.
+These privacy changes do not change parser outputs, measurements or dataset hashes.
+New runs use separate output directories and never replace the recorded pilot.

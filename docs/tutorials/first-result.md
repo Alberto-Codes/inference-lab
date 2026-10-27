@@ -3,7 +3,12 @@
 Kind: tutorial.
 
 This exercise recalculates the receipt pilot's scores without a GPU.
-Install Git, Python 3.12 and uv before you start.
+Install [Git](https://git-scm.com/downloads) and
+[uv](https://docs.astral.sh/uv/getting-started/installation/) before you start.
+The initial clone and dependency installation need internet access.
+uv can install Python 3.12 if it is missing.
+After setup, the scoring command uses only the saved responses.
+It needs no model server, GPU or dataset image download.
 
 1. Clone the public repository.
 
@@ -21,7 +26,7 @@ Install Git, Python 3.12 and uv before you start.
 3. Recalculate scores into a new file.
 
    ```sh
-   uv run python scripts/score_receipts.py \
+   uv run --offline python scripts/score_receipts.py \
      --input evidence/cord-test-24 --output runs/inspection/scores.json
    ```
 
