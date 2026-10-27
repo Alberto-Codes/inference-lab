@@ -55,6 +55,24 @@ The hooks run Ruff, ty and Docvet. CI also runs tests and builds.
 | pytest-cov | Offline behavior and branch coverage. The regression floor is 85%; the initial measured baseline is 87%. |
 | Strict MkDocs | Page construction, Python API rendering and documentation cross-references. |
 
+## Docstring checks and API rendering
+
+```mermaid
+flowchart TB
+    accTitle: Docstring validation and API generation are separate checks
+    accDescr: Python source docstrings feed Docvet with Griffe for quality checks and mkdocstrings for API generation. Docvet findings can fail CI. MkDocs builds the generated API and checks links in strict mode before Pages deployment.
+    source["Python source<br/>Docstrings"] --> check["Docvet<br/>+ Griffe"]
+    source --> render["mkdocstrings<br/>API reference"]
+    check --> gate["CI must pass"]
+    render --> strict["Strict MkDocs<br/>Rendering + links"]
+    strict --> gate
+    gate --> deploy["Deploy Pages<br/>Validated main"]
+```
+
+Docvet validates docstrings. It does not generate the API page.
+mkdocstrings reads the same source and renders the reference.
+Both checks must pass in CI before the documentation deployment can proceed.
+
 Ruff's rules live in `ruff.toml`. Other settings live in `pyproject.toml`.
 Docvet requires 100% presence for public package symbols.
 Its package checks exclude command scripts and tests; Ruff still checks those files.

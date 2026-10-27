@@ -19,6 +19,27 @@ Annotation order can differ from page reading order.
 These scores are diagnostic comparisons, not official CORD benchmark results.
 They do not evaluate layout, table structure or financial field association.
 
+## From saved output to scores
+
+```mermaid
+flowchart TB
+    accTitle: How saved requests become deterministic scores
+    accDescr: Formatting is removed from saved output. Successful requests use the cleaned text; every other status uses an empty prediction. Each prediction is compared with partial CORD references to measure ordered text overlap and exact numeric-string recall. Raw output is retained.
+    raw["Saved raw output"] --> clean["Remove formatting"]
+    clean --> status{"Successful request?"}
+    status -->|Yes| text["Use cleaned text"]
+    status -->|No| empty["Use empty text"]
+    text --> compare["Compare with partial<br/>CORD reference"]
+    empty --> compare
+    compare --> overlap["Text overlap<br/>ROUGE-L"]
+    compare --> numbers["Exact numbers<br/>String recall"]
+```
+
+This diagram shows the scoring input, not changes to saved evidence.
+The raw output stays available for every request status.
+An empty prediction keeps a failed page in the denominator.
+The partial reference is not a complete transcription of the image.
+
 ## Text overlap
 
 Scoring removes Nemotron coordinate and class tokens, HTML tags and LaTeX layout syntax.
