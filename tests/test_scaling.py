@@ -2,6 +2,7 @@ import asyncio
 import fcntl
 import hashlib
 import json
+import time
 
 import httpx
 import pytest
@@ -224,6 +225,8 @@ def test_failure_review_keeps_unsuccessful_outcomes_out_of_ocr_suspects(
             )
         if calls == 8:
             return httpx.Response(503, text="server overloaded")
+        # Block the loop past every queued deadline, so later requests expire waiting.
+        time.sleep(0.05)
         await asyncio.sleep(0.1)
         return httpx.Response(200)
 
