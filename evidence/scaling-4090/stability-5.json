@@ -1,0 +1,167 @@
+{
+  "conditions": [
+    {
+      "condition": "stability",
+      "cache": "repeated",
+      "complete": true,
+      "capacity_eligible": true,
+      "planned": 1500,
+      "terminal": 1500,
+      "unattempted": 0,
+      "unique_documents": 56,
+      "status_counts": {
+        "success": 1474,
+        "timeout": 26
+      },
+      "offered_rate": 5.0,
+      "elapsed_s": 319.43443564197514,
+      "offered_window_s": 300.0,
+      "completed_per_s_including_drain": 4.61440544767087,
+      "completed_per_s_during_arrivals": 4.8966666666666665,
+      "all_e2e_p50_s": 0.9344532300019637,
+      "all_e2e_p95_s": 3.195367894950323,
+      "all_e2e_p99_s": 30.02181849896442,
+      "success_e2e_p95_s": 2.7485206769779325,
+      "queue_p95_s": 0.03620613703969866,
+      "arrival_lag_max_s": 0.9875333718955517,
+      "numeric_matched": 13776,
+      "numeric_total": 17012,
+      "micro_numeric_recall": 0.8097813308252998,
+      "macro_rouge_l_f1": 0.773602567837272,
+      "requests_with_missing_numbers": 1077,
+      "correct_output_count": null,
+      "resources": {
+        "samples": 276,
+        "errors": {},
+        "client_cpu_cores": 0.03988474963955048,
+        "gpu_percent": {
+          "mean": 66.10144927536231,
+          "max": 100.0
+        },
+        "power_w": {
+          "mean": 263.66478260869565,
+          "max": 309.08
+        },
+        "temperature_c": {
+          "mean": 65.92753623188406,
+          "max": 75.0
+        },
+        "memory_mib": {
+          "mean": 12895.054347826086,
+          "max": 13013.0
+        },
+        "container_cpu_cores": {
+          "mean": 1.064262945052738,
+          "max": 1.8176566723630558
+        },
+        "server_waiting": {
+          "mean": 0.2753623188405797,
+          "max": 4.0
+        },
+        "server_running": {
+          "mean": 7.155797101449275,
+          "max": 8.0
+        },
+        "vllm:mm_cache_queries_total_observed_delta": 1495.0,
+        "vllm:mm_cache_hits_total_observed_delta": 1495.0,
+        "vllm:generation_tokens_total_observed_delta": 384451.0
+      },
+      "http_200": 1474,
+      "output_tokens": 248363,
+      "returned_output_tokens_by_document": {
+        "24": 4644,
+        "25": 4443,
+        "26": 5670,
+        "27": 2457,
+        "28": 3915,
+        "29": 7101,
+        "30": 2646,
+        "31": 4023,
+        "32": 2645,
+        "33": 4914,
+        "34": 3910,
+        "35": 3213,
+        "36": 6651,
+        "37": 1674,
+        "38": 7341,
+        "39": 6824,
+        "40": 4307,
+        "41": 5563,
+        "42": 3834,
+        "43": 3672,
+        "44": 1539,
+        "45": 3321,
+        "46": 3174,
+        "47": 6073,
+        "48": 2511,
+        "49": 4492,
+        "50": 14066,
+        "51": 7371,
+        "52": 4052,
+        "53": 15229,
+        "54": 1539,
+        "55": 1728,
+        "56": 2349,
+        "57": 999,
+        "58": 2889,
+        "59": 9631,
+        "60": 2943,
+        "61": 10341,
+        "62": 2511,
+        "63": 2943,
+        "64": 1323,
+        "65": 1647,
+        "66": 3375,
+        "67": 2430,
+        "68": 1326,
+        "69": 3876,
+        "70": 9068,
+        "72": 3242,
+        "73": 3640,
+        "74": 18091,
+        "75": 3536,
+        "76": 2132,
+        "77": 2444,
+        "78": 1915,
+        "79": 1170
+      }
+    }
+  ],
+  "ranges": [
+    {
+      "cache": "repeated",
+      "rate": 5.0,
+      "repeats": 1,
+      "completed_per_s_including_drain": {
+        "mean": 4.61440544767087,
+        "min": 4.61440544767087,
+        "max": 4.61440544767087
+      },
+      "completed_per_s_during_arrivals": {
+        "mean": 4.8966666666666665,
+        "min": 4.8966666666666665,
+        "max": 4.8966666666666665
+      },
+      "all_e2e_p95_s": {
+        "mean": 3.195367894950323,
+        "min": 3.195367894950323,
+        "max": 3.195367894950323
+      },
+      "queue_p95_s": {
+        "mean": 0.03620613703969866,
+        "min": 0.03620613703969866,
+        "max": 0.03620613703969866
+      },
+      "micro_numeric_recall": {
+        "mean": 0.8097813308252998,
+        "min": 0.8097813308252998,
+        "max": 0.8097813308252998
+      },
+      "status_counts": {
+        "success": 1474,
+        "timeout": 26
+      }
+    }
+  ],
+  "limits": "Repetition ranges, not confidence intervals. Repeated documents are dependent."
+}

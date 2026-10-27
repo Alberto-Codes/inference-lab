@@ -37,6 +37,16 @@ The [receipt procedure](docs/how-to/evaluate-receipts.md) covers a fresh GPU run
 Preparation, inference, scoring and optional judge review use explicit paths.
 Existing output directories and files are protected from replacement.
 
+## Scale the receipt workload
+
+The [scaling procedure](docs/how-to/run-scaling.md) adds 56 unique receipts,
+open-loop arrivals, bounded queues, durable resume and offline rescoring.
+It reserves 20 untouched evaluation receipts before preparing new coverage inputs.
+Read the [scaling results](docs/reference/scaling-results.md),
+[measurement method](docs/explanation/scaling-method.md) and
+[image-based failure review](docs/reference/scaling-failures.md).
+This increment preserves the published pilot and does not add automatic correction.
+
 ## Run locally
 
 The parser needs Linux x86-64, rootless Podman, NVIDIA CDI and at least

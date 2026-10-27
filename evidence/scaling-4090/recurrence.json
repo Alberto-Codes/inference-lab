@@ -1,0 +1,113 @@
+{
+  "observation": "Reviewed separator and digit errors recur in all three fresh trials; row 71 truncates in all three.",
+  "requests": [
+    {
+      "condition": "fresh-0",
+      "id": 32,
+      "status": "success",
+      "terminal_path": "runs/scaling-4090-matrix-v2/fresh-0/terminal/000000008.json",
+      "terminal_sha256": "0d2c48806d9f6b01136f679a0ee0f8c973680fa91c4c2710b696c42be9dc7379",
+      "model_text_sha256": "56739067d6902864a6a536b4565548074b65fb8ce9144b80de901c9e54ca6149",
+      "image_sha256": "1ff069117e26f1742907192475affdfb5b997e12dc6a1209156d1d10c1c9b94e"
+    },
+    {
+      "condition": "fresh-0",
+      "id": 49,
+      "status": "success",
+      "terminal_path": "runs/scaling-4090-matrix-v2/fresh-0/terminal/000000025.json",
+      "terminal_sha256": "af528eab7d5abd101e64931fb163300d2d71fb4d97f0dcf2aa703e41f6eff06f",
+      "model_text_sha256": "49fd34a57e0843aba81febd7961a50925b8f71b06145776ffa515803ed3ed98a",
+      "image_sha256": "586d99b4bbdaed4f0aa9f9514eaa1bb0d306d270490eed8ddace08e6cdf804ac"
+    },
+    {
+      "condition": "fresh-0",
+      "id": 66,
+      "status": "success",
+      "terminal_path": "runs/scaling-4090-matrix-v2/fresh-0/terminal/000000042.json",
+      "terminal_sha256": "38ec372df6190a72f3b93c78cbd907f2785996456d66c7434339fe497e0adcf9",
+      "model_text_sha256": "97b5257de0de625cada3aa76ab1cc34bdb67a88491cd0a199fe426173425e220",
+      "image_sha256": "c1107b942305c7f4399c346b734905e6cfeab64bcfa9fce2f35780f23ee8e586"
+    },
+    {
+      "condition": "fresh-0",
+      "id": 71,
+      "status": "incomplete",
+      "terminal_path": "runs/scaling-4090-matrix-v2/fresh-0/terminal/000000047.json",
+      "terminal_sha256": "49879a4a99e261b45b8b12fe76ca37ac369f008954fa4e0e118a24ad8eb36358",
+      "model_text_sha256": "9497f6288ec0696559e6e1cfb641429e282b810feda112f2108739b12408d3d0",
+      "image_sha256": "2c73d02e1528bd76ecdfeae8e3e56fa2eaee5997f0473be80a56738e59350dff"
+    },
+    {
+      "condition": "fresh-1",
+      "id": 32,
+      "status": "success",
+      "terminal_path": "runs/scaling-4090-matrix-v2/fresh-1/terminal/000000008.json",
+      "terminal_sha256": "66d7571573427d89883b46444cae074f2665938a53d8d59103e91a9569f27164",
+      "model_text_sha256": "305702a8962618431a67ecae8a1469803cff586a47bc7b5cba6daa8bc775170a",
+      "image_sha256": "1ff069117e26f1742907192475affdfb5b997e12dc6a1209156d1d10c1c9b94e"
+    },
+    {
+      "condition": "fresh-1",
+      "id": 49,
+      "status": "success",
+      "terminal_path": "runs/scaling-4090-matrix-v2/fresh-1/terminal/000000025.json",
+      "terminal_sha256": "f142eb82ea72bc2fb11bed3463de190562fdcefaa7ca7e22bc67ae140744ad8b",
+      "model_text_sha256": "49fd34a57e0843aba81febd7961a50925b8f71b06145776ffa515803ed3ed98a",
+      "image_sha256": "586d99b4bbdaed4f0aa9f9514eaa1bb0d306d270490eed8ddace08e6cdf804ac"
+    },
+    {
+      "condition": "fresh-1",
+      "id": 66,
+      "status": "success",
+      "terminal_path": "runs/scaling-4090-matrix-v2/fresh-1/terminal/000000042.json",
+      "terminal_sha256": "e8050c8f6835d7765b0841546b7296d248269eef4b8067434fa778db93ed950f",
+      "model_text_sha256": "97b5257de0de625cada3aa76ab1cc34bdb67a88491cd0a199fe426173425e220",
+      "image_sha256": "c1107b942305c7f4399c346b734905e6cfeab64bcfa9fce2f35780f23ee8e586"
+    },
+    {
+      "condition": "fresh-1",
+      "id": 71,
+      "status": "incomplete",
+      "terminal_path": "runs/scaling-4090-matrix-v2/fresh-1/terminal/000000047.json",
+      "terminal_sha256": "3eb2afba0ef4691545b856a7181180a84f1ae104b6f86717195de11c8264522a",
+      "model_text_sha256": "9497f6288ec0696559e6e1cfb641429e282b810feda112f2108739b12408d3d0",
+      "image_sha256": "2c73d02e1528bd76ecdfeae8e3e56fa2eaee5997f0473be80a56738e59350dff"
+    },
+    {
+      "condition": "fresh-2",
+      "id": 32,
+      "status": "success",
+      "terminal_path": "runs/scaling-4090-matrix-v2/fresh-2/terminal/000000008.json",
+      "terminal_sha256": "88a69b6715c48a5bcb223c703c60edd6eb8cccbeb6fd87fc04a179f15fa9e8c9",
+      "model_text_sha256": "56739067d6902864a6a536b4565548074b65fb8ce9144b80de901c9e54ca6149",
+      "image_sha256": "1ff069117e26f1742907192475affdfb5b997e12dc6a1209156d1d10c1c9b94e"
+    },
+    {
+      "condition": "fresh-2",
+      "id": 49,
+      "status": "success",
+      "terminal_path": "runs/scaling-4090-matrix-v2/fresh-2/terminal/000000025.json",
+      "terminal_sha256": "91cf02906e23c8eda4d2c4e3526f389fd64cd2e5d8087d6a97663fa93a3a1c7c",
+      "model_text_sha256": "49fd34a57e0843aba81febd7961a50925b8f71b06145776ffa515803ed3ed98a",
+      "image_sha256": "586d99b4bbdaed4f0aa9f9514eaa1bb0d306d270490eed8ddace08e6cdf804ac"
+    },
+    {
+      "condition": "fresh-2",
+      "id": 66,
+      "status": "success",
+      "terminal_path": "runs/scaling-4090-matrix-v2/fresh-2/terminal/000000042.json",
+      "terminal_sha256": "fcc2702be3d4314be6c9557d2a5103bba3f47c700a8dd5772ec70a26cb79da18",
+      "model_text_sha256": "97b5257de0de625cada3aa76ab1cc34bdb67a88491cd0a199fe426173425e220",
+      "image_sha256": "c1107b942305c7f4399c346b734905e6cfeab64bcfa9fce2f35780f23ee8e586"
+    },
+    {
+      "condition": "fresh-2",
+      "id": 71,
+      "status": "incomplete",
+      "terminal_path": "runs/scaling-4090-matrix-v2/fresh-2/terminal/000000047.json",
+      "terminal_sha256": "3a683e0aa7b63144b0fec1144314e6814c85989352169a1722a28a88825f9152",
+      "model_text_sha256": "9497f6288ec0696559e6e1cfb641429e282b810feda112f2108739b12408d3d0",
+      "image_sha256": "2c73d02e1528bd76ecdfeae8e3e56fa2eaee5997f0473be80a56738e59350dff"
+    }
+  ]
+}

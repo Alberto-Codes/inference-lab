@@ -1,0 +1,110 @@
+[
+  {
+    "rate": 5,
+    "count": 1500,
+    "warmups": 56,
+    "minute_groups": [
+      {
+        "minute": 1,
+        "mean_queue_s": 0.06160615976899862,
+        "status_counts": {
+          "success": 295,
+          "timeout": 5
+        }
+      },
+      {
+        "minute": 2,
+        "mean_queue_s": 0.016808278042978297,
+        "status_counts": {
+          "success": 295,
+          "timeout": 5
+        }
+      },
+      {
+        "minute": 3,
+        "mean_queue_s": 0.016950164255298054,
+        "status_counts": {
+          "success": 294,
+          "timeout": 6
+        }
+      },
+      {
+        "minute": 4,
+        "mean_queue_s": 0.01644695925836762,
+        "status_counts": {
+          "success": 295,
+          "timeout": 5
+        }
+      },
+      {
+        "minute": 5,
+        "mean_queue_s": 0.01695429762553734,
+        "status_counts": {
+          "success": 295,
+          "timeout": 5
+        }
+      }
+    ],
+    "timeouts_by_id": {
+      "71": 26
+    },
+    "runner_sha256": "fd7b715b6bba2a337b80864929eb9710136172c07b61596a95e33d86d8c8f8ae",
+    "restoration_verified": true
+  },
+  {
+    "rate": 6,
+    "count": 1800,
+    "warmups": 56,
+    "minute_groups": [
+      {
+        "minute": 1,
+        "mean_queue_s": 1.5617198741234866,
+        "status_counts": {
+          "success": 353,
+          "timeout": 7
+        }
+      },
+      {
+        "minute": 2,
+        "mean_queue_s": 6.480189269520149,
+        "status_counts": {
+          "success": 353,
+          "timeout": 7
+        }
+      },
+      {
+        "minute": 3,
+        "mean_queue_s": 8.64775548653302,
+        "status_counts": {
+          "success": 354,
+          "timeout": 6
+        }
+      },
+      {
+        "minute": 4,
+        "mean_queue_s": 10.584966747190533,
+        "status_counts": {
+          "success": 340,
+          "timeout": 7,
+          "queue_full": 13
+        }
+      },
+      {
+        "minute": 5,
+        "mean_queue_s": 10.39111431493156,
+        "status_counts": {
+          "success": 351,
+          "timeout": 7,
+          "queue_full": 2
+        }
+      }
+    ],
+    "timeouts_by_id": {
+      "50": 1,
+      "71": 32,
+      "59": 1
+    },
+    "runner_sha256": "fd7b715b6bba2a337b80864929eb9710136172c07b61596a95e33d86d8c8f8ae",
+    "restoration_verified": true
+  }
+]

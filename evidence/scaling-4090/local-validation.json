@@ -1,0 +1,19 @@
+{
+  "phase": "local validation before final results and gate review",
+  "commands": [
+    "uv lock --check",
+    "uv run ruff check .",
+    "uv run ruff format --check .",
+    "uv run ty check",
+    "uv run docvet check --all",
+    "uv run --group data pytest --cov",
+    "uv build",
+    "uv run --group docs mkdocs build --strict"
+  ],
+  "outcome": "all passed",
+  "offline_tests": 90,
+  "gpu_tests_deselected": 1,
+  "package_coverage_percent": 87.33,
+  "coverage_scope": "src/inference_lab; scripts have behavior tests but are outside the configured package coverage source",
+  "live_inference_evidence": "Separate gpu-test.json, runtime snapshots, raw requests and telemetry inside each suite run"
+}

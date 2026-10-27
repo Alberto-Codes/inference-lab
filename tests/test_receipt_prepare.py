@@ -62,3 +62,40 @@ def test_preparation_never_overwrites_existing_corpus(tmp_path):
     ):
         module.prepare_corpus(target, client)
     assert (target / "manifest.json").read_text() == "historical"
+
+
+def test_scaling_reservation_precedes_download_and_excludes_holdout(tmp_path):
+    module = script("prepare_scaling")
+    root = tmp_path / "coverage"
+    rows = []
+    images = []
+    for index in range(100):
+        image = Image.new("RGB", (2, 2), (index, 0, 0))
+        raw = io.BytesIO()
+        image.save(raw, format="PNG")
+        images.append(raw.getvalue())
+        rows.append(
+            {
+                "image": {"bytes": raw.getvalue()},
+                "ground_truth": json.dumps(
+                    {"valid_line": [{"words": [{"text": str(index)}]}]}
+                ),
+            }
+        )
+    data = io.BytesIO()
+    parquet.write_table(pa.Table.from_pylist(rows), data)
+
+    def respond(request):
+        reservation = json.loads((root / "reservation.json").read_text())
+        assert reservation["evaluation_rows"] == list(range(80, 100))
+        assert module.REVISION in str(request.url)
+        return httpx.Response(200, content=data.getvalue())
+
+    with httpx.Client(transport=httpx.MockTransport(respond)) as client:
+        manifest = module.prepare_corpus(root, client)
+    assert [p["id"] for p in manifest["pages"]] == list(range(24, 80))
+    assert len(list(root.glob("*.image"))) == 56
+    assert not (root / "test-080.image").exists()
+    assert (root / "test-024.image").read_bytes() == images[24]
+    with httpx.Client() as client, pytest.raises(FileExistsError):
+        module.prepare_corpus(root, client)
