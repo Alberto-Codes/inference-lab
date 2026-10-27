@@ -5,17 +5,17 @@ vLLM and one RTX 4090. Each experiment keeps its inputs' provenance,
 raw outputs, measurements and limits beside its code.
 
 [Documentation](https://alberto-codes.github.io/inference-lab/) ·
-[Receipt results](docs/reference/receipt-results.md) ·
-[Experiment releases](https://github.com/Alberto-Codes/inference-lab/releases)
+[Experiment index](docs/reference/experiments.md)
 
-The first receipt pilot used 24 CORD test images.
-All 48 measured requests completed, but one amount changed from `79,500` to `79,300`.
-At concurrency one, diagnostic ROUGE-L F1 was 0.801.
-Exact numeric-string recall was 212/241, or 88.0%.
-These partial-reference scores assess extracted text and numbers.
-They do not measure layout accuracy, table structure or financial field association.
+- **v0.1.0 — receipt pilot:** 24 CORD receipts and two short warmed-cache concurrency sweeps. Its roughly six receipts/s is not established sustained capacity.
+- **v0.2.0 — receipt scaling:** 56 new coverage receipts, 20 reserved evaluation receipts, open-loop load sweeps and five-minute stability trials.
 
-## Inspect the saved experiment
+Use the [experiment index](docs/reference/experiments.md) to find each article,
+release state, results, tagged evidence and historical reproduction instructions.
+Completion success is separate from correct extraction.
+These experiments assess text and numbers, not layout or financial field association.
+
+## Inspect the v0.1.0 pilot without a GPU
 
 Install [Git](https://git-scm.com/downloads) and
 [uv](https://docs.astral.sh/uv/getting-started/installation/) first.
@@ -25,15 +25,15 @@ After setup, scoring uses the saved responses without a GPU, model download or n
 Use a new output filename each time.
 
 ```sh
-git clone https://github.com/Alberto-Codes/inference-lab.git
+git clone --branch v0.1.0 https://github.com/Alberto-Codes/inference-lab.git
 cd inference-lab
 uv sync --locked
 uv run --offline python scripts/score_receipts.py \
   --input evidence/cord-test-24 --output runs/inspection/scores.json
 ```
 
-The [quickstart](docs/tutorials/first-result.md) explains the outputs.
-The [receipt procedure](docs/how-to/evaluate-receipts.md) covers a fresh GPU run.
+The [current quickstart](docs/tutorials/first-result.md) explains the outputs.
+The [current pilot procedure](docs/how-to/evaluate-receipts.md) covers a fresh GPU run.
 Preparation, inference, scoring and optional judge review use explicit paths.
 Existing output directories and files are protected from replacement.
 
@@ -61,14 +61,12 @@ See [optional model review](docs/how-to/review-with-a-model.md) for installation
 It is not needed to reproduce the deterministic scores.
 The parser and judge use the GPU at separate times.
 
-## Experiments and companion posts
+## Releases and documentation
 
-An immutable tag identifies each experiment's code and evidence.
-Its GitHub Release links to the companion post, which links back to the release.
-The first release remains a draft until its post is ready.
+See [documentation and experiment versions](docs/reference/experiments.md#documentation-and-experiment-versions)
+for the relationship between the hosted site and immutable snapshots.
+The [release procedure](docs/how-to/cut-a-release.md) covers coordinated publication.
 This repository does not publish a Python package to PyPI.
-Pages is a living documentation site built from validated `main`.
-See [release procedure](docs/how-to/cut-a-release.md).
 
 ## Validate
 

@@ -54,12 +54,13 @@ extra_css:
   - stylesheets/landing.css
 nav:
   - Overview: index.md
+  - Experiments: reference/experiments.md
   - Get started:
-      - Inspect saved results: tutorials/first-result.md
-      - Run on your GPU: how-to/evaluate-receipts.md
+      - Inspect pilot results: tutorials/first-result.md
+      - Run the pilot on your GPU: how-to/evaluate-receipts.md
   - Results and methods:
-      - Receipt results: reference/receipt-results.md
-      - Scaling results: reference/scaling-results.md
+      - v0.1.0 pilot results: reference/receipt-results.md
+      - v0.2.0 scaling results: reference/scaling-results.md
       - Scaling procedure: how-to/run-scaling.md
       - Scaling method: explanation/scaling-method.md
       - Scaling failure review: reference/scaling-failures.md
@@ -81,5 +82,5 @@ nav:
       - Run quality checks: how-to/check-quality.md
       - Prepare an experiment release: how-to/cut-a-release.md
       - Writing rules: reference/writing.md
-      - v0.1.0 (draft): releases/v0.1.0.md
+      - v0.1.0 release: releases/v0.1.0.md
       - v0.2.0 (release draft): releases/v0.2.0.md

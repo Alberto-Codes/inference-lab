@@ -25,7 +25,8 @@ Draft releases are visible to repository maintainers, not public readers.
 ## Publish when the companion post is ready
 
 1. Verify that the draft still targets the intended full SHA.
-2. Verify that the tag remains absent.
+2. If the tag is already public, verify that it resolves to the intended full SHA.
+   Otherwise, verify that the tag remains absent.
 3. Replace the pending companion-post status with its public URL.
 4. Verify that the post links back to this release's tag URL.
 5. Publish the GitHub draft only after both artifacts are ready.
@@ -35,15 +36,14 @@ Never move a published experiment tag.
 A correction gets a new tag and a note describing what changed.
 This repository does not upload packages to PyPI.
 
-## Deploy documentation before the first release
+## Deploy current documentation {#deploy-documentation-before-the-first-release}
 
-Pages is a living site built from validated main.
-The first deployment does not require an experiment tag.
+See [documentation and experiment versions](../reference/experiments.md#documentation-and-experiment-versions) for the snapshot policy.
+A documentation deployment does not require publishing a release.
 
 ```sh
  gh workflow run docs.yml --ref main
 ```
 
-A published release also triggers deployment from main, not from the release's historical commit.
+A published release also triggers this deployment workflow.
 The deployment refuses a main commit without successful CI.
-Experiment evidence remains available through immutable commit links.

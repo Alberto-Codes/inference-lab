@@ -4,74 +4,54 @@ hide:
 ---
 
 <div class="lab-intro" markdown>
-<p class="lab-kicker">One GPU · Real receipts · Saved evidence</p>
+<p class="lab-kicker">One GPU · Tagged experiments · Saved evidence</p>
 
 # Local document parsing, with measured results
 
-<p class="lab-lead">Run NVIDIA Nemotron-3.5-Parse on receipt images, save its output, and check the extracted text and numbers.</p>
+<p class="lab-lead">Inspect what NVIDIA Nemotron-3.5-Parse extracts from receipts, then measure how the workload behaves on one RTX 4090.</p>
 
-This small experiment uses 24 CORD receipts and one RTX 4090.
-**How fast? About 2 receipts per second when sent one at a time, or 6 per second with four in progress at once.**
-That is almost three times as many receipts processed in the same time.
-The typical receipt took about **0.4 seconds** on its own and **0.6 seconds** when sharing the GPU.
-These are warmed-up test results; startup is excluded, and fast output can still contain wrong amounts.
-
-Start with the saved results, or run the parser on your own GPU.
+Choose an experiment before comparing its results.
+The **v0.1.0 receipt pilot** checks 24 receipts in short concurrency sweeps.
+The **v0.2.0 scaling experiment** adds 56 coverage receipts and sustained offered-load trials.
+Repeating inputs adds load, not new quality coverage.
 
 <div class="lab-actions" markdown>
-[Inspect saved results](tutorials/first-result.md){ .md-button .md-button--primary }
-[Run on your GPU](how-to/evaluate-receipts.md){ .md-button }
+[Choose an experiment](reference/experiments.md){ .md-button .md-button--primary }
+[Inspect the pilot without a GPU](tutorials/first-result.md){ .md-button }
 </div>
 </div>
 
-## What runs locally
+## Two different questions
+
+| Experiment | Question | Read next |
+|---|---|---|
+| v0.1.0 · Receipt pilot | What text and numeric errors appear, and how do two short concurrency sweeps compare? | [Pilot results](reference/receipt-results.md) |
+| v0.2.0 · Receipt scaling | What happens to queues, latency and failures when arrivals continue under load? | [Scaling results](reference/scaling-results.md) |
+
+The pilot's roughly six receipts/s is a short warmed-cache observation, not a sustained-capacity claim.
+The scaling experiment measures sustained repeated-input load and reports its remaining quality failures.
+Neither experiment establishes correct financial extraction or production reliability.
+
+## Follow the evidence
 
 <ol class="lab-pipeline">
-<li><span class="lab-step">STEP 1</span><strong>Receipt images</strong><p>Download the fixed 24-image corpus. Verify its annotations and hashes.</p></li>
-<li><span class="lab-step">STEP 2</span><strong>Nemotron Parse</strong><p>Send each image to the parser, served locally through vLLM.</p></li>
-<li><span class="lab-step">STEP 3</span><strong>Saved outputs</strong><p>Keep raw text, completion status and request timing.</p></li>
-<li><span class="lab-step">STEP 4</span><strong>Compare text and numbers</strong><p>Score saved output against the annotated reference. This step needs no GPU.</p></li>
+<li><span class="lab-step">STEP 1</span><strong>Choose a tagged experiment</strong><p>Find its purpose, dataset, article and historical instructions in the experiment index.</p></li>
+<li><span class="lab-step">STEP 2</span><strong>Inspect saved outputs</strong><p>Read raw responses, completion status and timing from that experiment's evidence.</p></li>
+<li><span class="lab-step">STEP 3</span><strong>Rescore offline</strong><p>Compare text and numeric strings with partial CORD annotations. This step needs no GPU.</p></li>
+<li><span class="lab-step">STEP 4</span><strong>Review failures</strong><p>Distinguish request failures, verified OCR errors, suspects and annotation gaps.</p></li>
 </ol>
 
-<div class="lab-optional" markdown>
-**Optional second-model review:** [Judgevet → Typevet → Gemma](how-to/review-with-a-model.md)
-can review the saved text and reference. Its judgments are advisory and stay separate from measured scores.
-</div>
-
-Nemotron Parse returns text, layout markers and table structure.
-This experiment evaluates **extracted text and numeric strings**, not layout or table-structure accuracy.
-
-## What the experiment found
-
-<div class="lab-observation" markdown>
-**All 48 measured requests completed. One amount still changed.**
-
-The receipt says **79,500**. The parser returned **79,300**.
-Request completion does not establish correct extraction.
-</div>
-
-| Concurrent requests | Completed | Throughput | Median latency | Exact numeric matches |
-|---|---|---|---|---|
-| 1 | 24/24 | 2.12 pages/s | 415 ms | 212/241 (88.0%) |
-| 4 | 24/24 | 5.99 pages/s | 634 ms | 212/241 (88.0%) |
-
-**Throughput** means how many receipts finish each second across all requests.
-**Median latency** is the middle receipt's response time: half finished faster and half slower.
-Handling four at once increased the total processing rate, but each receipt typically waited a little longer.
-
-These are two short sweeps over the same **24 unique receipts** on one RTX 4090.
-The image cache was warmed. Throughput includes scoring and evidence writes.
-More concurrency increased throughput and median latency; numeric recall stayed the same.
-
-CORD annotates selected content, not every visible word.
-Numeric presence does not establish correct field association.
-These observations do not establish general financial accuracy or production capacity.
-
-[Read the measured results and failure cases](reference/receipt-results.md) ·
-[Understand the scoring rules](reference/receipts.md)
+These experiments evaluate extracted text and numeric strings, not layout or table-structure accuracy.
+A completed request can still contain wrong amounts.
 
 ## Choose your next step
 
-- **No GPU:** [recalculate the saved scores](tutorials/first-result.md). Initial package installation needs network access.
-- **NVIDIA GPU:** [install the prerequisites and run the receipt experiment](how-to/evaluate-receipts.md).
-- **Comparing outputs:** [read the raw evidence](reference/receipt-results.md#evidence) before drawing conclusions from a score.
+- [Experiment index](reference/experiments.md): release states, companion articles, exact evidence and instructions.
+- [Current pilot guide](how-to/evaluate-receipts.md): run the 24-receipt procedure.
+- [Current scaling guide](how-to/run-scaling.md): prepare coverage inputs, measure load, resume and rescore.
+- [Scoring rules](reference/receipts.md): understand what the diagnostic scores can establish.
+
+<div class="lab-optional" markdown>
+**Optional model review:** [Judgevet → Typevet → Gemma](how-to/review-with-a-model.md)
+provides advisory judgments. They stay separate from measured scores and verified image findings.
+</div>

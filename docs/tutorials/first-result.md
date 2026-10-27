@@ -2,6 +2,10 @@
 
 Kind: tutorial.
 
+This is the current guide for the **v0.1.0** experiment.
+For the original wording and commands, use the [instructions at v0.1.0](https://github.com/Alberto-Codes/inference-lab/blob/v0.1.0/docs/tutorials/first-result.md).
+See the [experiment index](../reference/experiments.md) to choose a different study.
+
 This exercise recalculates the receipt pilot's scores without a GPU.
 Install [Git](https://git-scm.com/downloads) and
 [uv](https://docs.astral.sh/uv/getting-started/installation/) before you start.
@@ -13,7 +17,7 @@ It needs no model server, GPU or dataset image download.
 1. Clone the public repository.
 
    ```sh
-   git clone https://github.com/Alberto-Codes/inference-lab.git
+   git clone --branch v0.1.0 https://github.com/Alberto-Codes/inference-lab.git
    cd inference-lab
    ```
 

@@ -24,4 +24,4 @@ MkDocs renders them from source in `docs/reference/api.md`.
 Record actual integration status and unresolved limitations in `docs/reference/evidence.md`.
 
 Public documentation uses MkDocs Material. Run `uv run --group docs mkdocs build --strict`.
-Experiment tags are immutable. Keep the first release and companion blog in draft until publication is authorized.
+Experiment tags are immutable. Keep unpublished releases and companion posts in draft until their publication is authorized.
