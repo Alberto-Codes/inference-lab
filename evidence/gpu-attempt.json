@@ -1,0 +1,83 @@
+{
+  "started_at": "2026-10-27T02:32:01.135366+00:00",
+  "authorization": "User approved temporary llama.cpp stop and restoration",
+  "steps": [
+    {
+      "command": [
+        "nvidia-smi"
+      ],
+      "exit_code": 0,
+      "log": "gpu-available.txt"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "inference-axi",
+        "start"
+      ],
+      "exit_code": 0,
+      "log": "gpu-start.txt"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "pytest",
+        "-m",
+        "gpu"
+      ],
+      "exit_code": 0,
+      "log": "gpu-test.txt"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "inference-axi",
+        "bench",
+        "corpus",
+        "--output",
+        "runs/local-4090-first"
+      ],
+      "exit_code": 0,
+      "log": "gpu-bench.txt"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "inference-axi",
+        "logs",
+        "--full"
+      ],
+      "exit_code": 0,
+      "log": "gpu-server-log.toon"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "inference-axi",
+        "stop"
+      ],
+      "exit_code": 0,
+      "log": "gpu-stop.txt"
+    }
+  ],
+  "previously_loaded_models": [
+    "gemma-4-31b-kv9-text"
+  ],
+  "llama_stopped": true,
+  "restored_models": [
+    {
+      "id": "gemma-4-31b-kv9-text",
+      "status": "loaded"
+    }
+  ],
+  "restored_health": {
+    "status": "ok"
+  },
+  "finished_at": "2026-10-27T02:32:49.758226+00:00",
+  "restoration_verified_at": "2026-10-27T02:33:54.209604+00:00"
+}

@@ -163,12 +163,14 @@ async def run_bench(args) -> int:
         "client_url": args.url,
         "timeout_s": args.timeout,
         "preparation_s": preparation_s,
+        "warmup_policy": "one serial request per corpus page before measurement",
+        "cache_policy": "prefix cache disabled; default multimodal cache retained and warmed",
         "quality": "all expected phrases after case/punctuation normalization",
         "corpus": [
             {"file": p.name, "sha256": p.sha256, "expected": p.expected} for p in pages
         ],
     }
-    report = {"status": "running", "metadata": metadata, "warmup": None, "sweeps": []}
+    report = {"status": "running", "metadata": metadata, "warmup": [], "sweeps": []}
 
     def save():
         (args.output / "results.json").write_text(json.dumps(report, indent=2) + "\n")
@@ -180,10 +182,14 @@ async def run_bench(args) -> int:
             timeout=args.timeout,
             limits=httpx.Limits(max_connections=8),
         ) as client:
-            report["warmup"] = await infer(client, pages[0], args.timeout)
-            save()
-            if report["warmup"]["status"] != "success":
-                raise RuntimeError(f"warmup failed; inspect {args.output}/results.json")
+            for page in pages:
+                record = await infer(client, page, args.timeout)
+                report["warmup"].append(record)
+                save()
+                if record["status"] != "success":
+                    raise RuntimeError(
+                        f"warmup failed; inspect {args.output}/results.json"
+                    )
             for concurrency in args.concurrency:
                 report["sweeps"].append(
                     await sweep(client, pages, concurrency, args.timeout)

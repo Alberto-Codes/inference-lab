@@ -19,7 +19,7 @@ def test_benchmark_persists_accounting_and_metadata(tmp_path, monkeypatch):
     def handler(request):
         nonlocal calls
         calls += 1
-        if calls == 3:
+        if calls == 11:
             return httpx.Response(503)
         return httpx.Response(
             200,
@@ -56,10 +56,11 @@ def test_benchmark_persists_accounting_and_metadata(tmp_path, monkeypatch):
     assert asyncio.run(cli.run_bench(args)) == 1
     report = json.loads((args.output / "results.json").read_text())
     assert report["status"] == "complete"
-    assert calls == 33  # one excluded warmup, 8 requests for each of 4 sweeps
+    assert calls == 40  # eight warmup requests, then four measured sweeps
     assert [r["input_count"] for r in report["sweeps"]] == [8, 8, 8, 8]
     assert report["sweeps"][0]["failures"] == 1
-    assert report["warmup"]["status"] == "success"
+    assert len(report["warmup"]) == 8
+    assert all(r["status"] == "success" for r in report["warmup"])
     assert "fake-image" in (args.output / "summary.md").read_text()
     assert report["metadata"]["preparation_s"] > 0
     assert len(report["metadata"]["corpus"]) == 8
@@ -132,5 +133,5 @@ def test_failed_warmup_leaves_explicit_aborted_report(tmp_path, monkeypatch):
     report = json.loads((args.output / "results.json").read_text())
     assert report["status"] == "aborted"
     assert report["sweeps"] == []
-    assert report["warmup"]["status"] == "error"
+    assert report["warmup"][0]["status"] == "error"
     assert "Run status: aborted" in (args.output / "summary.md").read_text()
