@@ -3,12 +3,12 @@
 Kind: how-to.
 
 Use an immutable tag for each experiment and a GitHub Release for its notes.
-Follow Saucier's draft-first lifecycle without package publishing or automatic version bumps.
+Create a draft first. This experiment does not publish packages or automatically bump versions.
 The checked-in release note is the source of the experiment and companion-post mapping.
 
 1. Write `docs/releases/vMAJOR.MINOR.PATCH.md` with the experiment and reproduction command.
 2. Name its companion draft and current publication status.
-3. Merge validated changes through the maintainer's no-mistakes workflow.
+3. Merge validated changes after the required checks pass.
 4. Record the full main commit SHA after its CI run succeeds.
 5. Run **Draft Experiment Release** with that tag and SHA.
 

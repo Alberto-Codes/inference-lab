@@ -1,0 +1,22 @@
+/* Landing-page layout uses Material's palette in both colour schemes. */
+.lab-intro { border-bottom: 1px solid var(--md-default-fg-color--lightest); padding: .3rem 0 1.4rem; }
+.lab-intro .lab-kicker { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--md-default-fg-color); }
+.lab-intro h1 { margin: .4rem 0 .7rem; color: var(--md-default-fg-color); font-weight: 650; line-height: 1.15; max-width: 20ch; }
+.lab-intro .lab-lead { font-size: 1rem; max-width: 56ch; }
+.lab-actions { margin-top: 1rem; }
+.lab-actions p { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; }
+.md-typeset .lab-actions .md-button:not(.md-button--primary) { color: var(--md-default-fg-color); border-color: var(--md-default-fg-color); }
+.md-typeset .lab-actions .md-button:hover,
+.md-typeset .lab-actions .md-button:focus { color: var(--md-accent-bg-color); }
+.lab-actions a { white-space: normal; }
+.md-typeset ol.lab-pipeline { list-style: none !important; padding: 0 !important; margin: 1rem 0 !important; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: .5rem; }
+.lab-pipeline li { margin: 0 !important; min-width: 0; border: 1px solid var(--md-default-fg-color--lightest); border-radius: .3rem; padding: .8rem; overflow-wrap: anywhere; }
+.lab-pipeline strong { display: block; margin: .35rem 0; }
+.lab-step { font-size: .65rem; color: var(--md-default-fg-color); }
+.lab-pipeline p { font-size: .75rem; margin-bottom: 0; }
+.lab-optional { border-left: .18rem solid var(--md-typeset-a-color); padding: .1rem .8rem; font-size: .8rem; }
+.lab-observation { padding: .8rem 1rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: .3rem; }
+.lab-observation p { margin: .25rem 0; }
+.lab-actions a:focus-visible { outline: 3px solid var(--md-typeset-a-color); outline-offset: 4px; }
+@media (max-width: 48em) { .md-typeset ol.lab-pipeline { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 30em) { .md-typeset ol.lab-pipeline { grid-template-columns: minmax(0,1fr); } }

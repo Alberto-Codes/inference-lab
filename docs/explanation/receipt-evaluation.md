@@ -1,97 +1,88 @@
-# Receipt evaluation design
+# How receipt evaluation works
 
 Kind: explanation.
 
-## Scope
+## Scope and references
 
-Evaluate Nemotron on CORD-v2 test rows 0 through 23.
-Use the public NAVER dataset at revision 7f0115a4b758a71d6473b8d085751692da2fef98.
-Record image hashes, original labels, sample IDs, model settings and raw outputs.
-Do not tune prompts on these samples.
+The pilot evaluates Nemotron on CORD-v2 test rows 0 through 23.
+The [NAVER dataset](https://huggingface.co/datasets/naver-clova-ix/cord-v2)
+is pinned at revision `7f0115a4b758a71d6473b8d085751692da2fef98`.
+Saved evidence includes image hashes, original labels, sample IDs, model settings and raw outputs.
+The pilot uses one fixed prompt for all samples.
+CORD annotations use CC BY 4.0. Credit belongs to NAVER CLOVA and the CORD authors.
 
-## Measures
-
-CORD valid_line annotations cover selected receipt content.
+CORD `valid_line` annotations cover selected receipt content.
 They do not provide a complete transcription of every visible word.
-Build reference text from valid_line words in annotation order.
-Keep numeric punctuation and signs.
-Remove Nemotron coordinate and class tokens before scoring.
-Compute token ROUGE-L precision, recall and F1 without stemming.
-Treat these as diagnostic overlap scores, not official CORD benchmark results.
-Extra visible text can reduce precision without being an OCR error.
+Reference text follows the annotation order.
+Extra visible text can reduce precision without being a parsing error.
 Annotation order can differ from page reading order.
-Also measure multiset recall of numeric strings from annotated words.
-Preserve minus signs, decimal separators and thousands separators exactly.
-This measure checks string presence, not association with the correct receipt field.
-Report missing numeric strings for each page.
-Separate transport completion, truncation, empty output and text quality.
-Keep failed pages in denominators with empty predictions.
-Do not invent a quality pass threshold.
+These scores are diagnostic comparisons, not official CORD benchmark results.
+They do not evaluate layout, table structure or financial field association.
 
-## Execution
+## Text overlap
 
-Prepare all inputs before stopping llama.cpp.
-Record its loaded model before shutdown.
-Warm each image separately, then measure concurrency 1 and 4.
-Save every warmup and measured request.
-Score concurrency 1 as the primary quality observation.
-Report concurrency 4 separately.
-Restore llama.cpp and its previous model in a finally block.
-A local model may review the three lowest overlap scores after restoration.
-Save its prompt and answers as subjective diagnostics, separate from measured scores.
-Use the configured judgevet-gemma MCP service through Typevet and local Gemma.
-
-## Design review
-
-Apply the Elephant–Goldfish pattern with a zero-history, read-only reviewer.
-Resolve concrete findings before implementation.
-The user authorized implementation and temporary llama.cpp shutdown.
-Use this bounded design stage before leaving the design workflow for implementation.
-
-Source: https://github.com/google/elephant-goldfish-model
-Dataset: https://huggingface.co/datasets/naver-clova-ix/cord-v2
-Licence: CC BY 4.0. Attribute NAVER CLOVA and the CORD authors.
-
-## Resolved review findings
-
-The isolated reviewer identified four gaps before implementation.
-The fixes define restoration verification, scoring, failure handling and execution bounds.
-
+Scoring removes Nemotron coordinate and class tokens, HTML tags and LaTeX layout syntax.
 Tokenization uses Unicode letters and numeric strings with signs and internal punctuation.
 Tokens are case-folded. Stemming is disabled.
 The source regular expression defines the exact token boundaries.
+
 ROUGE-L uses the longest common token subsequence.
 Precision divides overlap by prediction length. Recall divides overlap by reference length.
 F1 equals twice the overlap divided by the combined token count.
-The report averages page F1 values. Empty references produce null F1 and recall.
-Empty predictions receive zero when the reference is nonempty.
-Numeric recall uses Counter intersection, including duplicate values.
+The report averages page F1 values.
+An empty prediction receives zero when its reference is nonempty.
+The per-page metric returns null F1 and recall for an empty reference.
+The pilot references are all nonempty.
+
+## Numeric-string recall
+
+Numeric matching preserves signs, decimal separators and thousands separators exactly.
+It checks string presence, not association with the correct receipt field.
+A multiset intersection counts repeated values up to their frequency in the reference.
 The aggregate divides total matched numbers by total reference numbers.
-Pages without reference numbers have null numeric recall.
+Pages without reference numbers have null per-page numeric recall.
+Each page report lists missing numeric strings.
 
-Only successful, stop-terminated outputs receive their observed text during scoring.
-Every other status receives an empty scoring prediction. Raw text remains available.
-Low overlap does not change completion status.
+For example, `79,300` does not match the reference `79,500`.
+A completed request can therefore fail to preserve an amount.
+No quality pass threshold is defined for this pilot.
 
-The run contains 24 warmups and 48 measured requests, with no retries.
+## Request status and execution bounds
+
+Preparation finishes before inference starts.
+Each image receives a separate warmup request.
+The run then measures concurrency one and four separately.
+The full run contains 24 warmups and 48 measured requests, with no retries.
 Each request has a 120-second deadline.
 Any failed warmup stops measured work.
 Each terminal record is flushed to JSONL immediately.
 Incomplete reports retain the planned count, completed records and run status.
 The missing phase/sample pairs identify unattempted requests.
+The offline scorer refuses a complete-run summary if requests are missing or duplicated.
 
-Cleanup removes only the owned demo container before restoring llama.cpp.
-Restoration checks router health and each previously loaded model ID.
-Experiment errors and restoration errors are recorded separately.
-Startup waits are bounded by the existing 300-second serving deadline.
-Model restoration has a 180-second HTTP deadline per model.
-Forced termination can bypass cleanup. The run-demo recovery commands remain applicable.
+Only successful, stop-terminated outputs receive their observed text during scoring.
+Every other status receives an empty scoring prediction.
+Raw text remains available, and failed pages remain in the scoring denominators.
+Transport completion, truncation, empty output and text quality remain separate observations.
+Low overlap does not change completion status.
+Concurrency one provides the primary quality observation.
+Concurrency four is reported separately.
 
-This was one bounded design critique, not the full five-stage EGM review pipeline.
-The upstream revision was db8149d7d7fdb7dff1813da5ff026a855c7ff6ec.
-Implementation began after review findings were resolved.
+The server requires enough free GPU memory before startup.
+Container cleanup applies only to the demo's labelled container.
+A fresh run does not require an existing model service.
+See the [GPU procedure](../how-to/evaluate-receipts.md) for setup and execution.
 
-## Formatting correction
+## Optional model-assisted review
+
+The pilot also reviewed the three receipts with the lowest overlap scores.
+[Judgevet](https://github.com/Alberto-Codes/judgevet) applies a review rubric.
+[Typevet](https://github.com/Alberto-Codes/typevet) connects that review to Gemma.
+The saved prompts, answers and probabilities are advisory diagnostics.
+They do not replace deterministic scores or establish extraction accuracy.
+Scoring saved responses does not require either integration.
+
+## Historical formatting correction
 
 The initial scorer counted LaTeX formatting commands as text.
 Offline rescoring removes table environments, command names and multicolumn layout arguments.
