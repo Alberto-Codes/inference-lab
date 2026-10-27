@@ -1,94 +1,113 @@
-# First demo evidence — 2026-10-26
+# Local demo evidence
 
 Kind: reference.
 
-## Initial observations
+Observation date: 2026-10-26 in America/Phoenix. The run timestamps use UTC on 2026-10-27.
 
-**GPU inference has not run. No measured OCR latency or throughput is claimed.**
-The independently tested client/reporting scaffold is ready; the serving profile
-is a candidate for Ada, not a validated 4090 deployment.
+## Outcome
 
-Read-only inspection found one RTX 4090, 24564 MiB total, compute capability
-8.9, driver 610.57.04. `nvidia-smi` reported 20987 MiB used and 3121 MiB free
-(the reported values leave driver-reserved memory). `/app/llama-server` PID
-3334311 accounted for 19796 MiB at initial inspection. The desktop also uses
-GPU memory. Existing `llama-cpp-tuned`, Ollama, Open WebUI, Vane, SearXNG and
+**Nemotron OCR ran successfully on the local RTX 4090.**
+All 32 measured requests passed the known-text checks.
+The four sweeps had no failures or timeouts.
+Eight separate warmup requests also passed.
 
-`uv run inference-axi start` exited 1 before creating any container because
-3121 MiB free is below this profile's 11000 MiB guard. The guard covers a 40%
-reservation (~9826 MiB) plus headroom. This check does not prove that the model cannot fit in 3 GiB.
-The 11 GiB limit is not a measured minimum. Sharing the GPU
-with a running service would also confound the concurrency experiment. No
-service was replaced, stopped or reconfigured to clear memory.
+The offline suite passed 29 tests.
+The separate GPU test passed against the actual server.
+The standalone `ocr` command saved a correct output and its JSON receipt.
 
-The official H100 FA3 profile has an independent hardware mismatch: vLLM
-0.26.0's FA3 implementation requires compute capability 9.x. The local 4090
-reports 8.9. FA2 supports >=8.0 at the backend level. Our candidate uses FA2,
-normal decoding (`NP_VLLM_MTP=0`), eager execution and eight sequence slots.
-Whole-model/plugin compatibility with this adaptation remains unverified.
+The user approved a temporary shutdown of `llama-cpp-tuned.service`.
+The test removed its OCR container afterward.
+The runner restored llama.cpp and reloaded `gemma-4-31b-kv9-text`.
+The final receipt records the model as loaded and the service as healthy.
 
-## Inspection commands
+## Measured results
 
-See [README](../../README.md) for setup/start/OCR/sweep/stop commands and
-[serving/config.json](../../serving/config.json) for every server argument.
+| Concurrency | Inputs | Successes | Failures | Timeouts | Elapsed s | Pages/s | Median latency s |
+|---|---|---|---|---|---|---|---|
+| 1 | 8 | 8 | 0 | 0 | 1.866 | 4.288 | 0.225 |
+| 2 | 8 | 8 | 0 | 0 | 1.019 | 7.848 | 0.241 |
+| 4 | 8 | 8 | 0 | 0 | 0.523 | 15.285 | 0.244 |
+| 8 | 8 | 8 | 0 | 0 | 0.297 | 26.976 | 0.262 |
+
+These results describe a short closed-loop experiment with a warmed image cache.
+Each sweep uses the same eight synthetic pages once.
+The client warms all eight pages before the first measured sweep.
+Prefix caching is disabled. The default multimodal cache remains enabled.
+The comparison contains no other concurrent OCR requests.
+
+The first exploratory sweep warmed only one page.
+Its logs showed a multimodal cache hit rate of 76.5%.
+This finding prompted the full-corpus warmup policy.
+A later trial overlapped with the standalone CLI check.
+The final comparison excludes both exploratory trials.
+
+The reported throughput increases with concurrency.
+Median request latency increases from approximately 225 ms to 262 ms.
+This small corpus cannot establish general OCR quality, overload behavior or production latency guarantees.
+Preparation, startup, warmup and report writes are outside the measured sweep times.
+The report retains individual latencies and output text.
+
+## Reproduction and artifacts
+
+Follow [Run the demo](../how-to/run-demo.md) from the repository root.
+Use [the serving configuration](../../serving/config.json) without changes to reproduce this profile.
+
+Exact measured command:
 
 ```sh
-nvidia-smi
-nvidia-smi --query-gpu=name,uuid,driver_version,memory.total,memory.used,memory.free,compute_cap --format=csv
-nvidia-ctk cdi list
-podman ps --format '{{.Names}} {{.Image}} {{.Status}}'
-podman images
-podman manifest inspect docker.io/vllm/vllm-openai:v0.26.0
-df -h . /tmp
-uv --version
-podman --version
-uv sync --locked
-uv run inference-axi corpus
-uv run inference-axi status
-uv run inference-axi start
-uv run inference-axi build
+uv run inference-axi bench corpus --output runs/local-4090-final
 ```
 
-Initial filesystem free space: 507 GiB in `/var/home`, 52 GiB in `/tmp`.
-uv 0.11.20, Python 3.12.12, Podman 5.8.4; NVIDIA CDI exposes GPU 0.
-Build context is only `serving/`. The Linux amd64 base-image digest is
-`sha256:770fe65b2c73ee74a5c42165cf3433de4048cc2cd9c57a937ca4e35aba5aa87b`.
-Container stores the resolved package list in `/serving-packages.txt` for run
-metadata. Direct runtime pins follow the upstream reference receipt.
-The image and package list identify resolved transitive dependencies.
-This does not establish a bit-for-bit reproducible rebuild.
+- [Final machine-readable results](../../evidence/local-demo/results.json).
+- [Generated summary](../../evidence/local-demo/summary.md).
+- [GPU test and restoration receipt](../../evidence/local-demo/gpu-attempt.json).
+- [Server logs](../../evidence/local-demo/gpu-server-log.toon).
+- [Standalone extraction](../../evidence/local-demo/local-4090-page-01.txt).
+- [Offline test output](../../evidence/tests.txt).
 
-## Image build findings
+Source commit: `b3df45155609747b9191bcc25df5699a6438d29f`.
+The run records a dirty working tree because the runner creates evidence files.
+The tracked client and serving files matched that commit during measurement.
+Image ID: `f261ace8dcf68c12f6c06ac4b5fa1d514df9303fd5f07ba200f50b175b16f01b`.
+The result metadata contains the resolved Python package list and input SHA-256 hashes.
 
-The first build failed its `pip check` step.
-The base image lacked `pycairo`, required by its installed PyGObject package.
-Its NIXL meta-package also required a different CUDA backend version.
-The image recipe now installs the missing distribution package, `python3-cairo`.
-It removes the unused NIXL meta-package.
-The single-GPU vLLM package does not require that meta-package.
-The recipe retains `pip check`.
-These changes affect only the demo image.
+## Hardware and serving stack
 
-## Verified offline behavior
+GPU: RTX 4090, 24564 MiB total memory, compute capability 8.9.
+Driver: 610.57.04. Host tools: uv 0.11.20 and Podman 5.8.4.
+Initial free disk space was 507 GiB on the workspace filesystem.
+NVIDIA CDI exposed GPU 0.
 
-- Deterministic generation of eight fictional pages with per-page known text;
-  no third-party document corpus or PDF conversion required.
-- Official HTTP prompt/generation contract, image data URLs, output persistence.
-- Absolute request deadlines, HTTP/connect/malformed-response failures, empty
-  and wrong text, truncation, and mixed successful/failed runs.
-- Maximum in-flight requests exactly 1/2/4/8 in mocked transport tests; same
-  eight inputs in every sweep. Warmup excluded and preserved separately.
-- Successful pages/s uses successful completions only; failures and timeouts
-  remain explicit. All/success-only min/median/max and raw latencies preserved.
-- JSON and Markdown output plus provenance, no overwrite of a prior run.
-- Unknown CLI flags fail before hardware calls; literal text escapes remain
-  intact in TOON. Ownership guard refuses unrelated containers; stop is
-  idempotent and uses an inspected container ID.
+The model and plugin share revision `62cb1e4ba153d113ff64aaf2be6e068c377cf53c`.
+The plugin version is `3.5.0.post7`.
+Core pins: vLLM 0.26.0, Torch 2.11.0, torchvision 0.26.0, Transformers 5.14.1 and huggingface-hub 1.24.0.
+The local profile uses FA2, BF16, eager execution and normal decoding.
+It permits eight sequences with 16384 context tokens and a 40% GPU memory reservation.
+The server logs confirm FlashAttention version 2 and no speculative decoding.
 
-Validation commands: `uv lock --check`, `uv run ruff check .`,
-`uv run ruff format --check .`, `uv run pytest`, `uv build`.
-The GPU-marked test is excluded by default and has **not** passed locally.
-Mock transports are only software evidence; they are not local model results.
+NVIDIA tests its reference profile on H100 with FA3 and MTP.
+vLLM restricts FA3 to compute capability 9.x in this release.
+The successful local test establishes the basic Ada path used here.
+It does not validate MTP, every input size or all supported vLLM versions.
+
+## Setup findings
+
+The first startup check refused to run with only 3121 MiB of free GPU memory.
+The existing llama.cpp process used approximately 19796 MiB.
+After user approval, the runner stopped that service through systemd.
+The configured 11000 MiB guard is a reservation policy, not a measured model minimum.
+
+The first image build failed `pip check` on two upstream-image issues.
+Its PyGObject package lacked the `pycairo` dependency.
+Its optional NIXL meta-package mismatched the CUDA backend package.
+The recipe installs the distribution package `python3-cairo` and removes the unused NIXL meta-package.
+The final image passes `pip check`.
+These repairs affect only the demo image.
+
+The build pins the Linux amd64 base-image digest.
+It also pins the model source and core runtime packages.
+The package list records remaining transitive versions.
+This does not establish a bit-for-bit reproducible image rebuild.
 
 ## Primary sources checked
 
@@ -108,23 +127,10 @@ The background gateway series spec was read. Its Gemma workload, scheduler,
 cloud spillover and full roadmap are intentionally outside this repository.
 Sibling practice selections are in [practices.md](../explanation/engineering-practices.md).
 
-## Authorized local test
+## Next smallest experiment
 
-The user approved a temporary shutdown of `llama-cpp-tuned.service`.
-This approval overrides the original restriction for this test.
-The service will remain available until the OCR image build finishes.
-After the test, restore the service and verify its health.
-The loaded model before shutdown is `gemma-4-31b-kv9-text`.
-
-## Unresolved questions
-
-When the GPU is independently made available, start this candidate profile,
-inspect startup logs, and run one known-text page (`pytest -m gpu`). Resolve any
-FA2/plugin issue against the pinned code before attempting the 1/2/4/8 sweep.
-Then record the actual image ID, package list, outputs and resource conditions.
-Do not treat the benchmark runner's existence as evidence that inference works.
-
-The first sweep should answer whether this candidate runs correctly and how
-observed throughput/latency change on this tiny corpus. It cannot identify a
-production saturation knee or establish tail SLOs. Repeated, larger representative
-runs are a later experiment, after this first smoke demo is working.
+Repeat the warmed sweep three times with more pages per level.
+Keep the server profile and synthetic corpus fixed.
+Record run-to-run variation before changing model or serving settings.
+Use longer runs before drawing conclusions about throughput scaling.
+A separate cold-cache experiment can measure document preparation and image-cache costs.

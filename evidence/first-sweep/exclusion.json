@@ -1,0 +1,4 @@
+{
+  "include_in_final_comparison": false,
+  "reason": "Only one page warmed before the first sweep; later sweeps benefited from image-cache warming"
+}

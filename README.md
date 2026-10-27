@@ -5,10 +5,10 @@ The Python client sends page images to vLLM in a Podman container.
 The experiment submits eight synthetic pages at concurrency levels 1, 2, 4 and 8.
 It saves outputs, failures, latency observations and throughput results.
 
-**Status:** offline checks pass. GPU inference remains unverified.
-The user approved a temporary llama.cpp shutdown for the local test.
-The server image build is in progress.
-See the [evidence record](docs/reference/evidence.md) for current results.
+**Status:** the local GPU demo passed all 32 measured OCR requests.
+The offline suite passed 29 tests. The separate GPU test passed.
+llama.cpp and its previously loaded model were restored after the test.
+See the [evidence record](docs/reference/evidence.md) for results and limits.
 
 ## Requirements
 

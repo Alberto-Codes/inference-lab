@@ -8,11 +8,12 @@ Model and plugin share immutable revision
 pins vLLM 0.26.0, Torch 2.11.0, torchvision 0.26.0, Transformers 5.14.1 and
 huggingface-hub 1.24.0, based on NVIDIA's reference runtime.
 
-**Ada adaptation is unverified:** FA2, `NP_VLLM_MTP=0`, eager execution,
+**Verified local smoke profile:** FA2, `NP_VLLM_MTP=0`, eager execution,
 eight sequences, 16384 context/batched tokens, BF16, 40% memory reservation.
 NVIDIA's measured reference uses H100, FA3 and MTP. FA3 requires compute
 capability 9.x in this vLLM release and cannot run on the 4090 (8.9).
-Selecting FA2 does not prove the complete plugin works on Ada.
+The local test passed with this FA2 profile.
+It does not validate MTP or every workload on Ada.
 
 Only port 8017 on host loopback is published. SELinux container separation is
 disabled for NVIDIA CDI access for this container, not system-wide. The build
