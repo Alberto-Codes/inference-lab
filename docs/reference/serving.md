@@ -2,7 +2,7 @@
 
 Kind: reference.
 
-[serving/config.json](../../serving/config.json) records the command arguments.
+[serving/config.json](https://github.com/Alberto-Codes/inference-lab/blob/main/serving/config.json) records the command arguments.
 Model and plugin share immutable revision
 `62cb1e4ba153d113ff64aaf2be6e068c377cf53c` (plugin `3.5.0.post7`). The container
 pins vLLM 0.26.0, Torch 2.11.0, torchvision 0.26.0, Transformers 5.14.1 and

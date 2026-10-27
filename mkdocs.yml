@@ -1,0 +1,57 @@
+site_name: inference-lab
+site_description: Local document parsing with measured evidence and tagged experiments.
+site_url: https://alberto-codes.github.io/inference-lab/
+repo_url: https://github.com/Alberto-Codes/inference-lab
+repo_name: Alberto-Codes/inference-lab
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  features:
+    - navigation.sections
+    - navigation.footer
+    - content.code.copy
+plugins:
+  - search
+markdown_extensions:
+  - admonition
+  - tables
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+nav:
+  - Home: index.md
+  - Tutorials:
+      - Inspect the saved experiment: tutorials/first-result.md
+  - How-to:
+      - Evaluate receipts: how-to/evaluate-receipts.md
+      - Run the synthetic demo: how-to/run-demo.md
+      - Troubleshoot: how-to/troubleshoot.md
+      - Prepare an experiment release: how-to/cut-a-release.md
+  - Reference:
+      - Receipt results: reference/receipt-results.md
+      - Receipt commands and scoring: reference/receipts.md
+      - Serving profile: reference/serving.md
+      - Synthetic CLI: reference/cli.md
+      - Evidence ledger: reference/evidence.md
+      - Licences and public audit: reference/public-audit.md
+      - Writing rules: reference/writing.md
+  - Explanation:
+      - Measurement limits: explanation/measurement.md
+      - Receipt evaluation: explanation/receipt-evaluation.md
+      - Public repository design: explanation/public-repository.md
+      - Blog MVP scope: explanation/blog-mvp.md
+      - Engineering choices: explanation/engineering-practices.md
+  - Experiments:
+      - v0.1.0 (draft): releases/v0.1.0.md
