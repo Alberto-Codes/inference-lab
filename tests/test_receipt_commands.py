@@ -86,6 +86,16 @@ def test_scorer_rejects_missing_duplicate_and_counts_failures(tmp_path):
     assert all(r["text"] for r in result["requests"])
 
 
+def test_scorer_creates_no_output_when_run_is_incomplete(tmp_path):
+    lines = (ROOT / "evidence/cord-test-24/requests.jsonl").read_text().splitlines()
+    (tmp_path / "requests.jsonl").write_text("\n".join(lines[:-1]) + "\n")
+    output = tmp_path / "scores.json"
+    result = command("score_receipts.py", "--input", tmp_path, "--output", output)
+    assert result.returncode != 0
+    assert "Missing or duplicate" in result.stderr
+    assert not output.exists()
+
+
 def test_experiment_refuses_existing_run_without_touching_bytes(tmp_path):
     output = tmp_path / "run"
     output.mkdir()
