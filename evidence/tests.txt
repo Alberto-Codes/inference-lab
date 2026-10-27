@@ -11,4 +11,4 @@ tests/test_client.py ..................                                  [ 75%]
 tests/test_reporting.py ...                                              [ 86%]
 tests/test_serving.py ....                                               [100%]
 
-======================= 29 passed, 1 deselected in 1.30s =======================
+======================= 29 passed, 1 deselected in 1.33s =======================

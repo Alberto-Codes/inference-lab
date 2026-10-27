@@ -3,7 +3,10 @@
 Kind: explanation.
 
 Each new benchmark output directory contains `results.json` and `summary.md`.
-One warmup request is recorded separately and must pass before measurement.
+The client warms every corpus page before measurement.
+It records these requests separately and requires each request to pass.
+This primes the default multimodal cache before the first sweep.
+The results describe warm-cache behavior. Prefix caching remains disabled.
 Each sweep consumes the same corpus once, using at most N active requests,
 no retries, a 120-second absolute request deadline and an eight-connection pool.
 Use `--concurrency 1 2` for a smaller explicitly recorded resource-limited run.
