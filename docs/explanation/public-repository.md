@@ -109,7 +109,8 @@ It will compare the selected images and annotations with archived provenance.
 PyArrow is an optional preparation dependency, not a serving dependency.
 
 Corpus and run directories are created exclusively and must not exist.
-Score and judge files are opened exclusively before computation begins.
+Score files are created exclusively after scoring succeeds, so a failed score creates no file.
+Judge files are opened exclusively before the backend is contacted.
 Failed attempts retain partial artifacts and require a different output path.
 
 An explicit --release-llama option will own local service handover.
