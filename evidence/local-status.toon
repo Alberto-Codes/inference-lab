@@ -1,0 +1,5 @@
+container: absent
+ready: false
+gpu: NVIDIA GeForce RTX 4090
+free_mib: 3121
+help: inference-axi corpus; inference-axi start; inference-axi --help

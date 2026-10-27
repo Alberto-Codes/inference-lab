@@ -1,0 +1,22 @@
+{
+  "model": "nvidia/Nemotron-3.5-Parse",
+  "revision": "62cb1e4ba153d113ff64aaf2be6e068c377cf53c",
+  "plugin": "3.5.0.post7",
+  "vllm": "0.26.0",
+  "image": "localhost/inference-lab-nemotron:0.1.0",
+  "container": "inference-lab-nemotron",
+  "port": 8017,
+  "minimum_free_mib": 11000,
+  "environment": {"NP_VLLM_MTP": "0"},
+  "arguments": [
+    "--model", "/model", "--served-model-name", "nemotron-parse",
+    "--trust-remote-code", "--dtype", "bfloat16",
+    "--distributed-executor-backend", "uni", "--tensor-parallel-size", "1",
+    "--max-model-len", "16384", "--max-num-seqs", "8",
+    "--max-num-batched-tokens", "16384", "--no-enable-prefix-caching",
+    "--limit-mm-per-prompt", "{\"image\":1}",
+    "--attention-config", "{\"flash_attn_version\":2}",
+    "--gpu-memory-utilization", "0.4", "--enforce-eager",
+    "--chat-template", "/model/chat_template.jinja", "--host", "0.0.0.0", "--port", "8000"
+  ]
+}

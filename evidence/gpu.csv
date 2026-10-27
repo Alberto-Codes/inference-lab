@@ -1,0 +1,2 @@
+name, uuid, driver_version, memory.total [MiB], memory.used [MiB], memory.free [MiB], compute_cap
+NVIDIA GeForce RTX 4090, GPU-12cf2f75-8b19-004d-61af-9244dda7d725, 610.57.04, 24564 MiB, 20987 MiB, 3121 MiB, 8.9
