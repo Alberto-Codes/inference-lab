@@ -127,6 +127,8 @@ def test_review_attribution_and_overwrite_guard(review, monkeypatch, tmp_path):
     report = json.loads(output.read_text())
     assert report["backend"] == "Judgevet → Typevet → llama.cpp"
     assert report["model"] == "reader-model"
+    assert report["status"] == "complete"
+    assert [r["id"] for r in report["reviews"]] == [0, 1, 2]
     assert calls == [
         "open",
         (0, "reader-model"),
@@ -138,3 +140,41 @@ def test_review_attribution_and_overwrite_guard(review, monkeypatch, tmp_path):
         review.main()
     assert output.read_bytes() == original
     assert calls.count("open") == 1
+
+
+def test_failed_review_leaves_incomplete_output(review, monkeypatch, tmp_path):
+    output = arguments(monkeypatch, tmp_path)
+    monkeypatch.setenv("TYPEVET_LLAMA__BASE_URL", "http://localhost:9000")
+    monkeypatch.setenv("TYPEVET_LLAMA__MULTIMODAL_MODEL", "reader-model")
+
+    @dataclass
+    class Response:
+        score: int = 1
+
+    @contextmanager
+    def open_judgment():
+        yield SimpleNamespace(port=None, model="reader-model")
+
+    class Port:
+        def __init__(self, port):
+            pass
+
+        def system_one(self, state, questions, model):
+            if state["id"] == 1:
+                raise ConnectionError("endpoint stopped")
+            return Response()
+
+    for name, attrs in {
+        "judgevet": {"Score": lambda **kwargs: kwargs},
+        "typevet.adapters.inbound.backend_settings": {"open_judgment": open_judgment},
+        "typevet.adapters.inbound.judgevet": {"TypevetSystemOnePort": Port},
+        "typevet.adapters.inbound.settings": {"load_llama_settings": lambda: None},
+    }.items():
+        module = ModuleType(name)
+        module.__dict__.update(attrs)
+        monkeypatch.setitem(sys.modules, name, module)
+    with pytest.raises(ConnectionError):
+        review.main()
+    report = json.loads(output.read_text())
+    assert report["status"] == "incomplete"
+    assert [r["id"] for r in report["reviews"]] == [0]

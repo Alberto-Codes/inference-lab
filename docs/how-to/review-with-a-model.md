@@ -62,6 +62,9 @@ The dependencies come from the package registry.
 The historical file supplies only the instruction and ordered criteria.
 The script selects the three lowest-overlap cases from your supplied scores.
 It records the resolved model, configured backend and each answer.
+The file has `"status": "complete"` only after all three reviews finish.
+If the review stops early, the file keeps `"status": "incomplete"`.
+Delete that file or choose a new `--output` path before you try again.
 
 A rubric score is an expected level index, not an accuracy percentage.
 The recorded judge remained uncertain about separator changes despite an explicit matching rule.
