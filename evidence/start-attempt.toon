@@ -1,0 +1,2 @@
+error: GPU has 3121 MiB free; this profile requires 11000 MiB. Existing workloads are untouched.
+help: inference-axi --help; see docs/evidence.md

@@ -1,0 +1,6 @@
+automarket-graphiti-spike-db docker.io/falkordb/falkordb:v4.16.3 Up 4 days
+ollama docker.io/ollama/ollama:latest Up 43 hours
+vane docker.io/itzcrazykns1337/vane:slim-latest Up 37 hours
+open-webui ghcr.io/open-webui/open-webui:main Up 19 hours
+searxng docker.io/searxng/searxng:latest Up 19 hours
+llama-cpp-tuned ghcr.io/ggml-org/llama.cpp:server-cuda Up 19 hours

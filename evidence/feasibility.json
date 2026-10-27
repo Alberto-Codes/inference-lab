@@ -1,0 +1,21 @@
+{
+  "observed_at": "2026-10-27T01:59:21.822480+00:00",
+  "status": "gpu_not_run",
+  "reason": "existing GPU workload leaves 3121 MiB free; selected profile requires 11000 MiB",
+  "model": "nvidia/Nemotron-3.5-Parse",
+  "revision": "62cb1e4ba153d113ff64aaf2be6e068c377cf53c",
+  "gated": false,
+  "private": false,
+  "plugin": "3.5.0.post7",
+  "vllm": "0.26.0",
+  "base_image_amd64_digest": "sha256:770fe65b2c73ee74a5c42165cf3433de4048cc2cd9c57a937ca4e35aba5aa87b",
+  "sweep_results": null,
+  "concurrency_requested": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "existing_services_modified": false,
+  "profile_verified_on_gpu": false
+}

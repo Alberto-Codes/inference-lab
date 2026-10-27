@@ -1,0 +1,14 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.1.1, pluggy-1.7.0
+rootdir: /var/home/Alberto-Codes/Projects/inference-lab
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1
+collected 30 items / 1 deselected / 29 selected
+
+tests/test_cli.py ....                                                   [ 13%]
+tests/test_client.py ..................                                  [ 75%]
+tests/test_reporting.py ...                                              [ 86%]
+tests/test_serving.py ....                                               [100%]
+
+======================= 29 passed, 1 deselected in 1.30s =======================

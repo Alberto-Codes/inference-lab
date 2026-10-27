@@ -1,0 +1,1 @@
+"""Local Nemotron OCR demonstration."""
