@@ -79,8 +79,8 @@ def _trial(source, protocol, arm, plans):
     return trial
 
 
-def _pair(repeat, by_name, plans, order_valid):
-    names = [f"fifo-{repeat}", f"reserved-{repeat}"]
+def _pair(repeat, conditions, by_name, plans, order_valid, prefix=""):
+    names = [f"{condition}-{repeat}" for condition in conditions]
     pair = {"repeat": repeat, "arms": names, "comparable": False, "delta": None}
     reasons = []
     if not order_valid:
@@ -94,14 +94,14 @@ def _pair(repeat, by_name, plans, order_valid):
     )
     if all(name in plans for name in names):
         reasons.extend(
-            f"Mixed arms differ or omit {field}"
+            f"Arms differ or omit {field}"
             for field in MATCHED_PLAN_FIELDS
             if field not in plans[names[0]]
             or field not in plans[names[1]]
             or plans[names[0]][field] != plans[names[1]][field]
         )
     else:
-        reasons.append("Mixed arm plan is missing")
+        reasons.append("Arm plan is missing")
     if not reasons:
         summaries = [by_name[name]["summary"] for name in names]
         if any(
@@ -112,16 +112,18 @@ def _pair(repeat, by_name, plans, order_valid):
         ):
             reasons.append("Backend execution is uncertain")
         else:
-            fifo, reserved = map(_metrics, summaries)
+            first, second = (
+                {k: v for k, v in _metrics(summary).items() if k.startswith(prefix)}
+                for summary in summaries
+            )
             pair.update(
                 comparable=True,
-                fifo=fifo,
-                reserved=reserved,
+                **dict(zip(conditions, (first, second), strict=True)),
                 delta={
-                    key: reserved[key] - fifo[key]
-                    if fifo[key] is not None and reserved[key] is not None
+                    key: second[key] - first[key]
+                    if first[key] is not None and second[key] is not None
                     else None
-                    for key in fifo
+                    for key in first
                 },
             )
     pair["exclusion_reasons"] = reasons
@@ -129,7 +131,7 @@ def _pair(repeat, by_name, plans, order_valid):
 
 
 def report(source):
-    """Retain every planned trial and compare only complete, matched mixed pairs."""
+    """Retain every planned trial and compare only complete, matched arms."""
     protocol_raw = (source / "protocol.json").read_bytes()
     protocol = json.loads(protocol_raw)
     order = protocol["order"]
@@ -138,7 +140,27 @@ def report(source):
     plans = {}
     trials = [_trial(source, protocol, arm, plans) for arm in order]
     by_name = {trial["name"]: trial for trial in trials}
-    pairs = [_pair(repeat, by_name, plans, order_valid) for repeat in range(repeats)]
+    pairs = [
+        _pair(repeat, ("fifo", "reserved"), by_name, plans, order_valid)
+        for repeat in range(repeats)
+    ]
+    baseline_comparisons = [
+        {
+            "baseline": baseline,
+            "policy": policy,
+            **_pair(
+                repeat,
+                (baseline, policy),
+                by_name,
+                plans,
+                order_valid,
+                prefix=f"{baseline}_",
+            ),
+        }
+        for repeat in range(repeats)
+        for baseline in ("urgent", "bulk")
+        for policy in ("fifo", "reserved")
+    ]
     return {
         "schema": 1,
         "protocol_sha256": hashlib.sha256(protocol_raw).hexdigest(),
@@ -149,7 +171,15 @@ def report(source):
         "trials": trials,
         "pairs": pairs,
         "comparable_pairs": sum(pair["comparable"] for pair in pairs),
-        "delta_convention": "reserved minus FIFO; attainment is a fraction, not percentage points",
+        "baseline_comparisons": baseline_comparisons,
+        "comparable_baseline_comparisons": sum(
+            comparison["comparable"] for comparison in baseline_comparisons
+        ),
+        "delta_convention": (
+            "pairs: reserved minus FIFO; baseline_comparisons: mixed policy minus "
+            "isolated baseline, for the baseline class only; attainment is a "
+            "fraction, not percentage points"
+        ),
         "scope": (
             "Warmed repeated inputs, one model and GPU. No fresh-ingress or OCR "
             "correctness claim. Missing and uncertain trials are not capacity evidence."

@@ -151,6 +151,11 @@ async def measure(client, pages, output, settings, condition):  # noqa: C901, PL
     idle_slots = 0
     drain_end = settings["duration"] + settings["drain"]
 
+    def wait_limit(job):
+        if job["consumer"] == "urgent":
+            return settings["urgent_deadline"]
+        return settings["bulk_wait"]
+
     def finish(job, record, now, decision, dispatch=None):
         age = max(0.0, now - job["scheduled_offset_s"])
         entry = {
@@ -181,12 +186,9 @@ async def measure(client, pages, output, settings, condition):  # noqa: C901, PL
         # Intent persistence can delay task scheduling. Check the actual send
         # boundary again so slow evidence writes cannot dispatch expired work.
         dispatched = time.perf_counter() - start
-        limit = (
-            settings["urgent_deadline"]
-            if job["consumer"] == "urgent"
-            else settings["bulk_wait"]
-        )
-        if dispatched >= drain_end or dispatched - job["scheduled_offset_s"] >= limit:
+        if dispatched >= drain_end or dispatched - job[
+            "scheduled_offset_s"
+        ] >= wait_limit(job):
             status = "drain_expired" if dispatched >= drain_end else "queue_expired"
             return {"status": status, "text": "", "latency_s": 0}, None
         sent_offsets[job["index"]] = dispatched
@@ -217,18 +219,13 @@ async def measure(client, pages, output, settings, condition):  # noqa: C901, PL
             queue.append(trace[cursor])
             cursor += 1
         for job in list(queue):
-            limit = (
-                settings["urgent_deadline"]
-                if job["consumer"] == "urgent"
-                else settings["bulk_wait"]
-            )
             status = (
                 "backend_uncertain"
                 if uncertain
                 else "drain_expired"
                 if now >= drain_end
                 else "queue_expired"
-                if now - job["scheduled_offset_s"] >= limit
+                if now - job["scheduled_offset_s"] >= wait_limit(job)
                 else None
             )
             if status:
@@ -274,15 +271,9 @@ async def measure(client, pages, output, settings, condition):  # noqa: C901, PL
             job = candidates[0]
             queue.remove(job)
             dispatched = time.perf_counter() - start
-            wait_limit = (
-                settings["urgent_deadline"]
-                if job["consumer"] == "urgent"
-                else settings["bulk_wait"]
-            )
-            if (
-                dispatched >= drain_end
-                or dispatched - job["scheduled_offset_s"] >= wait_limit
-            ):
+            if dispatched >= drain_end or dispatched - job[
+                "scheduled_offset_s"
+            ] >= wait_limit(job):
                 status = "drain_expired" if dispatched >= drain_end else "queue_expired"
                 finish(
                     job,
@@ -312,15 +303,7 @@ async def measure(client, pages, output, settings, condition):  # noqa: C901, PL
         deadlines = [drain_end] if now < drain_end else []
         if cursor < len(trace):
             deadlines.append(trace[cursor]["scheduled_offset_s"])
-        deadlines.extend(
-            j["scheduled_offset_s"]
-            + (
-                settings["urgent_deadline"]
-                if j["consumer"] == "urgent"
-                else settings["bulk_wait"]
-            )
-            for j in queue
-        )
+        deadlines.extend(j["scheduled_offset_s"] + wait_limit(j) for j in queue)
         delay = max(0.0001, min(deadlines, default=now + 0.1) - now)
         if active:
             await asyncio.wait(

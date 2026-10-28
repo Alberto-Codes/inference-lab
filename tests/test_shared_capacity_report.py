@@ -100,6 +100,44 @@ def test_report_preserves_trials_and_pairs_urgent_benefit_with_bulk_cost(matrix)
     assert pair["reserved"]["bulk_unfinished_work"] == 1
 
 
+def test_report_compares_each_mixed_policy_with_isolated_baselines(matrix):
+    reporter, source = matrix
+    result = reporter.report(source)
+    comparisons = {
+        (c["baseline"], c["policy"]): c for c in result["baseline_comparisons"]
+    }
+    assert set(comparisons) == {
+        ("urgent", "fifo"),
+        ("urgent", "reserved"),
+        ("bulk", "fifo"),
+        ("bulk", "reserved"),
+    }
+    assert result["comparable_baseline_comparisons"] == 4
+    urgent_fifo = comparisons["urgent", "fifo"]
+    assert urgent_fifo["arms"] == ["urgent-0", "fifo-0"]
+    assert urgent_fifo["urgent"]["urgent_deadline_attainment"] == 1.0
+    assert urgent_fifo["delta"]["urgent_deadline_attainment"] == -1.0
+    assert all(key.startswith("urgent_") for key in urgent_fifo["delta"])
+    assert comparisons["urgent", "reserved"]["delta"]["urgent_deadline_attainment"] == 0
+    bulk_reserved = comparisons["bulk", "reserved"]
+    assert bulk_reserved["delta"]["bulk_normal_completions"] == -1
+    assert bulk_reserved["reserved"]["bulk_unfinished_work"] == 1
+    assert all(key.startswith("bulk_") for key in bulk_reserved["delta"])
+
+
+def test_missing_baseline_prevents_only_its_comparisons(matrix):
+    reporter, source = matrix
+    shutil.rmtree(source / "urgent-0")
+    result = reporter.report(source)
+    assert result["comparable_pairs"] == 1
+    assert result["comparable_baseline_comparisons"] == 2
+    for comparison in result["baseline_comparisons"]:
+        assert comparison["comparable"] == (comparison["baseline"] == "bulk")
+        if comparison["baseline"] == "urgent":
+            assert comparison["delta"] is None
+            assert comparison["exclusion_reasons"]
+
+
 @pytest.mark.parametrize("state", ["missing", "partial", "uncertain"])
 def test_report_retains_unmeasured_trials_without_capacity_comparison(matrix, state):
     reporter, source = matrix

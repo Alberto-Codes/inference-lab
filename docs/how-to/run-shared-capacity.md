@@ -73,7 +73,8 @@ The next condition starts with a new owned parser.
 
 ## Preserve failures and reproduce scores
 
-Generate the per-trial scores and paired policy comparison without inference.
+Generate the per-trial scores, baseline comparisons and paired policy comparison
+without inference.
 
 ```sh
 uv run python scripts/report_shared_capacity.py \
@@ -85,6 +86,8 @@ Use a new output filename when rescoring.
 The report includes unmeasured, partial and ineligible trials.
 It refuses policy comparisons when the paired controls differ.
 Its deltas subtract FIFO from reserved capacity.
+Each repetition also compares both mixed policies with its isolated baselines.
+Those deltas subtract the baseline from the mixed policy for that baseline's class only.
 An unknown bulk completion time stays unknown in the comparison.
 
 To score one arm, run this command with a new report filename.
