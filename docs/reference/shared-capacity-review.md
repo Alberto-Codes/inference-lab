@@ -125,8 +125,10 @@ The lifecycle receipt reports restoration without errors.
 A separate live check confirms the prior Gemma model loaded, its service active,
 and the owned parser absent.
 
-The audit source and output are retained under `runs/shared-capacity-analysis/`.
-The measured matrix is under `runs/shared-capacity-4090-20261028/`.
+The audit source is retained as `analysis/audit_matrix.py` in
+`evidence/shared-capacity-4090/raw-evidence.tar.gz`, and its output is
+`evidence/shared-capacity-4090/audit.json`.
+The measured matrix is under `shared-capacity-4090-20261028/` in the same archive.
 The audit includes arrival-window resource summaries from retained telemetry.
 Its independently tested concurrency reconstruction is conservative client accounting,
 not a measurement of individual GPU execution intervals.
