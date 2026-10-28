@@ -2,6 +2,15 @@
 
 Kind: reference.
 
+## Shared-capacity increment, 2026-10-28
+
+The new [shared-capacity experiment](shared-capacity-results.md) compares urgent
+and bulk document consumers with a fixed trace and bounded upstream dispatch.
+Its GPU measurements are pending explicit service-handover approval.
+No new urgent deadline, bulk-progress or admission-benefit result is established.
+Offline behavior tests cannot substitute for those measurements.
+The historical observations below remain separate experiments.
+
 Observation date: 2026-10-26 in America/Phoenix. The run timestamps use UTC on 2026-10-27.
 
 ## Outcome

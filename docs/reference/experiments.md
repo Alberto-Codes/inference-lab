@@ -13,6 +13,21 @@ Use the tagged instructions below to reproduce a historical experiment.
 Current guides can gain corrections and navigation without changing those snapshots.
 Detailed results stay on each experiment's results page.
 
+## Shared capacity — experiment in preparation
+
+**Purpose:** measure urgent deadline attainment while a bursty bulk job shares one backend.
+**Dataset:** the same 56 coverage receipts, including receipt 71; rows 80–99 remain reserved.
+The protocol compares isolated baselines, mixed FIFO and mixed reserved capacity.
+It freezes a five-second urgent deadline before measurement.
+Three five-minute repetitions per condition use warmed repeated inputs.
+
+- **Status:** GPU execution pending explicit service-handover approval.
+- **Design:** [hypotheses, controls and acceptance criteria](../explanation/shared-capacity-method.md).
+- **Procedure:** [freeze, run and retain evidence](../how-to/run-shared-capacity.md).
+- **Evidence:** [current status and unresolved measurements](shared-capacity-results.md).
+
+No new release, experiment tag or companion post is published by this increment.
+
 ## v0.1.0 — receipt pilot
 
 **Purpose:** inspect OCR quality and compare two short concurrency sweeps.
