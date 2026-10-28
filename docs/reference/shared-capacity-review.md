@@ -27,8 +27,8 @@ newly required policy fields.
 The fixtures now use the actual evidence schema.
 The scorer checks were preserved.
 
-The reviewer also inspected the full validation logs in
-`runs/shared-capacity-validation/`.
+The reviewer also inspected the full validation logs locally.
+Those logs were not committed.
 The lock check, Ruff check, format check, type check, docvet check, build and
 strict MkDocs build passed.
 The full test suite passed 123 tests with one GPU test deselected.
