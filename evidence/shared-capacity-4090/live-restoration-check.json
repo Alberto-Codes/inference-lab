@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-10-28T18:05:52.543152+00:00",
+  "service_active": true,
+  "loaded_models": [
+    "gemma-4-31b-kv9-text"
+  ],
+  "expected_models": [
+    "gemma-4-31b-kv9-text"
+  ],
+  "owned_parser_absent": true,
+  "lifecycle_restoration_verified": true
+}

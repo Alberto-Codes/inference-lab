@@ -1,0 +1,910 @@
+{
+  "status": "passed",
+  "arms": [
+    {
+      "name": "urgent-0",
+      "scheduled": 300,
+      "terminal": 300,
+      "condition": "urgent",
+      "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+      "capacity_eligible": true,
+      "occupancy": {
+        "peak": {
+          "urgent": 3,
+          "all": 3
+        },
+        "conservative_accounted_slot_seconds": {
+          "all": 347.78042993915733,
+          "bulk": 0.0,
+          "urgent": 347.78042993915733
+        }
+      },
+      "uncertainty": {
+        "unknown_requests": [],
+        "first_observed_uncertainty_s": null,
+        "no_actual_dispatch_after_uncertainty": null,
+        "accounting_horizon_s": 300.7687278359663,
+        "unknown_execution_termination": null
+      },
+      "status_counts": {
+        "success": 295,
+        "incomplete": 5
+      },
+      "receipt71_counts": {
+        "urgent": 5
+      },
+      "resources": {
+        "samples": 280,
+        "errors": {},
+        "client_cpu_cores": 0.01071054895195328,
+        "gpu_percent": {
+          "mean": 22.660714285714285,
+          "max": 100.0
+        },
+        "power_w": {
+          "mean": 142.34682142857142,
+          "max": 209.93
+        },
+        "temperature_c": {
+          "mean": 54.53214285714286,
+          "max": 66.0
+        },
+        "memory_mib": {
+          "mean": 12557.0,
+          "max": 12557.0
+        },
+        "container_cpu_cores": {
+          "mean": 0.80975494258264,
+          "max": 1.195917106097533
+        },
+        "server_waiting": {
+          "mean": 0.0,
+          "max": 0.0
+        },
+        "server_running": {
+          "mean": 1.0928571428571427,
+          "max": 3.0
+        },
+        "vllm:mm_cache_queries_total_observed_delta": 298.0,
+        "vllm:mm_cache_hits_total_observed_delta": 298.0,
+        "vllm:generation_tokens_total_observed_delta": 93403.0
+      },
+      "source_terminal_sha256": "60f2285c15b3fb69913203e2242e00c313c637b2b17270413ba812d4250dadf0",
+      "container_id": "5cc1932c559177aa12bc46dacd3c5dc7d645e3b53302367aaa3626cf83f5fc0b"
+    },
+    {
+      "name": "bulk-0",
+      "scheduled": 1200,
+      "terminal": 1200,
+      "condition": "bulk",
+      "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+      "capacity_eligible": true,
+      "occupancy": {
+        "peak": {
+          "bulk": 8,
+          "all": 8
+        },
+        "conservative_accounted_slot_seconds": {
+          "all": 2077.3101361956215,
+          "bulk": 2077.3101361956215,
+          "urgent": 0.0
+        }
+      },
+      "uncertainty": {
+        "unknown_requests": [],
+        "first_observed_uncertainty_s": null,
+        "no_actual_dispatch_after_uncertainty": null,
+        "accounting_horizon_s": 317.91880747198593,
+        "unknown_execution_termination": null
+      },
+      "status_counts": {
+        "success": 1178,
+        "incomplete": 22
+      },
+      "receipt71_counts": {
+        "bulk": 21
+      },
+      "resources": {
+        "samples": 274,
+        "errors": {},
+        "client_cpu_cores": 0.03483915246710834,
+        "gpu_percent": {
+          "mean": 60.14233576642336,
+          "max": 100.0
+        },
+        "power_w": {
+          "mean": 241.17215328467154,
+          "max": 325.16
+        },
+        "temperature_c": {
+          "mean": 63.68248175182482,
+          "max": 75.0
+        },
+        "memory_mib": {
+          "mean": 13520.70802919708,
+          "max": 13631.0
+        },
+        "container_cpu_cores": {
+          "mean": 1.066258727411435,
+          "max": 1.4881629727734902
+        },
+        "server_waiting": {
+          "mean": 0.0,
+          "max": 0.0
+        },
+        "server_running": {
+          "mean": 6.514598540145985,
+          "max": 8.0
+        },
+        "vllm:mm_cache_queries_total_observed_delta": 1200.0,
+        "vllm:mm_cache_hits_total_observed_delta": 1200.0,
+        "vllm:generation_tokens_total_observed_delta": 379636.0
+      },
+      "source_terminal_sha256": "39c63fa836954d5fbc1f60768786e2e270ad1570c75a746f390af653229d75be",
+      "container_id": "8ccf65d580d0dc0018ea4e165d25d9d835cd1b194ff7c00f14d339f6aa49f0c4"
+    },
+    {
+      "name": "bulk-1",
+      "scheduled": 1200,
+      "terminal": 1200,
+      "condition": "bulk",
+      "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+      "capacity_eligible": true,
+      "occupancy": {
+        "peak": {
+          "bulk": 8,
+          "all": 8
+        },
+        "conservative_accounted_slot_seconds": {
+          "all": 2125.2329352812376,
+          "bulk": 2125.2329352812376,
+          "urgent": 0.0
+        }
+      },
+      "uncertainty": {
+        "unknown_requests": [],
+        "first_observed_uncertainty_s": null,
+        "no_actual_dispatch_after_uncertainty": null,
+        "accounting_horizon_s": 318.5387774439296,
+        "unknown_execution_termination": null
+      },
+      "status_counts": {
+        "success": 1176,
+        "incomplete": 24
+      },
+      "receipt71_counts": {
+        "bulk": 21
+      },
+      "resources": {
+        "samples": 277,
+        "errors": {},
+        "client_cpu_cores": 0.03509472196463594,
+        "gpu_percent": {
+          "mean": 60.2129963898917,
+          "max": 100.0
+        },
+        "power_w": {
+          "mean": 242.96397111913356,
+          "max": 328.37
+        },
+        "temperature_c": {
+          "mean": 63.90974729241877,
+          "max": 75.0
+        },
+        "memory_mib": {
+          "mean": 13481.85559566787,
+          "max": 13648.0
+        },
+        "container_cpu_cores": {
+          "mean": 1.0728250513300495,
+          "max": 1.3419335037671136
+        },
+        "server_waiting": {
+          "mean": 0.0,
+          "max": 0.0
+        },
+        "server_running": {
+          "mean": 6.59927797833935,
+          "max": 8.0
+        },
+        "vllm:mm_cache_queries_total_observed_delta": 1200.0,
+        "vllm:mm_cache_hits_total_observed_delta": 1200.0,
+        "vllm:generation_tokens_total_observed_delta": 389602.0
+      },
+      "source_terminal_sha256": "6d0fe227b455bde42e0d6ee9e55d1832df9a9da7e59b4b2277d879f8220aaf7a",
+      "container_id": "562013dbe0c01c3831a8f331a7eddca3ac9743bb01e9ebd21272eff64ec009ed"
+    },
+    {
+      "name": "urgent-1",
+      "scheduled": 300,
+      "terminal": 300,
+      "condition": "urgent",
+      "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+      "capacity_eligible": true,
+      "occupancy": {
+        "peak": {
+          "urgent": 3,
+          "all": 3
+        },
+        "conservative_accounted_slot_seconds": {
+          "all": 353.7178050893126,
+          "bulk": 0.0,
+          "urgent": 353.7178050893126
+        }
+      },
+      "uncertainty": {
+        "unknown_requests": [],
+        "first_observed_uncertainty_s": null,
+        "no_actual_dispatch_after_uncertainty": null,
+        "accounting_horizon_s": 301.4097227540333,
+        "unknown_execution_termination": null
+      },
+      "status_counts": {
+        "success": 295,
+        "incomplete": 5
+      },
+      "receipt71_counts": {
+        "urgent": 5
+      },
+      "resources": {
+        "samples": 278,
+        "errors": {},
+        "client_cpu_cores": 0.01081119620680364,
+        "gpu_percent": {
+          "mean": 24.471223021582734,
+          "max": 100.0
+        },
+        "power_w": {
+          "mean": 144.11424460431655,
+          "max": 203.02
+        },
+        "temperature_c": {
+          "mean": 55.68345323741007,
+          "max": 67.0
+        },
+        "memory_mib": {
+          "mean": 12558.0,
+          "max": 12558.0
+        },
+        "container_cpu_cores": {
+          "mean": 0.8181679078546347,
+          "max": 1.2049354298230432
+        },
+        "server_waiting": {
+          "mean": 0.0,
+          "max": 0.0
+        },
+        "server_running": {
+          "mean": 1.0935251798561152,
+          "max": 3.0
+        },
+        "vllm:mm_cache_queries_total_observed_delta": 298.0,
+        "vllm:mm_cache_hits_total_observed_delta": 298.0,
+        "vllm:generation_tokens_total_observed_delta": 93154.0
+      },
+      "source_terminal_sha256": "15f9bb21a6d5f80aaeebb5af669413d3d30efb4e6eef98532d1b75db9e1cf334",
+      "container_id": "08cc03a36dbc151eba3298735d83606ad81e574f3699d30793ff852bf977a4d4"
+    },
+    {
+      "name": "urgent-2",
+      "scheduled": 300,
+      "terminal": 300,
+      "condition": "urgent",
+      "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+      "capacity_eligible": true,
+      "occupancy": {
+        "peak": {
+          "urgent": 5,
+          "all": 5
+        },
+        "conservative_accounted_slot_seconds": {
+          "all": 358.8871188738849,
+          "bulk": 0.0,
+          "urgent": 358.8871188738849
+        }
+      },
+      "uncertainty": {
+        "unknown_requests": [],
+        "first_observed_uncertainty_s": null,
+        "no_actual_dispatch_after_uncertainty": null,
+        "accounting_horizon_s": 301.01945944700856,
+        "unknown_execution_termination": null
+      },
+      "status_counts": {
+        "success": 292,
+        "incomplete": 5,
+        "queue_expired": 3
+      },
+      "receipt71_counts": {
+        "urgent": 5
+      },
+      "resources": {
+        "samples": 256,
+        "errors": {},
+        "client_cpu_cores": 0.01086189922702014,
+        "gpu_percent": {
+          "mean": 28.30859375,
+          "max": 100.0
+        },
+        "power_w": {
+          "mean": 143.351171875,
+          "max": 203.82
+        },
+        "temperature_c": {
+          "mean": 55.22265625,
+          "max": 67.0
+        },
+        "memory_mib": {
+          "mean": 12590.375,
+          "max": 12782.0
+        },
+        "container_cpu_cores": {
+          "mean": 0.8177901968071182,
+          "max": 1.2355852947638393
+        },
+        "server_waiting": {
+          "mean": 0.0,
+          "max": 0.0
+        },
+        "server_running": {
+          "mean": 1.140625,
+          "max": 3.0
+        },
+        "vllm:mm_cache_queries_total_observed_delta": 295.0,
+        "vllm:mm_cache_hits_total_observed_delta": 295.0,
+        "vllm:generation_tokens_total_observed_delta": 92415.0
+      },
+      "source_terminal_sha256": "a1de8f355183e9c24207d05ef854b32a4ac31751fc163effb3095ed5ad52c416",
+      "container_id": "ea9cd82c8a9fa28e3215d7d1d3430c0177851c6c2cd9774557e5b955e86c9158"
+    },
+    {
+      "name": "bulk-2",
+      "scheduled": 1200,
+      "terminal": 1200,
+      "condition": "bulk",
+      "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+      "capacity_eligible": false,
+      "occupancy": {
+        "peak": {
+          "bulk": 8,
+          "all": 8
+        },
+        "conservative_accounted_slot_seconds": {
+          "all": 1207.4992733645486,
+          "bulk": 1207.4992733645486,
+          "urgent": 0.0
+        }
+      },
+      "uncertainty": {
+        "unknown_requests": [
+          503
+        ],
+        "first_observed_uncertainty_s": 135.6358558019856,
+        "no_actual_dispatch_after_uncertainty": true,
+        "accounting_horizon_s": 300.0,
+        "unknown_execution_termination": "Not inferred from client failure. Retained through accounting horizon; next arm requires owned parser reset."
+      },
+      "status_counts": {
+        "success": 406,
+        "incomplete": 9,
+        "error": 1,
+        "backend_uncertain": 784
+      },
+      "receipt71_counts": {
+        "bulk": 21
+      },
+      "resources": {
+        "samples": 120,
+        "errors": {
+          "metrics_error": 1
+        },
+        "client_cpu_cores": 0.017958867052612612,
+        "gpu_percent": {
+          "mean": 27.041666666666668,
+          "max": 100.0
+        },
+        "power_w": {
+          "mean": 131.842,
+          "max": 323.74
+        },
+        "temperature_c": {
+          "mean": 53.43333333333333,
+          "max": 71.0
+        },
+        "memory_mib": {
+          "mean": 13274.55,
+          "max": 13284.0
+        },
+        "container_cpu_cores": {
+          "mean": 0.5856771038054701,
+          "max": 1.4962822897486114
+        },
+        "server_waiting": {
+          "mean": 0.0,
+          "max": 0.0
+        },
+        "server_running": {
+          "mean": 3.033613445378151,
+          "max": 8.0
+        },
+        "vllm:mm_cache_queries_total_observed_delta": 415.0,
+        "vllm:mm_cache_hits_total_observed_delta": 415.0,
+        "vllm:generation_tokens_total_observed_delta": 145268.0
+      },
+      "source_terminal_sha256": "bb0ab25e8907e1796b29839653b5e712db94dd505dfc2564dd3545bc77f4c549",
+      "container_id": "6b1d7c6e95dfcf3dd865f394daeaa835aa518876fa662d5a897f3742f1fcdecc"
+    },
+    {
+      "name": "fifo-0",
+      "scheduled": 1500,
+      "terminal": 1500,
+      "condition": "fifo",
+      "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+      "capacity_eligible": true,
+      "occupancy": {
+        "peak": {
+          "bulk": 8,
+          "all": 8,
+          "urgent": 5
+        },
+        "conservative_accounted_slot_seconds": {
+          "all": 2264.0859398575267,
+          "bulk": 2191.650788847357,
+          "urgent": 72.43515101016965
+        }
+      },
+      "uncertainty": {
+        "unknown_requests": [],
+        "first_observed_uncertainty_s": null,
+        "no_actual_dispatch_after_uncertainty": null,
+        "accounting_horizon_s": 319.89045547298156,
+        "unknown_execution_termination": null
+      },
+      "status_counts": {
+        "success": 1265,
+        "incomplete": 25,
+        "queue_expired": 210
+      },
+      "receipt71_counts": {
+        "bulk": 21,
+        "urgent": 5
+      },
+      "resources": {
+        "samples": 276,
+        "errors": {},
+        "client_cpu_cores": 0.03917586381657639,
+        "gpu_percent": {
+          "mean": 60.13768115942029,
+          "max": 100.0
+        },
+        "power_w": {
+          "mean": 248.51583333333332,
+          "max": 317.96
+        },
+        "temperature_c": {
+          "mean": 63.630434782608695,
+          "max": 74.0
+        },
+        "memory_mib": {
+          "mean": 13052.152173913044,
+          "max": 13054.0
+        },
+        "container_cpu_cores": {
+          "mean": 1.0805861166511994,
+          "max": 1.3431103471258432
+        },
+        "server_waiting": {
+          "mean": 0.0,
+          "max": 0.0
+        },
+        "server_running": {
+          "mean": 7.068840579710145,
+          "max": 8.0
+        },
+        "vllm:mm_cache_queries_total_observed_delta": 1290.0,
+        "vllm:mm_cache_hits_total_observed_delta": 1290.0,
+        "vllm:generation_tokens_total_observed_delta": 412118.0
+      },
+      "source_terminal_sha256": "778b19241b517d4e73c587aaf24136904f73f2b4b39a5567abeb2848f1878325",
+      "container_id": "384f357f27dd3636138f3d885e8af116a90437964b9abbb44236b9f50dfb2271"
+    },
+    {
+      "name": "reserved-0",
+      "scheduled": 1500,
+      "terminal": 1500,
+      "condition": "reserved",
+      "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+      "capacity_eligible": true,
+      "occupancy": {
+        "peak": {
+          "urgent": 4,
+          "all": 8,
+          "bulk": 6
+        },
+        "conservative_accounted_slot_seconds": {
+          "all": 2416.907047393732,
+          "bulk": 1893.8194657814456,
+          "urgent": 523.0875816122862
+        }
+      },
+      "uncertainty": {
+        "unknown_requests": [],
+        "first_observed_uncertainty_s": null,
+        "no_actual_dispatch_after_uncertainty": null,
+        "accounting_horizon_s": 352.600736583001,
+        "unknown_execution_termination": null
+      },
+      "status_counts": {
+        "success": 1429,
+        "incomplete": 26,
+        "queue_expired": 45
+      },
+      "receipt71_counts": {
+        "bulk": 21,
+        "urgent": 5
+      },
+      "resources": {
+        "samples": 278,
+        "errors": {},
+        "client_cpu_cores": 0.04061596626092389,
+        "gpu_percent": {
+          "mean": 61.25539568345324,
+          "max": 100.0
+        },
+        "power_w": {
+          "mean": 247.64888489208633,
+          "max": 331.73
+        },
+        "temperature_c": {
+          "mean": 64.48920863309353,
+          "max": 74.0
+        },
+        "memory_mib": {
+          "mean": 13420.06474820144,
+          "max": 14180.0
+        },
+        "container_cpu_cores": {
+          "mean": 1.0956221514431252,
+          "max": 1.517953227466675
+        },
+        "server_waiting": {
+          "mean": 0.0,
+          "max": 0.0
+        },
+        "server_running": {
+          "mean": 6.9784172661870505,
+          "max": 8.0
+        },
+        "vllm:mm_cache_queries_total_observed_delta": 1335.0,
+        "vllm:mm_cache_hits_total_observed_delta": 1335.0,
+        "vllm:generation_tokens_total_observed_delta": 419142.0
+      },
+      "source_terminal_sha256": "882d6bf4599ebd7b47f69cff26e1ce9019481ccbd65220d7b75081d8af4081ad",
+      "container_id": "b4e59f004d36ce9df8a11fe2d826b65daffd6db8ccc94a12b0fada8517e86ee0"
+    },
+    {
+      "name": "reserved-1",
+      "scheduled": 1500,
+      "terminal": 1500,
+      "condition": "reserved",
+      "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+      "capacity_eligible": true,
+      "occupancy": {
+        "peak": {
+          "urgent": 4,
+          "all": 8,
+          "bulk": 6
+        },
+        "conservative_accounted_slot_seconds": {
+          "all": 2405.23904325522,
+          "bulk": 1917.5588697874919,
+          "urgent": 487.6801734677283
+        }
+      },
+      "uncertainty": {
+        "unknown_requests": [],
+        "first_observed_uncertainty_s": null,
+        "no_actual_dispatch_after_uncertainty": null,
+        "accounting_horizon_s": 353.96508636395447,
+        "unknown_execution_termination": null
+      },
+      "status_counts": {
+        "success": 1422,
+        "incomplete": 26,
+        "queue_expired": 52
+      },
+      "receipt71_counts": {
+        "bulk": 21,
+        "urgent": 5
+      },
+      "resources": {
+        "samples": 275,
+        "errors": {},
+        "client_cpu_cores": 0.041279684629088376,
+        "gpu_percent": {
+          "mean": 61.443636363636365,
+          "max": 100.0
+        },
+        "power_w": {
+          "mean": 246.47163636363635,
+          "max": 314.0
+        },
+        "temperature_c": {
+          "mean": 64.98181818181818,
+          "max": 74.0
+        },
+        "memory_mib": {
+          "mean": 13656.378181818181,
+          "max": 13820.0
+        },
+        "container_cpu_cores": {
+          "mean": 1.0981486390714517,
+          "max": 1.4025102120950268
+        },
+        "server_waiting": {
+          "mean": 0.0,
+          "max": 0.0
+        },
+        "server_running": {
+          "mean": 7.04,
+          "max": 8.0
+        },
+        "vllm:mm_cache_queries_total_observed_delta": 1329.0,
+        "vllm:mm_cache_hits_total_observed_delta": 1329.0,
+        "vllm:generation_tokens_total_observed_delta": 415708.0
+      },
+      "source_terminal_sha256": "5dfb3cbafad879917149dd0112b58c32874e869f7755f9df041e9198c43d5304",
+      "container_id": "8038e31330001a0f3f0c4684b1fffad07857e1d517a5d6e126015a4f7cf94db2"
+    },
+    {
+      "name": "fifo-1",
+      "scheduled": 1500,
+      "terminal": 1500,
+      "condition": "fifo",
+      "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+      "capacity_eligible": true,
+      "occupancy": {
+        "peak": {
+          "bulk": 8,
+          "all": 8,
+          "urgent": 5
+        },
+        "conservative_accounted_slot_seconds": {
+          "all": 2259.7823391642887,
+          "bulk": 2192.0087649762863,
+          "urgent": 67.77357418800239
+        }
+      },
+      "uncertainty": {
+        "unknown_requests": [],
+        "first_observed_uncertainty_s": null,
+        "no_actual_dispatch_after_uncertainty": null,
+        "accounting_horizon_s": 320.95886516198516,
+        "unknown_execution_termination": null
+      },
+      "status_counts": {
+        "success": 1259,
+        "incomplete": 24,
+        "queue_expired": 217
+      },
+      "receipt71_counts": {
+        "bulk": 21,
+        "urgent": 5
+      },
+      "resources": {
+        "samples": 275,
+        "errors": {},
+        "client_cpu_cores": 0.042252130193002516,
+        "gpu_percent": {
+          "mean": 59.050909090909094,
+          "max": 100.0
+        },
+        "power_w": {
+          "mean": 248.9982909090909,
+          "max": 318.22
+        },
+        "temperature_c": {
+          "mean": 64.46909090909091,
+          "max": 75.0
+        },
+        "memory_mib": {
+          "mean": 13157.549090909091,
+          "max": 13160.0
+        },
+        "container_cpu_cores": {
+          "mean": 1.0856402522198274,
+          "max": 1.4901277702746998
+        },
+        "server_waiting": {
+          "mean": 0.0,
+          "max": 0.0
+        },
+        "server_running": {
+          "mean": 7.116363636363636,
+          "max": 8.0
+        },
+        "vllm:mm_cache_queries_total_observed_delta": 1283.0,
+        "vllm:mm_cache_hits_total_observed_delta": 1283.0,
+        "vllm:generation_tokens_total_observed_delta": 407860.0
+      },
+      "source_terminal_sha256": "497179c2e202d12923307d525bd357bae57f34647242a236994edb39ae113285",
+      "container_id": "cf176ad421c4c2c3f185c4b712bf65215ce49c8280f5b6b8b670938d8c34733a"
+    },
+    {
+      "name": "fifo-2",
+      "scheduled": 1500,
+      "terminal": 1500,
+      "condition": "fifo",
+      "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+      "capacity_eligible": true,
+      "occupancy": {
+        "peak": {
+          "bulk": 8,
+          "all": 8,
+          "urgent": 5
+        },
+        "conservative_accounted_slot_seconds": {
+          "all": 2149.73920011858,
+          "bulk": 2070.501621287898,
+          "urgent": 79.23757883068174
+        }
+      },
+      "uncertainty": {
+        "unknown_requests": [],
+        "first_observed_uncertainty_s": null,
+        "no_actual_dispatch_after_uncertainty": null,
+        "accounting_horizon_s": 318.8527278060792,
+        "unknown_execution_termination": null
+      },
+      "status_counts": {
+        "success": 1283,
+        "incomplete": 21,
+        "queue_expired": 196
+      },
+      "receipt71_counts": {
+        "bulk": 21,
+        "urgent": 5
+      },
+      "resources": {
+        "samples": 275,
+        "errors": {},
+        "client_cpu_cores": 0.03842159652126793,
+        "gpu_percent": {
+          "mean": 62.92727272727273,
+          "max": 100.0
+        },
+        "power_w": {
+          "mean": 248.5622909090909,
+          "max": 319.29
+        },
+        "temperature_c": {
+          "mean": 65.00363636363636,
+          "max": 75.0
+        },
+        "memory_mib": {
+          "mean": 13327.2,
+          "max": 13604.0
+        },
+        "container_cpu_cores": {
+          "mean": 1.079906296568139,
+          "max": 1.4364886732749704
+        },
+        "server_waiting": {
+          "mean": 0.0,
+          "max": 0.0
+        },
+        "server_running": {
+          "mean": 6.738181818181818,
+          "max": 8.0
+        },
+        "vllm:mm_cache_queries_total_observed_delta": 1303.0,
+        "vllm:mm_cache_hits_total_observed_delta": 1303.0,
+        "vllm:generation_tokens_total_observed_delta": 388550.0
+      },
+      "source_terminal_sha256": "fc19b17d7a40c36997e70f53c08fa3be8998894ad91a3a8b2f66cdc662ba9387",
+      "container_id": "838b52266a6d9d91fbf0f7eb4094d603310c1d79e1293dc8d3758f7d87687bd7"
+    },
+    {
+      "name": "reserved-2",
+      "scheduled": 1500,
+      "terminal": 1500,
+      "condition": "reserved",
+      "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+      "capacity_eligible": true,
+      "occupancy": {
+        "peak": {
+          "urgent": 4,
+          "all": 8,
+          "bulk": 6
+        },
+        "conservative_accounted_slot_seconds": {
+          "all": 2416.9843542340677,
+          "bulk": 1902.4550422115717,
+          "urgent": 514.529312022496
+        }
+      },
+      "uncertainty": {
+        "unknown_requests": [],
+        "first_observed_uncertainty_s": null,
+        "no_actual_dispatch_after_uncertainty": null,
+        "accounting_horizon_s": 353.139176052995,
+        "unknown_execution_termination": null
+      },
+      "status_counts": {
+        "success": 1426,
+        "incomplete": 27,
+        "queue_expired": 47
+      },
+      "receipt71_counts": {
+        "bulk": 21,
+        "urgent": 5
+      },
+      "resources": {
+        "samples": 277,
+        "errors": {},
+        "client_cpu_cores": 0.03838704188682481,
+        "gpu_percent": {
+          "mean": 62.24548736462094,
+          "max": 100.0
+        },
+        "power_w": {
+          "mean": 250.12963898916968,
+          "max": 324.43
+        },
+        "temperature_c": {
+          "mean": 64.63176895306859,
+          "max": 75.0
+        },
+        "memory_mib": {
+          "mean": 13748.115523465704,
+          "max": 13920.0
+        },
+        "container_cpu_cores": {
+          "mean": 1.084490137496766,
+          "max": 1.5182763275900188
+        },
+        "server_waiting": {
+          "mean": 0.0,
+          "max": 0.0
+        },
+        "server_running": {
+          "mean": 6.978339350180505,
+          "max": 8.0
+        },
+        "vllm:mm_cache_queries_total_observed_delta": 1339.0,
+        "vllm:mm_cache_hits_total_observed_delta": 1339.0,
+        "vllm:generation_tokens_total_observed_delta": 422775.0
+      },
+      "source_terminal_sha256": "0677c756b9d0616f6bf2d666b58079b85c4013afd231fe0e877164a7df9dde27",
+      "container_id": "6e2a2f6f7b0bbaad273bbb7852b9358e5a792821a0f68250e3c8a6cdce4b330c"
+    }
+  ],
+  "scheduled_total": 13500,
+  "capacity_eligible_arms": 11,
+  "protocol_sha256": "7de3f65e903c3bd189cda0ed7d35b42f9165bdd940852b7c3063c91a9b0674cf",
+  "audit_source_sha256": "c6024255edd56e437853561bd6ce90d7d92fc3de6545794de0b32f445ee4a040",
+  "runtime_sha256": "a2234670f934da1380dfaf88bad3c0000db014a1846fa36a169c02581684707a",
+  "lifecycle": {
+    "service_was_active": true,
+    "previous_models": [
+      "gemma-4-31b-kv9-text"
+    ],
+    "experiment_error": null,
+    "restoration_errors": [],
+    "restoration_verified": true
+  },
+  "lifecycle_sha256": "49233cbcd1c69a1a86b797429193a2b0922f6bc9ce1c8f741274f3d389b332bd",
+  "live_restoration_sha256": "0a32eb22eacfa4c6df0345b1e074ca34a339a8e2fa95c5d9864fd600fadc6a8b",
+  "image_package_versions_sha256": "4f103e9f00f345746983fb6d361ccefe554631d32022aa6fd48b22a8c7d1db43",
+  "gpu_test_sha256": "55f7f9bc0e0e32b145491d8d34ff5700ef4192296bd3b074e864d76e8457218e",
+  "limitations": [
+    "Known responses retain slots through client-observed completion. Unknown execution retains slots through the accounting horizon, without claiming backend termination there. No further dispatch plus verified per-arm owned reset bounds later work; exact GPU execution intervals remain unknown.",
+    "The combined urgent-priority and reserved-capacity policy has no priority-only ablation; its components cannot be separated causally.",
+    "Workstation scheduling jitter can delay arrival processing and expiry observation beyond configured queue bounds. Preserve such outcomes and do not assign an unmeasured cause.",
+    "Capacity-ineligible arms remain invalid even if accounting passes.",
+    "Source/image identities and recorded restoration are checked; this audit does not rerun inference or query live services.",
+    "Resource averages use sampled arrival-window observations, not time-weighted continuous measurements.",
+    "OCR diagnostic scoring is reused; no independent human text-correctness adjudication is added.",
+    "Warm repeated receipts do not establish fresh-input or enterprise capacity."
+  ]
+}

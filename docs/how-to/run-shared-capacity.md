@@ -112,3 +112,54 @@ No client timeout proves that backend execution stopped.
 
 The [results reference](../reference/shared-capacity-results.md) records the actual
 measurement status and its unresolved limits.
+
+## Reproduce the saved measurement without a GPU
+
+The bundle in `evidence/shared-capacity-4090/` contains the measured raw records.
+It excludes corpus images, model weights and the local authorization message.
+The archive includes frozen executable source and independent analysis helpers.
+The saved `archive-verification.json` records an exact report and audit reproduction.
+The archived preparation receipt describes the earlier unmeasured state.
+Use the final `report.json` and `audit.json` for measurement status.
+
+1. Verify the archive hash against `archive-index.json`.
+
+   ```sh
+   sha256sum evidence/shared-capacity-4090/raw-evidence.tar.gz
+   ```
+
+   Expected SHA-256: `2cd1c39eaeeb192543f0fbacc0184592ea00cbaef0645c0532e56399f08ae8d9`.
+
+2. Create a new extraction directory.
+
+   ```sh
+   mkdir -p runs/shared-capacity-reproduction
+   ```
+
+3. Extract the archive.
+
+   ```sh
+   tar -xzf evidence/shared-capacity-4090/raw-evidence.tar.gz \
+     -C runs/shared-capacity-reproduction
+   ```
+
+4. Run the frozen report generator.
+
+   ```sh
+   uv run python -B runs/shared-capacity-reproduction/shared-capacity-4090-20261028/frozen-source/scripts/report_shared_capacity.py \
+     --input runs/shared-capacity-reproduction/shared-capacity-4090-20261028 \
+     --output runs/shared-capacity-reproduction/report.json
+   ```
+
+5. Run the independent audit.
+
+   ```sh
+   uv run python -B runs/shared-capacity-reproduction/analysis/audit_matrix.py \
+     --input runs/shared-capacity-reproduction/shared-capacity-4090-20261028 \
+     --output runs/shared-capacity-reproduction/audit.json
+   ```
+
+6. Compare the reproduced JSON with the bundle's `report.json` and `audit.json`.
+
+The archive index provides every included file's size and SHA-256.
+Offline reproduction requires the locked Python dependencies but no images or GPU.

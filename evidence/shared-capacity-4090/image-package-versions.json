@@ -1,0 +1,11 @@
+{
+  "image": "f261ace8dcf68c12f6c06ac4b5fa1d514df9303fd5f07ba200f50b175b16f01b",
+  "inspection": "post-run CPU-only immutable-image package metadata; no inference",
+  "checked_at": "2026-10-28T18:07:00.085769+00:00",
+  "versions": {
+    "vllm": "0.26.0",
+    "nemotron-parse": "3.5.0.post7",
+    "torch": "2.11.0+cu130",
+    "transformers": "5.14.1"
+  }
+}

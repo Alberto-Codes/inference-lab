@@ -9,10 +9,9 @@ This review covers `shared_capacity.py`, `score_shared_capacity.py`,
 
 ## Acceptance status
 
-Offline implementation acceptance passed.
-Full experiment acceptance is pending real GPU evidence.
-No shared-capacity GPU trial has run at this review checkpoint.
-Urgent protection, bulk cost and idle-capacity effects remain unmeasured.
+Final independent acceptance passed for the requested experiment and unpublished deliverables.
+The twelve-arm GPU matrix completed after explicit service-handover approval.
+All 13,500 scheduled requests have recorded outcomes.
 Mock HTTP tests are implementation evidence only.
 They are not evidence of GPU throughput, OCR quality or service restoration.
 
@@ -34,7 +33,8 @@ The lock check, Ruff check, format check, type check, docvet check, build and
 strict MkDocs build passed.
 The full test suite passed 123 tests with one GPU test deselected.
 Coverage was 87.33%, above the required 85%.
-The deselected GPU test remains a real-run requirement.
+That offline run deselected the GPU test.
+The later real GPU test passed against the demo server.
 
 ## Advisory acceptance questions
 
@@ -98,13 +98,72 @@ Bulk job completion time is null unless all scheduled bulk requests finish norma
 Raw response bodies remain available for offline inspection.
 A normal response is not treated as verified correct OCR.
 
-## Remaining real evidence
+## Measured-evidence acceptance
 
-Real acceptance needs the frozen twelve-arm matrix, three repetitions of each
-condition, the GPU integration check, runtime identities, raw outcomes,
-telemetry, reproducible scores and verified service restoration.
-The final report must show paired urgent and bulk results even when reservation
-provides no benefit or reduces bulk progress.
+The independent audit passed all 13,500 scheduled identities across twelve arms.
+Eleven arms are capacity-eligible.
+The third bulk baseline remains ineligible after a connection error.
+It is retained rather than replaced.
+All three mixed-policy pairs are valid comparisons.
+
+The audit independently rebuilt the trace and checked its document assignments.
+It compared policy decisions, scheduled-arrival latency, deadlines and denominators.
+It reconstructed client occupancy from actual dispatch and observed completion.
+Total occupancy never exceeded eight; reserved-policy bulk occupancy never exceeded six.
+It retained unknown execution through the accounting horizon.
+It verified no later dispatch after the bulk baseline reported backend uncertainty.
+The accounting horizon does not prove that unknown backend execution stopped.
+Each later arm used a new owned parser container.
+
+Frozen-source and runtime-source hashes match.
+All arms use the same immutable image and serving arguments.
+The runtime package list represents Nemotron as a local package URL.
+An additional CPU-only package metadata receipt binds exact Nemotron and vLLM
+versions to that same immutable image; both match the pinned profile.
+The real GPU integration test passed.
+The lifecycle receipt reports restoration without errors.
+A separate live check confirms the prior Gemma model loaded, its service active,
+and the owned parser absent.
+
+The audit source and output are retained under `runs/shared-capacity-analysis/`.
+The measured matrix is under `runs/shared-capacity-4090-20261028/`.
+The audit includes arrival-window resource summaries from retained telemetry.
+Its independently tested concurrency reconstruction is conservative client accounting,
+not a measurement of individual GPU execution intervals.
+
+| Repetition | FIFO urgent on time / scheduled | Reserved urgent on time / scheduled | FIFO normal bulk completions | Reserved normal bulk completions | Reserved bulk queue expirations | Reserved idle slot-seconds with bulk waiting |
+|---|---|---|---|---|---|---|
+| 0 | 79 / 300 | 294 / 300 | 1,175 | 1,135 | 45 | 171.17 |
+| 1 | 72 / 300 | 295 / 300 | 1,176 | 1,127 | 52 | 184.90 |
+| 2 | 98 / 300 | 293 / 300 | 1,179 | 1,132 | 47 | 173.39 |
+
+Each mixed arm scheduled 1,200 bulk requests.
+No bulk job completed all scheduled work normally.
+Its completion time therefore remains null.
+The table reports transport outcomes, not verified correct OCR.
+
+The third urgent baseline attained 289 / 300 deadlines, compared with 295 / 300
+in the other two repetitions.
+It includes three queue expirations during observed scheduling delay.
+The cause remains unproven.
+The third bulk baseline records one connection error and 784 backend-uncertain outcomes.
+No client timeout or connection error proves that backend execution stopped.
+These exceptions remain in the evidence and interpretation.
+The policy combines urgent priority and reservation.
+There is no priority-only ablation to isolate their individual effects.
+
+## Post-run advisory acceptance
+
+The reviewer rediscovered judgevet after Gemma restoration.
+No service was changed to obtain these advisory answers.
+
+| Question and criteria | judgevet-gemma answer | Reviewer decision |
+|---|---|---|
+| Accept the narrow measured claim? Criteria require matched controls, full scheduled accounting, repeated paired results, explicit invalid-baseline retention, measured bulk costs and limited warmed-input interpretation. | True; probability of true `0.994940502547276` | Agree. The audited three mixed pairs support the combined-policy tradeoff within this workload. |
+| Is the full user request complete while the final measured documentation and draft are still being updated? Completion requires those final writeups and their validation. | False; probability of true `0.0000009799888738881229` | Agree at this checkpoint. Final prose review and documentation validation remain. |
+
+Both answers came from `gemma-4-31b-kv9-text`.
+Neither probability is measured accuracy.
 No claim about enterprise scale, availability, security or multiple models follows
 from this one-model experiment.
 
@@ -114,12 +173,71 @@ The reviewed design, working runner, behavior tests, offline validation,
 Diátaxis documentation, unpublished companion draft and evidence-aligned series
 specification are present.
 The draft is under `alberto-codes-site/docs/series/llm-gateway/`.
-It states that the shared-capacity measurements are absent.
-The series specification treats FIFO interference, CPU bottlenecks and policy
-benefits as unproven.
+Its measured update matches the audited results.
+The series specification distinguishes the new workload-specific evidence
+from broader unproven bottleneck and enterprise claims.
 
-The remaining work is the approved GPU execution and the outputs that depend on it:
-the real integration check, complete repeated trials, runtime and raw evidence,
-reproducible measured reports, verified restoration, and measured interpretation
-in the documentation and companion draft.
+The final numerical prose, figure, evidence archive, procedure, companion draft
+and series specification received independent review.
+No requested experiment deliverable remains unmeasured or unwritten.
+The capacity-ineligible baseline remains a documented limitation, not missing work.
 No release or post publication is part of this acceptance.
+
+## Final artifact review
+
+The reviewer checked the final tables and numerical prose against the bundled report.
+It rendered and inspected `docs/assets/shared-capacity.svg`.
+The figure shows each repetition and marks the invalid baseline as unavailable.
+It does not plot that baseline as zero capacity.
+One prose correction replaced a claim about individual quality suspects with
+"counts of quality suspects", which matches the report schema.
+
+The reviewer independently checked the archive digest and every member against
+`archive-index.json`: 43,827 file sizes and SHA-256 hashes matched.
+It extracted the archive into a new directory.
+It ran the archived report and independent audit without a GPU.
+Both reproduced JSON artifacts exactly match the bundled report and audit.
+No corpus images or model weights were required for this check.
+The archive retains source, configuration, trace, raw outcomes, policy decisions,
+telemetry, runtime identities and restoration receipts.
+
+The companion draft stays outside the site's published-post directory.
+Its numbers match the report, including final-outcome times rather than false
+whole-job completion times.
+It reports the invalid bulk baseline, urgent baseline jitter, OCR limitations,
+warmed inputs and the combined priority-plus-reservation policy.
+The series specification no longer assumes universal FIFO starvation,
+a CPU bottleneck or a general admission-policy benefit.
+The existing October 26–27 posts and immutable experiment tags remain preserved.
+
+The final advisory question asked whether the full collection satisfies the
+requested honest, reproducible experiment, including negative exceptions,
+restoration and unpublished writeups.
+`judgevet-gemma` answered true with probability `0.9999999678112114`
+using `gemma-4-31b-kv9-text`.
+The reviewer agrees based on the independent evidence checks above.
+This answer does not turn model confidence into measured accuracy.
+
+The supervisor also recorded the commit-type judgment for the final documentation
+and evidence change.
+Its criteria were: `docs` for documentation or recorded evidence without behavior
+changes; `feat` for new executable behavior; `fix` for a behavior defect; and
+`test` for tests only.
+Judgevet selected `docs` with confidence `0.9999976252015477`.
+The supervisor selected `docs` and agrees.
+
+## Final validation and test timing limit
+
+The final strict MkDocs build and whitespace check passed after review edits.
+A full test rerun on disk-backed temporary storage passed 120 tests and failed
+five short real-time scheduler tests in 20.17 seconds.
+The unchanged suite then passed all 125 tests on tmpfs temporary storage in
+3.68 seconds, with one GPU test deselected and 87.33% coverage.
+The original temporary directory also used tmpfs; inode pressure prompted the
+intermediate storage change.
+
+The short mocked scheduler tests are sensitive to storage and scheduling delay.
+They should not be treated as portable timing guarantees.
+The passing tmpfs rerun does not erase the disk-backed failures.
+The frozen runner and measured experiment source were not changed to obtain it.
+The separately recorded real GPU check and completed matrix remain the runtime evidence.

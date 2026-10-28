@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "archive_sha256": "2cd1c39eaeeb192543f0fbacc0184592ea00cbaef0645c0532e56399f08ae8d9",
+  "archive_file_count": 43827,
+  "all_extracted_file_sizes_and_sha256_verified": true,
+  "authorization_quote_excluded": true,
+  "frozen_source_rescore_exit_code": 0,
+  "frozen_source_report_matches_saved_json": true,
+  "independent_audit_exit_code": 0,
+  "independent_audit_matches_saved_json": true,
+  "scheduled_outcomes": 13500,
+  "capacity_eligible_arms": 11,
+  "capacity_ineligible_arms": [
+    "bulk-2"
+  ],
+  "original_run_preserved": true,
+  "gpu_used_for_verification": false
+}

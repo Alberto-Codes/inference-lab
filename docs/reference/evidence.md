@@ -6,9 +6,13 @@ Kind: reference.
 
 The new [shared-capacity experiment](shared-capacity-results.md) compares urgent
 and bulk document consumers with a fixed trace and bounded upstream dispatch.
-Its GPU measurements are pending explicit service-handover approval.
-No new urgent deadline, bulk-progress or admission-benefit result is established.
-Offline behavior tests cannot substitute for those measurements.
+All 13,500 scheduled outcomes are retained from twelve real GPU trials.
+Urgent on-time normal completion rose from 24.0–32.7% with FIFO to 97.7–98.3%
+with urgent priority and static reservation. Bulk drain throughput fell 12.4–13.3%.
+One isolated bulk trial is ineligible after a connection failure.
+All three mixed pairs remain eligible. The original Gemma service was restored.
+Normal completion does not establish OCR correctness.
+The results page records the failed trial, quality diagnostics and scope limits.
 The historical observations below remain separate experiments.
 
 Observation date: 2026-10-26 in America/Phoenix. The run timestamps use UTC on 2026-10-27.
