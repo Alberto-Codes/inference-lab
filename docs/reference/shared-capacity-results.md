@@ -17,13 +17,10 @@ Explicit approval is required before the handover.
 
 ## Offline validation
 
-The repository checks passed on 2026-10-28.
-The offline suite passed 123 tests with 87.33% package coverage.
-The GPU test was deselected in that suite.
-The 32 new focused tests cover admission, evidence scoring and suite lifecycle.
-Lockfile, Ruff, formatting, type, docstring, package-build and strict MkDocs checks passed.
-The [independent review](shared-capacity-review.md) records the corrected findings
-and advisory judgment agreement.
+The new focused tests cover admission, evidence scoring, baseline comparison and suite lifecycle.
+The GPU test is deselected in the offline suite.
+The [independent review](shared-capacity-review.md) records the validation commands,
+corrected findings and advisory judgment agreement.
 These checks establish implementation behavior, not inference performance.
 
 ## Required result table
