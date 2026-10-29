@@ -87,4 +87,5 @@ nav:
       - Prepare an experiment release: how-to/cut-a-release.md
       - Writing rules: reference/writing.md
       - v0.1.0 release: releases/v0.1.0.md
-      - v0.2.0 (release draft): releases/v0.2.0.md
+      - v0.2.0 release: releases/v0.2.0.md
+      - v0.3.0 release: releases/v0.3.0.md

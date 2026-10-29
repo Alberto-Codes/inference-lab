@@ -13,7 +13,7 @@ Use the tagged instructions below to reproduce a historical experiment.
 Current guides can gain corrections and navigation without changing those snapshots.
 Detailed results stay on each experiment's results page.
 
-## Shared capacity — measured, unpublished
+## v0.3.0 — shared capacity
 
 **Purpose:** measure urgent deadline attainment while a bursty bulk job shares one backend.
 **Dataset:** the same 56 coverage receipts, including receipt 71; rows 80–99 remain reserved.
@@ -26,7 +26,14 @@ Three five-minute repetitions per condition use warmed repeated inputs.
 - **Procedure:** [freeze, run and retain evidence](../how-to/run-shared-capacity.md).
 - **Evidence:** [measured tradeoffs and limitations](shared-capacity-results.md).
 
-No new release, experiment tag or companion post is published by this increment.
+- **Release:** [v0.3.0](https://github.com/Alberto-Codes/inference-lab/releases/tag/v0.3.0).
+- **Companion article:** [I gave urgent receipts priority. The bulk import paid for it.](https://alberto.codes/blog/2026-10-28-urgent-receipts-bulk-import)
+- **Snapshot:** [code and evidence](https://github.com/Alberto-Codes/inference-lab/tree/v0.3.0).
+- **Offline reproduction:** [extract the saved measurement and regenerate its report](../how-to/run-shared-capacity.md#reproduce-the-saved-measurement-without-a-gpu).
+
+The release and article URLs identify the coordinated publication pair.
+The [release notes](../releases/v0.3.0.md) record the experiment and its limitations.
+Check out the immutable tag before reproducing it.
 
 ## v0.1.0 — receipt pilot
 
@@ -52,8 +59,8 @@ Repeated workloads and fresh-input trials retain 9,228 measured outcomes.
 The matrix repeats one-minute arrival windows; the longer trials offer five and six pages/s for five minutes each.
 Each longer condition ran once. The fresh-input trials do not establish sustained fresh-document capacity.
 
-- **Publication:** the [immutable tag is public](https://github.com/Alberto-Codes/inference-lab/tree/v0.2.0). The GitHub release remains a draft as verified on 2026-10-27.
-- **Companion article:** *I sent my 4090 six receipts a second. The queue kept growing.* It remains a draft; no public article URL is available.
+- **Publication:** [published prerelease](https://github.com/Alberto-Codes/inference-lab/releases/tag/v0.2.0), published 2026-10-28.
+- **Companion article:** [I sent my 4090 six receipts a second. The queue kept growing.](https://alberto.codes/blog/2026-10-27-nemotron-the-queue-kept-growing)
 - **Results:** [scaling results and limitations](scaling-results.md) and [failure review](scaling-failures.md).
 - **Tagged snapshot:** [code](https://github.com/Alberto-Codes/inference-lab/tree/v0.2.0) and [saved evidence](https://github.com/Alberto-Codes/inference-lab/tree/v0.2.0/evidence/scaling-4090).
 - **Historical instructions:** [preparation, GPU runs, resume and offline scoring](https://github.com/Alberto-Codes/inference-lab/blob/v0.2.0/docs/how-to/run-scaling.md).
@@ -61,4 +68,4 @@ Each longer condition ran once. The fresh-input trials do not establish sustaine
 The tag resolves to `3193fb28d46e875d4f39324d4ba743f058fb872c`.
 Check out that tag before running its commands.
 The [current scaling guide](../how-to/run-scaling.md) is maintained separately from that snapshot.
-Release and article publication still require coordination; this index does not publish either artifact.
+The immutable tag preserves the original experiment, including its earlier publication-status notes.
