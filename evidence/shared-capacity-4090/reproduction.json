@@ -1,0 +1,12 @@
+{
+  "working_directory": "inference-lab repository root",
+  "python": "3.12 via repository uv environment",
+  "requires_gpu": false,
+  "note": "Choose a new writable extraction directory. Output commands refuse existing reports. Python dependencies come from the repository lockfile. Corpus images and model weights are not required for offline rescoring. The archived offline-validation.json is the preparation-stage receipt; its unmeasured status is historical. Final report and audit record completed GPU trials.",
+  "commands": [
+    "mkdir -p /var/home/Alberto-Codes/shared-capacity-reproduction",
+    "tar -xzf evidence/shared-capacity-4090/raw-evidence.tar.gz -C /var/home/Alberto-Codes/shared-capacity-reproduction",
+    "uv run python -B /var/home/Alberto-Codes/shared-capacity-reproduction/shared-capacity-4090-20261028/frozen-source/scripts/report_shared_capacity.py --input /var/home/Alberto-Codes/shared-capacity-reproduction/shared-capacity-4090-20261028 --output /var/home/Alberto-Codes/shared-capacity-reproduction/report.json",
+    "uv run python -B /var/home/Alberto-Codes/shared-capacity-reproduction/analysis/audit_matrix.py --input /var/home/Alberto-Codes/shared-capacity-reproduction/shared-capacity-4090-20261028 --output /var/home/Alberto-Codes/shared-capacity-reproduction/audit.json"
+  ]
+}

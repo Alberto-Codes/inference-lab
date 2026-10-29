@@ -1,0 +1,9 @@
+{
+  "service_was_active": true,
+  "previous_models": [
+    "gemma-4-31b-kv9-text"
+  ],
+  "experiment_error": null,
+  "restoration_errors": [],
+  "restoration_verified": true
+}

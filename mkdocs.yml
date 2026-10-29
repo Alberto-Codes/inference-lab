@@ -59,6 +59,10 @@ nav:
       - Inspect pilot results: tutorials/first-result.md
       - Run the pilot on your GPU: how-to/evaluate-receipts.md
   - Results and methods:
+      - Shared-capacity status: reference/shared-capacity-results.md
+      - Shared-capacity procedure: how-to/run-shared-capacity.md
+      - Shared-capacity method: explanation/shared-capacity-method.md
+      - Shared-capacity review: reference/shared-capacity-review.md
       - v0.1.0 pilot results: reference/receipt-results.md
       - v0.2.0 scaling results: reference/scaling-results.md
       - Scaling procedure: how-to/run-scaling.md
@@ -83,4 +87,5 @@ nav:
       - Prepare an experiment release: how-to/cut-a-release.md
       - Writing rules: reference/writing.md
       - v0.1.0 release: releases/v0.1.0.md
-      - v0.2.0 (release draft): releases/v0.2.0.md
+      - v0.2.0 release: releases/v0.2.0.md
+      - v0.3.0 release: releases/v0.3.0.md

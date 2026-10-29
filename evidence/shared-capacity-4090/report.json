@@ -1,0 +1,1699 @@
+{
+  "schema": 1,
+  "protocol_sha256": "7de3f65e903c3bd189cda0ed7d35b42f9165bdd940852b7c3063c91a9b0674cf",
+  "report_source_sha256": "178d6496213c16b6335d835859c3eab4ab37f0b71a8d56c79bb98a6b244d241b",
+  "planned_order": [
+    {
+      "name": "urgent-0",
+      "condition": "urgent"
+    },
+    {
+      "name": "bulk-0",
+      "condition": "bulk"
+    },
+    {
+      "name": "bulk-1",
+      "condition": "bulk"
+    },
+    {
+      "name": "urgent-1",
+      "condition": "urgent"
+    },
+    {
+      "name": "urgent-2",
+      "condition": "urgent"
+    },
+    {
+      "name": "bulk-2",
+      "condition": "bulk"
+    },
+    {
+      "name": "fifo-0",
+      "condition": "fifo"
+    },
+    {
+      "name": "reserved-0",
+      "condition": "reserved"
+    },
+    {
+      "name": "reserved-1",
+      "condition": "reserved"
+    },
+    {
+      "name": "fifo-1",
+      "condition": "fifo"
+    },
+    {
+      "name": "fifo-2",
+      "condition": "fifo"
+    },
+    {
+      "name": "reserved-2",
+      "condition": "reserved"
+    }
+  ],
+  "planned_order_valid": true,
+  "planned_repetitions": 3,
+  "trials": [
+    {
+      "name": "urgent-0",
+      "condition": "urgent",
+      "status": "complete",
+      "summary": {
+        "condition": "urgent",
+        "complete": true,
+        "capacity_eligible": true,
+        "consumers": {
+          "urgent": {
+            "scheduled": 300,
+            "terminal": 300,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "success": 295,
+              "incomplete": 5
+            },
+            "normal_completions": 295,
+            "deadline_met": 295,
+            "deadline_misses": 5,
+            "deadline_attainment": 0.9833333333333333,
+            "all_e2e_p50_s": 0.5878240129677579,
+            "all_e2e_p99_s": 29.60512465296779,
+            "all_e2e_p95_s": 1.8917344809742644,
+            "success_e2e_p95_s": 1.8368777519790456,
+            "max_wait_s": 0.28988593502435833,
+            "deferred": 0,
+            "never_dispatched": 0,
+            "completed_per_s_during_arrivals": 0.9833333333333333,
+            "completed_per_s_including_drain": 0.9808200544070113,
+            "completion_time_s": null,
+            "last_terminal_s": 300.7286149120191,
+            "unfinished_work": 5,
+            "timeouts": 0,
+            "truncations": 5,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 213,
+            "successful_requests_missing_reference_numbers": 208,
+            "macro_rouge_l_f1": 0.7783468801826017,
+            "numeric_matched": 2788,
+            "numeric_total": 3423,
+            "numeric_recall": 0.8144902132632194,
+            "verified_correct_output_count": null
+          },
+          "bulk": {
+            "scheduled": 0,
+            "terminal": 0,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {},
+            "normal_completions": 0,
+            "deadline_met": null,
+            "deadline_misses": null,
+            "deadline_attainment": null,
+            "all_e2e_p50_s": null,
+            "all_e2e_p99_s": null,
+            "all_e2e_p95_s": null,
+            "success_e2e_p95_s": null,
+            "max_wait_s": null,
+            "deferred": 0,
+            "never_dispatched": 0,
+            "completed_per_s_during_arrivals": 0.0,
+            "completed_per_s_including_drain": 0.0,
+            "completion_time_s": null,
+            "last_terminal_s": null,
+            "unfinished_work": 0,
+            "timeouts": 0,
+            "truncations": 0,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 0,
+            "successful_requests_missing_reference_numbers": 0,
+            "macro_rouge_l_f1": null,
+            "numeric_matched": 0,
+            "numeric_total": 0,
+            "numeric_recall": null,
+            "verified_correct_output_count": null
+          }
+        },
+        "runtime": {
+          "elapsed_s": 300.7687278359663,
+          "capacity_eligible": true,
+          "backend_execution_unknown": false,
+          "peak_upstream": 3,
+          "reserved_idle_slot_s_with_bulk_waiting": 0.0,
+          "status": "complete"
+        },
+        "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+        "terminal_sha256": "60f2285c15b3fb69913203e2242e00c313c637b2b17270413ba812d4250dadf0",
+        "decisions_sha256": "a7d78f4e540ebe541dc75a3030a2682b0015b68e73bfaa53b9c74cf6e72587f1",
+        "dispatch_sha256": "e6e0b0503b2262c949d90697d85b48b9f9561b18eccd2cca1f35369cc741b3ea",
+        "metric_source_sha256": "cd1d4fd200388cc89691237feb0ad70ce000b4753b553117e65e67dba74652ed",
+        "scorer_source_sha256": "314dab361fbe843ebdc86d3af406226e0aa2d2c18799299d34d9d2c3d810931a",
+        "quality_scope": "Partial-reference numeric diagnostics; normal termination is not correct OCR."
+      }
+    },
+    {
+      "name": "bulk-0",
+      "condition": "bulk",
+      "status": "complete",
+      "summary": {
+        "condition": "bulk",
+        "complete": true,
+        "capacity_eligible": true,
+        "consumers": {
+          "urgent": {
+            "scheduled": 0,
+            "terminal": 0,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {},
+            "normal_completions": 0,
+            "deadline_met": 0,
+            "deadline_misses": 0,
+            "deadline_attainment": null,
+            "all_e2e_p50_s": null,
+            "all_e2e_p99_s": null,
+            "all_e2e_p95_s": null,
+            "success_e2e_p95_s": null,
+            "max_wait_s": null,
+            "deferred": 0,
+            "never_dispatched": 0,
+            "completed_per_s_during_arrivals": 0.0,
+            "completed_per_s_including_drain": 0.0,
+            "completion_time_s": null,
+            "last_terminal_s": null,
+            "unfinished_work": 0,
+            "timeouts": 0,
+            "truncations": 0,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 0,
+            "successful_requests_missing_reference_numbers": 0,
+            "macro_rouge_l_f1": null,
+            "numeric_matched": 0,
+            "numeric_total": 0,
+            "numeric_recall": null,
+            "verified_correct_output_count": null
+          },
+          "bulk": {
+            "scheduled": 1200,
+            "terminal": 1200,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "success": 1178,
+              "incomplete": 22
+            },
+            "normal_completions": 1178,
+            "deadline_met": null,
+            "deadline_misses": null,
+            "deadline_attainment": null,
+            "all_e2e_p50_s": 12.658228122047149,
+            "all_e2e_p99_s": 51.616594332968816,
+            "all_e2e_p95_s": 24.837147634010762,
+            "success_e2e_p95_s": 24.14701007900294,
+            "max_wait_s": 27.19154912198428,
+            "deferred": 1142,
+            "never_dispatched": 0,
+            "completed_per_s_during_arrivals": 3.9266666666666667,
+            "completed_per_s_including_drain": 3.7053485742701833,
+            "completion_time_s": null,
+            "last_terminal_s": 317.891097411979,
+            "unfinished_work": 22,
+            "timeouts": 0,
+            "truncations": 22,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 863,
+            "successful_requests_missing_reference_numbers": 841,
+            "macro_rouge_l_f1": 0.7768181500074377,
+            "numeric_matched": 11033,
+            "numeric_total": 13629,
+            "numeric_recall": 0.8095238095238095,
+            "verified_correct_output_count": null
+          }
+        },
+        "runtime": {
+          "elapsed_s": 317.91880747198593,
+          "capacity_eligible": true,
+          "backend_execution_unknown": false,
+          "peak_upstream": 8,
+          "reserved_idle_slot_s_with_bulk_waiting": 0.0,
+          "status": "complete"
+        },
+        "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+        "terminal_sha256": "39c63fa836954d5fbc1f60768786e2e270ad1570c75a746f390af653229d75be",
+        "decisions_sha256": "301dd540becb4bc61475ae53c9657475783fe55dc953ba683753351f92c6c694",
+        "dispatch_sha256": "dc38ba1c0c469ca27f22679f8e8b79fee595151a479ac1463617dccafa64e7b2",
+        "metric_source_sha256": "cd1d4fd200388cc89691237feb0ad70ce000b4753b553117e65e67dba74652ed",
+        "scorer_source_sha256": "314dab361fbe843ebdc86d3af406226e0aa2d2c18799299d34d9d2c3d810931a",
+        "quality_scope": "Partial-reference numeric diagnostics; normal termination is not correct OCR."
+      }
+    },
+    {
+      "name": "bulk-1",
+      "condition": "bulk",
+      "status": "complete",
+      "summary": {
+        "condition": "bulk",
+        "complete": true,
+        "capacity_eligible": true,
+        "consumers": {
+          "urgent": {
+            "scheduled": 0,
+            "terminal": 0,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {},
+            "normal_completions": 0,
+            "deadline_met": 0,
+            "deadline_misses": 0,
+            "deadline_attainment": null,
+            "all_e2e_p50_s": null,
+            "all_e2e_p99_s": null,
+            "all_e2e_p95_s": null,
+            "success_e2e_p95_s": null,
+            "max_wait_s": null,
+            "deferred": 0,
+            "never_dispatched": 0,
+            "completed_per_s_during_arrivals": 0.0,
+            "completed_per_s_including_drain": 0.0,
+            "completion_time_s": null,
+            "last_terminal_s": null,
+            "unfinished_work": 0,
+            "timeouts": 0,
+            "truncations": 0,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 0,
+            "successful_requests_missing_reference_numbers": 0,
+            "macro_rouge_l_f1": null,
+            "numeric_matched": 0,
+            "numeric_total": 0,
+            "numeric_recall": null,
+            "verified_correct_output_count": null
+          },
+          "bulk": {
+            "scheduled": 1200,
+            "terminal": 1200,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "success": 1176,
+              "incomplete": 24
+            },
+            "normal_completions": 1176,
+            "deadline_met": null,
+            "deadline_misses": null,
+            "deadline_attainment": null,
+            "all_e2e_p50_s": 12.650416032993235,
+            "all_e2e_p99_s": 51.72460861993022,
+            "all_e2e_p95_s": 25.109917783993296,
+            "success_e2e_p95_s": 24.557819545967504,
+            "max_wait_s": 26.88021287601441,
+            "deferred": 1144,
+            "never_dispatched": 0,
+            "completed_per_s_during_arrivals": 3.92,
+            "completed_per_s_including_drain": 3.691858207771906,
+            "completion_time_s": null,
+            "last_terminal_s": 318.5025412950199,
+            "unfinished_work": 24,
+            "timeouts": 0,
+            "truncations": 24,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 859,
+            "successful_requests_missing_reference_numbers": 835,
+            "macro_rouge_l_f1": 0.7768175271820523,
+            "numeric_matched": 11011,
+            "numeric_total": 13629,
+            "numeric_recall": 0.807909604519774,
+            "verified_correct_output_count": null
+          }
+        },
+        "runtime": {
+          "elapsed_s": 318.5387774439296,
+          "capacity_eligible": true,
+          "backend_execution_unknown": false,
+          "peak_upstream": 8,
+          "reserved_idle_slot_s_with_bulk_waiting": 0.0,
+          "status": "complete"
+        },
+        "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+        "terminal_sha256": "6d0fe227b455bde42e0d6ee9e55d1832df9a9da7e59b4b2277d879f8220aaf7a",
+        "decisions_sha256": "4fbbe44eb72595ade9c447155dddf9bd4edd7f5b4df3edeb05eb5af15e795425",
+        "dispatch_sha256": "30191e5ea3bca87c4e13296e91d8e2b3a7aff9818a9b6268b55ed09c7aa6a8f0",
+        "metric_source_sha256": "cd1d4fd200388cc89691237feb0ad70ce000b4753b553117e65e67dba74652ed",
+        "scorer_source_sha256": "314dab361fbe843ebdc86d3af406226e0aa2d2c18799299d34d9d2c3d810931a",
+        "quality_scope": "Partial-reference numeric diagnostics; normal termination is not correct OCR."
+      }
+    },
+    {
+      "name": "urgent-1",
+      "condition": "urgent",
+      "status": "complete",
+      "summary": {
+        "condition": "urgent",
+        "complete": true,
+        "capacity_eligible": true,
+        "consumers": {
+          "urgent": {
+            "scheduled": 300,
+            "terminal": 300,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "success": 295,
+              "incomplete": 5
+            },
+            "normal_completions": 295,
+            "deadline_met": 295,
+            "deadline_misses": 5,
+            "deadline_attainment": 0.9833333333333333,
+            "all_e2e_p50_s": 0.6197331490693614,
+            "all_e2e_p99_s": 30.295828154077753,
+            "all_e2e_p95_s": 1.9718925430206582,
+            "success_e2e_p95_s": 1.8940021570306271,
+            "max_wait_s": 0.3292634841054678,
+            "deferred": 0,
+            "never_dispatched": 0,
+            "completed_per_s_during_arrivals": 0.9833333333333333,
+            "completed_per_s_including_drain": 0.9787341871540621,
+            "completion_time_s": null,
+            "last_terminal_s": 301.3620841160882,
+            "unfinished_work": 5,
+            "timeouts": 0,
+            "truncations": 5,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 213,
+            "successful_requests_missing_reference_numbers": 208,
+            "macro_rouge_l_f1": 0.7783932217502957,
+            "numeric_matched": 2788,
+            "numeric_total": 3423,
+            "numeric_recall": 0.8144902132632194,
+            "verified_correct_output_count": null
+          },
+          "bulk": {
+            "scheduled": 0,
+            "terminal": 0,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {},
+            "normal_completions": 0,
+            "deadline_met": null,
+            "deadline_misses": null,
+            "deadline_attainment": null,
+            "all_e2e_p50_s": null,
+            "all_e2e_p99_s": null,
+            "all_e2e_p95_s": null,
+            "success_e2e_p95_s": null,
+            "max_wait_s": null,
+            "deferred": 0,
+            "never_dispatched": 0,
+            "completed_per_s_during_arrivals": 0.0,
+            "completed_per_s_including_drain": 0.0,
+            "completion_time_s": null,
+            "last_terminal_s": null,
+            "unfinished_work": 0,
+            "timeouts": 0,
+            "truncations": 0,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 0,
+            "successful_requests_missing_reference_numbers": 0,
+            "macro_rouge_l_f1": null,
+            "numeric_matched": 0,
+            "numeric_total": 0,
+            "numeric_recall": null,
+            "verified_correct_output_count": null
+          }
+        },
+        "runtime": {
+          "elapsed_s": 301.4097227540333,
+          "capacity_eligible": true,
+          "backend_execution_unknown": false,
+          "peak_upstream": 3,
+          "reserved_idle_slot_s_with_bulk_waiting": 0.0,
+          "status": "complete"
+        },
+        "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+        "terminal_sha256": "15f9bb21a6d5f80aaeebb5af669413d3d30efb4e6eef98532d1b75db9e1cf334",
+        "decisions_sha256": "1ea9cf79ce2cb3c8a5aa5fa8dc6cb02103e2b466b8298cd206c0f2a577f5644d",
+        "dispatch_sha256": "85419c888dda580ec36409ba8b64bd84df21f529a108ef7ae52ba025cbea70aa",
+        "metric_source_sha256": "cd1d4fd200388cc89691237feb0ad70ce000b4753b553117e65e67dba74652ed",
+        "scorer_source_sha256": "314dab361fbe843ebdc86d3af406226e0aa2d2c18799299d34d9d2c3d810931a",
+        "quality_scope": "Partial-reference numeric diagnostics; normal termination is not correct OCR."
+      }
+    },
+    {
+      "name": "urgent-2",
+      "condition": "urgent",
+      "status": "complete",
+      "summary": {
+        "condition": "urgent",
+        "complete": true,
+        "capacity_eligible": true,
+        "consumers": {
+          "urgent": {
+            "scheduled": 300,
+            "terminal": 300,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "success": 292,
+              "incomplete": 5,
+              "queue_expired": 3
+            },
+            "normal_completions": 292,
+            "deadline_met": 289,
+            "deadline_misses": 11,
+            "deadline_attainment": 0.9633333333333334,
+            "all_e2e_p50_s": 0.7363504420500249,
+            "all_e2e_p99_s": 29.868625767994672,
+            "all_e2e_p95_s": 3.194213693961501,
+            "success_e2e_p95_s": 2.2016140300547704,
+            "max_wait_s": 6.403429563040845,
+            "deferred": 0,
+            "never_dispatched": 3,
+            "completed_per_s_during_arrivals": 0.9733333333333334,
+            "completed_per_s_including_drain": 0.9700369555390942,
+            "completion_time_s": null,
+            "last_terminal_s": 300.8686257679947,
+            "unfinished_work": 8,
+            "timeouts": 0,
+            "truncations": 5,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 213,
+            "successful_requests_missing_reference_numbers": 205,
+            "macro_rouge_l_f1": 0.7736187018679748,
+            "numeric_matched": 2759,
+            "numeric_total": 3423,
+            "numeric_recall": 0.806018112766579,
+            "verified_correct_output_count": null
+          },
+          "bulk": {
+            "scheduled": 0,
+            "terminal": 0,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {},
+            "normal_completions": 0,
+            "deadline_met": null,
+            "deadline_misses": null,
+            "deadline_attainment": null,
+            "all_e2e_p50_s": null,
+            "all_e2e_p99_s": null,
+            "all_e2e_p95_s": null,
+            "success_e2e_p95_s": null,
+            "max_wait_s": null,
+            "deferred": 0,
+            "never_dispatched": 0,
+            "completed_per_s_during_arrivals": 0.0,
+            "completed_per_s_including_drain": 0.0,
+            "completion_time_s": null,
+            "last_terminal_s": null,
+            "unfinished_work": 0,
+            "timeouts": 0,
+            "truncations": 0,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 0,
+            "successful_requests_missing_reference_numbers": 0,
+            "macro_rouge_l_f1": null,
+            "numeric_matched": 0,
+            "numeric_total": 0,
+            "numeric_recall": null,
+            "verified_correct_output_count": null
+          }
+        },
+        "runtime": {
+          "elapsed_s": 301.01945944700856,
+          "capacity_eligible": true,
+          "backend_execution_unknown": false,
+          "peak_upstream": 5,
+          "reserved_idle_slot_s_with_bulk_waiting": 0.0,
+          "status": "complete"
+        },
+        "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+        "terminal_sha256": "a1de8f355183e9c24207d05ef854b32a4ac31751fc163effb3095ed5ad52c416",
+        "decisions_sha256": "a23a102c9e59d7a9ed4ca75c7a60956c092e3147cca4628c6120166365b66bab",
+        "dispatch_sha256": "99fe6380e686e9f7afa2c12a9bdbc52338cec8ac99715448a887b7bcf4257c1a",
+        "metric_source_sha256": "cd1d4fd200388cc89691237feb0ad70ce000b4753b553117e65e67dba74652ed",
+        "scorer_source_sha256": "314dab361fbe843ebdc86d3af406226e0aa2d2c18799299d34d9d2c3d810931a",
+        "quality_scope": "Partial-reference numeric diagnostics; normal termination is not correct OCR."
+      }
+    },
+    {
+      "name": "bulk-2",
+      "condition": "bulk",
+      "status": "ineligible",
+      "summary": {
+        "condition": "bulk",
+        "complete": true,
+        "capacity_eligible": false,
+        "consumers": {
+          "urgent": {
+            "scheduled": 0,
+            "terminal": 0,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {},
+            "normal_completions": 0,
+            "deadline_met": 0,
+            "deadline_misses": 0,
+            "deadline_attainment": null,
+            "all_e2e_p50_s": null,
+            "all_e2e_p99_s": null,
+            "all_e2e_p95_s": null,
+            "success_e2e_p95_s": null,
+            "max_wait_s": null,
+            "deferred": 0,
+            "never_dispatched": 0,
+            "completed_per_s_during_arrivals": null,
+            "completed_per_s_including_drain": null,
+            "completion_time_s": null,
+            "last_terminal_s": null,
+            "unfinished_work": 0,
+            "timeouts": 0,
+            "truncations": 0,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 0,
+            "successful_requests_missing_reference_numbers": 0,
+            "macro_rouge_l_f1": null,
+            "numeric_matched": 0,
+            "numeric_total": 0,
+            "numeric_recall": null,
+            "verified_correct_output_count": null
+          },
+          "bulk": {
+            "scheduled": 1200,
+            "terminal": 1200,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "success": 406,
+              "incomplete": 9,
+              "error": 1,
+              "backend_uncertain": 784
+            },
+            "normal_completions": 406,
+            "deadline_met": null,
+            "deadline_misses": null,
+            "deadline_attainment": null,
+            "all_e2e_p50_s": 14.072426022961736,
+            "all_e2e_p99_s": 45.6358558019856,
+            "all_e2e_p95_s": 45.6358558019856,
+            "success_e2e_p95_s": 38.02872388600372,
+            "max_wait_s": 45.6358558019856,
+            "deferred": 472,
+            "never_dispatched": 784,
+            "completed_per_s_during_arrivals": null,
+            "completed_per_s_including_drain": null,
+            "completion_time_s": null,
+            "last_terminal_s": 278.0016955799656,
+            "unfinished_work": 794,
+            "timeouts": 0,
+            "truncations": 9,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 1081,
+            "successful_requests_missing_reference_numbers": 287,
+            "macro_rouge_l_f1": 0.27103860235712723,
+            "numeric_matched": 3842,
+            "numeric_total": 13629,
+            "numeric_recall": 0.2818988920683836,
+            "verified_correct_output_count": null
+          }
+        },
+        "runtime": {
+          "elapsed_s": 285.83476506499574,
+          "capacity_eligible": false,
+          "backend_execution_unknown": true,
+          "peak_upstream": 8,
+          "reserved_idle_slot_s_with_bulk_waiting": 0.0,
+          "status": "backend_uncertain"
+        },
+        "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+        "terminal_sha256": "bb0ab25e8907e1796b29839653b5e712db94dd505dfc2564dd3545bc77f4c549",
+        "decisions_sha256": "99dc6417a8014985f55180fc242d1102abce1408960de1db36b284a960912f9d",
+        "dispatch_sha256": "3095ee849b9c2c38b4c974be036afaef1dbc7e9ae4922e5f7e446c1371fb5602",
+        "metric_source_sha256": "cd1d4fd200388cc89691237feb0ad70ce000b4753b553117e65e67dba74652ed",
+        "scorer_source_sha256": "314dab361fbe843ebdc86d3af406226e0aa2d2c18799299d34d9d2c3d810931a",
+        "quality_scope": "Partial-reference numeric diagnostics; normal termination is not correct OCR."
+      }
+    },
+    {
+      "name": "fifo-0",
+      "condition": "fifo",
+      "status": "complete",
+      "summary": {
+        "condition": "fifo",
+        "complete": true,
+        "capacity_eligible": true,
+        "consumers": {
+          "urgent": {
+            "scheduled": 300,
+            "terminal": 300,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "queue_expired": 210,
+              "success": 90
+            },
+            "normal_completions": 90,
+            "deadline_met": 79,
+            "deadline_misses": 221,
+            "deadline_attainment": 0.2633333333333333,
+            "all_e2e_p50_s": 5.035128293908201,
+            "all_e2e_p99_s": 5.812082449905574,
+            "all_e2e_p95_s": 5.077220989973284,
+            "success_e2e_p95_s": 5.80915098299738,
+            "max_wait_s": 5.212818185915239,
+            "deferred": 271,
+            "never_dispatched": 210,
+            "completed_per_s_during_arrivals": 0.3,
+            "completed_per_s_including_drain": 0.2813463123397301,
+            "completion_time_s": null,
+            "last_terminal_s": 299.6739955180092,
+            "unfinished_work": 210,
+            "timeouts": 0,
+            "truncations": 0,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 273,
+            "successful_requests_missing_reference_numbers": 63,
+            "macro_rouge_l_f1": 0.23661615843502465,
+            "numeric_matched": 833,
+            "numeric_total": 3423,
+            "numeric_recall": 0.24335378323108384,
+            "verified_correct_output_count": null
+          },
+          "bulk": {
+            "scheduled": 1200,
+            "terminal": 1200,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "success": 1175,
+              "incomplete": 25
+            },
+            "normal_completions": 1175,
+            "deadline_met": null,
+            "deadline_misses": null,
+            "deadline_attainment": null,
+            "all_e2e_p50_s": 13.309916462982073,
+            "all_e2e_p99_s": 55.496933045913465,
+            "all_e2e_p95_s": 26.28413671592716,
+            "success_e2e_p95_s": 25.62663657590747,
+            "max_wait_s": 27.995491990004666,
+            "deferred": 1154,
+            "never_dispatched": 0,
+            "completed_per_s_during_arrivals": 3.9166666666666665,
+            "completed_per_s_including_drain": 3.6731324111020323,
+            "completion_time_s": null,
+            "last_terminal_s": 319.8714207779849,
+            "unfinished_work": 25,
+            "timeouts": 0,
+            "truncations": 25,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 860,
+            "successful_requests_missing_reference_numbers": 835,
+            "macro_rouge_l_f1": 0.7775429470556652,
+            "numeric_matched": 11017,
+            "numeric_total": 13629,
+            "numeric_recall": 0.8083498422481473,
+            "verified_correct_output_count": null
+          }
+        },
+        "runtime": {
+          "elapsed_s": 319.89045547298156,
+          "capacity_eligible": true,
+          "backend_execution_unknown": false,
+          "peak_upstream": 8,
+          "reserved_idle_slot_s_with_bulk_waiting": 0.0,
+          "status": "complete"
+        },
+        "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+        "terminal_sha256": "778b19241b517d4e73c587aaf24136904f73f2b4b39a5567abeb2848f1878325",
+        "decisions_sha256": "f950c68ce873bdb197a82d5937934d64747a4e7c0dda16d768908aed6412a3d0",
+        "dispatch_sha256": "342416456043680f8348cda82800f19da51f91924e1cb77ff9957a8c20150c2b",
+        "metric_source_sha256": "cd1d4fd200388cc89691237feb0ad70ce000b4753b553117e65e67dba74652ed",
+        "scorer_source_sha256": "314dab361fbe843ebdc86d3af406226e0aa2d2c18799299d34d9d2c3d810931a",
+        "quality_scope": "Partial-reference numeric diagnostics; normal termination is not correct OCR."
+      }
+    },
+    {
+      "name": "reserved-0",
+      "condition": "reserved",
+      "status": "complete",
+      "summary": {
+        "condition": "reserved",
+        "complete": true,
+        "capacity_eligible": true,
+        "consumers": {
+          "urgent": {
+            "scheduled": 300,
+            "terminal": 300,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "success": 294,
+              "incomplete": 6
+            },
+            "normal_completions": 294,
+            "deadline_met": 294,
+            "deadline_misses": 6,
+            "deadline_attainment": 0.98,
+            "all_e2e_p50_s": 0.8731994980480522,
+            "all_e2e_p99_s": 42.68932432704605,
+            "all_e2e_p95_s": 2.692325582029298,
+            "success_e2e_p95_s": 2.413383046980016,
+            "max_wait_s": 0.7083791790064424,
+            "deferred": 80,
+            "never_dispatched": 0,
+            "completed_per_s_during_arrivals": 0.9766666666666667,
+            "completed_per_s_including_drain": 0.8338042706578221,
+            "completion_time_s": null,
+            "last_terminal_s": 312.30038159608375,
+            "unfinished_work": 6,
+            "timeouts": 0,
+            "truncations": 6,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 213,
+            "successful_requests_missing_reference_numbers": 207,
+            "macro_rouge_l_f1": 0.7806295301203435,
+            "numeric_matched": 2778,
+            "numeric_total": 3423,
+            "numeric_recall": 0.8115687992988606,
+            "verified_correct_output_count": null
+          },
+          "bulk": {
+            "scheduled": 1200,
+            "terminal": 1200,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "success": 1135,
+              "incomplete": 20,
+              "queue_expired": 45
+            },
+            "normal_completions": 1135,
+            "deadline_met": null,
+            "deadline_misses": null,
+            "deadline_attainment": null,
+            "all_e2e_p50_s": 33.7134481969988,
+            "all_e2e_p99_s": 69.46933037007693,
+            "all_e2e_p95_s": 60.040888865012676,
+            "success_e2e_p95_s": 56.21225370501634,
+            "max_wait_s": 60.04804715607315,
+            "deferred": 1190,
+            "never_dispatched": 45,
+            "completed_per_s_during_arrivals": 3.38,
+            "completed_per_s_including_drain": 3.218938255770844,
+            "completion_time_s": null,
+            "last_terminal_s": 352.5562386789825,
+            "unfinished_work": 65,
+            "timeouts": 0,
+            "truncations": 20,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 874,
+            "successful_requests_missing_reference_numbers": 809,
+            "macro_rouge_l_f1": 0.7472539797816752,
+            "numeric_matched": 10609,
+            "numeric_total": 13629,
+            "numeric_recall": 0.7784136767187615,
+            "verified_correct_output_count": null
+          }
+        },
+        "runtime": {
+          "elapsed_s": 352.600736583001,
+          "capacity_eligible": true,
+          "backend_execution_unknown": false,
+          "peak_upstream": 8,
+          "reserved_idle_slot_s_with_bulk_waiting": 171.16797755414154,
+          "status": "complete"
+        },
+        "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+        "terminal_sha256": "882d6bf4599ebd7b47f69cff26e1ce9019481ccbd65220d7b75081d8af4081ad",
+        "decisions_sha256": "9a29f592c965be62f05b7dd2f6a4154f6ff1dd3530cd77b8f5df5918e540b363",
+        "dispatch_sha256": "921c48a100d7f0bd1341395d3b05616e3b641a046622214df1ca9d912188f8cc",
+        "metric_source_sha256": "cd1d4fd200388cc89691237feb0ad70ce000b4753b553117e65e67dba74652ed",
+        "scorer_source_sha256": "314dab361fbe843ebdc86d3af406226e0aa2d2c18799299d34d9d2c3d810931a",
+        "quality_scope": "Partial-reference numeric diagnostics; normal termination is not correct OCR."
+      }
+    },
+    {
+      "name": "reserved-1",
+      "condition": "reserved",
+      "status": "complete",
+      "summary": {
+        "condition": "reserved",
+        "complete": true,
+        "capacity_eligible": true,
+        "consumers": {
+          "urgent": {
+            "scheduled": 300,
+            "terminal": 300,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "success": 295,
+              "incomplete": 5
+            },
+            "normal_completions": 295,
+            "deadline_met": 295,
+            "deadline_misses": 5,
+            "deadline_attainment": 0.9833333333333333,
+            "all_e2e_p50_s": 0.9035288000013679,
+            "all_e2e_p99_s": 41.62185145798139,
+            "all_e2e_p95_s": 2.8353308689547703,
+            "success_e2e_p95_s": 2.3271613579709083,
+            "max_wait_s": 0.9339664130238816,
+            "deferred": 67,
+            "never_dispatched": 0,
+            "completed_per_s_during_arrivals": 0.98,
+            "completed_per_s_including_drain": 0.8334155298488244,
+            "completion_time_s": null,
+            "last_terminal_s": 311.5250653809635,
+            "unfinished_work": 5,
+            "timeouts": 0,
+            "truncations": 5,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 213,
+            "successful_requests_missing_reference_numbers": 208,
+            "macro_rouge_l_f1": 0.7815944143071927,
+            "numeric_matched": 2790,
+            "numeric_total": 3423,
+            "numeric_recall": 0.8150744960560912,
+            "verified_correct_output_count": null
+          },
+          "bulk": {
+            "scheduled": 1200,
+            "terminal": 1200,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "success": 1127,
+              "incomplete": 21,
+              "queue_expired": 52
+            },
+            "normal_completions": 1127,
+            "deadline_met": null,
+            "deadline_misses": null,
+            "deadline_attainment": null,
+            "all_e2e_p50_s": 37.19424351898488,
+            "all_e2e_p99_s": 70.97100602602586,
+            "all_e2e_p95_s": 60.03945705993101,
+            "success_e2e_p95_s": 57.35639520094264,
+            "max_wait_s": 60.28729826095514,
+            "deferred": 1190,
+            "never_dispatched": 52,
+            "completed_per_s_during_arrivals": 3.3666666666666667,
+            "completed_per_s_including_drain": 3.183929837761441,
+            "completion_time_s": null,
+            "last_terminal_s": 353.92931546398904,
+            "unfinished_work": 73,
+            "timeouts": 0,
+            "truncations": 21,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 872,
+            "successful_requests_missing_reference_numbers": 799,
+            "macro_rouge_l_f1": 0.7431534439992065,
+            "numeric_matched": 10524,
+            "numeric_total": 13629,
+            "numeric_recall": 0.7721769755668061,
+            "verified_correct_output_count": null
+          }
+        },
+        "runtime": {
+          "elapsed_s": 353.96508636395447,
+          "capacity_eligible": true,
+          "backend_execution_unknown": false,
+          "peak_upstream": 8,
+          "reserved_idle_slot_s_with_bulk_waiting": 184.89780682418495,
+          "status": "complete"
+        },
+        "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+        "terminal_sha256": "5dfb3cbafad879917149dd0112b58c32874e869f7755f9df041e9198c43d5304",
+        "decisions_sha256": "0d6ac06bc7e687a38f777c1dd5d24b3c6c666e825598c3e314eb84b2685bb295",
+        "dispatch_sha256": "745ffea0fe9b3ffb64d78e6b26c2c960732ce6fabf8a214cb9619f35f9c40d6a",
+        "metric_source_sha256": "cd1d4fd200388cc89691237feb0ad70ce000b4753b553117e65e67dba74652ed",
+        "scorer_source_sha256": "314dab361fbe843ebdc86d3af406226e0aa2d2c18799299d34d9d2c3d810931a",
+        "quality_scope": "Partial-reference numeric diagnostics; normal termination is not correct OCR."
+      }
+    },
+    {
+      "name": "fifo-1",
+      "condition": "fifo",
+      "status": "complete",
+      "summary": {
+        "condition": "fifo",
+        "complete": true,
+        "capacity_eligible": true,
+        "consumers": {
+          "urgent": {
+            "scheduled": 300,
+            "terminal": 300,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "queue_expired": 217,
+              "success": 83
+            },
+            "normal_completions": 83,
+            "deadline_met": 72,
+            "deadline_misses": 228,
+            "deadline_attainment": 0.24,
+            "all_e2e_p50_s": 5.039330683997832,
+            "all_e2e_p99_s": 5.724556906032376,
+            "all_e2e_p95_s": 5.118022551992908,
+            "success_e2e_p95_s": 5.660650763078593,
+            "max_wait_s": 5.338301129988395,
+            "deferred": 275,
+            "never_dispatched": 217,
+            "completed_per_s_during_arrivals": 0.27666666666666667,
+            "completed_per_s_including_drain": 0.2586001167411613,
+            "completion_time_s": null,
+            "last_terminal_s": 299.8078963410808,
+            "unfinished_work": 217,
+            "timeouts": 0,
+            "truncations": 0,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 275,
+            "successful_requests_missing_reference_numbers": 58,
+            "macro_rouge_l_f1": 0.21913575481345954,
+            "numeric_matched": 759,
+            "numeric_total": 3423,
+            "numeric_recall": 0.22173531989482909,
+            "verified_correct_output_count": null
+          },
+          "bulk": {
+            "scheduled": 1200,
+            "terminal": 1200,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "success": 1176,
+              "incomplete": 24
+            },
+            "normal_completions": 1176,
+            "deadline_met": null,
+            "deadline_misses": null,
+            "deadline_attainment": null,
+            "all_e2e_p50_s": 13.774335463996977,
+            "all_e2e_p99_s": 56.17557232803665,
+            "all_e2e_p95_s": 27.152335732011124,
+            "success_e2e_p95_s": 26.339752451051027,
+            "max_wait_s": 30.437792857992463,
+            "deferred": 1155,
+            "never_dispatched": 0,
+            "completed_per_s_during_arrivals": 3.92,
+            "completed_per_s_including_drain": 3.6640209311759717,
+            "completion_time_s": null,
+            "last_terminal_s": 320.9298167860834,
+            "unfinished_work": 24,
+            "timeouts": 0,
+            "truncations": 24,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 858,
+            "successful_requests_missing_reference_numbers": 834,
+            "macro_rouge_l_f1": 0.7769212147595381,
+            "numeric_matched": 11018,
+            "numeric_total": 13629,
+            "numeric_recall": 0.8084232152028762,
+            "verified_correct_output_count": null
+          }
+        },
+        "runtime": {
+          "elapsed_s": 320.95886516198516,
+          "capacity_eligible": true,
+          "backend_execution_unknown": false,
+          "peak_upstream": 8,
+          "reserved_idle_slot_s_with_bulk_waiting": 0.0,
+          "status": "complete"
+        },
+        "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+        "terminal_sha256": "497179c2e202d12923307d525bd357bae57f34647242a236994edb39ae113285",
+        "decisions_sha256": "f4b5fa0c9c3d841e3089a9edc285a1ce83dc3cdf49aca3a99a0c519c2b82b066",
+        "dispatch_sha256": "f2e53381a501f9703c4c26bbabfe3a98afb2e062b9c9709150a0a41651061f08",
+        "metric_source_sha256": "cd1d4fd200388cc89691237feb0ad70ce000b4753b553117e65e67dba74652ed",
+        "scorer_source_sha256": "314dab361fbe843ebdc86d3af406226e0aa2d2c18799299d34d9d2c3d810931a",
+        "quality_scope": "Partial-reference numeric diagnostics; normal termination is not correct OCR."
+      }
+    },
+    {
+      "name": "fifo-2",
+      "condition": "fifo",
+      "status": "complete",
+      "summary": {
+        "condition": "fifo",
+        "complete": true,
+        "capacity_eligible": true,
+        "consumers": {
+          "urgent": {
+            "scheduled": 300,
+            "terminal": 300,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "queue_expired": 196,
+              "success": 104
+            },
+            "normal_completions": 104,
+            "deadline_met": 98,
+            "deadline_misses": 202,
+            "deadline_attainment": 0.32666666666666666,
+            "all_e2e_p50_s": 5.034010903094895,
+            "all_e2e_p99_s": 5.211080167093314,
+            "all_e2e_p95_s": 5.0747698690975085,
+            "success_e2e_p95_s": 5.079129007994197,
+            "max_wait_s": 5.106391336070374,
+            "deferred": 255,
+            "never_dispatched": 196,
+            "completed_per_s_during_arrivals": 0.3466666666666667,
+            "completed_per_s_including_drain": 0.32616939085197677,
+            "completion_time_s": null,
+            "last_terminal_s": 299.81634882302023,
+            "unfinished_work": 196,
+            "timeouts": 0,
+            "truncations": 0,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 269,
+            "successful_requests_missing_reference_numbers": 73,
+            "macro_rouge_l_f1": 0.27598049018716597,
+            "numeric_matched": 946,
+            "numeric_total": 3423,
+            "numeric_recall": 0.2763657610283377,
+            "verified_correct_output_count": null
+          },
+          "bulk": {
+            "scheduled": 1200,
+            "terminal": 1200,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "success": 1179,
+              "incomplete": 21
+            },
+            "normal_completions": 1179,
+            "deadline_met": null,
+            "deadline_misses": null,
+            "deadline_attainment": null,
+            "all_e2e_p50_s": 12.35791839810554,
+            "all_e2e_p99_s": 51.23325036710594,
+            "all_e2e_p95_s": 24.200633229105733,
+            "success_e2e_p95_s": 23.82637483102735,
+            "max_wait_s": 24.728485056082718,
+            "deferred": 1145,
+            "never_dispatched": 0,
+            "completed_per_s_during_arrivals": 3.93,
+            "completed_per_s_including_drain": 3.6976318443700054,
+            "completion_time_s": null,
+            "last_terminal_s": 318.81826618802734,
+            "unfinished_work": 21,
+            "timeouts": 0,
+            "truncations": 21,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 858,
+            "successful_requests_missing_reference_numbers": 837,
+            "macro_rouge_l_f1": 0.777060869879173,
+            "numeric_matched": 11039,
+            "numeric_total": 13629,
+            "numeric_recall": 0.8099640472521829,
+            "verified_correct_output_count": null
+          }
+        },
+        "runtime": {
+          "elapsed_s": 318.8527278060792,
+          "capacity_eligible": true,
+          "backend_execution_unknown": false,
+          "peak_upstream": 8,
+          "reserved_idle_slot_s_with_bulk_waiting": 0.0,
+          "status": "complete"
+        },
+        "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+        "terminal_sha256": "fc19b17d7a40c36997e70f53c08fa3be8998894ad91a3a8b2f66cdc662ba9387",
+        "decisions_sha256": "7546cdeedd8619aebb1d9310ab33a7e9c17110d25236c65a1e5b1c07e94698c2",
+        "dispatch_sha256": "2046ace94ee7721da3a9a1f21a5460c4cb39e1a11b01da5a3d5f727671495db5",
+        "metric_source_sha256": "cd1d4fd200388cc89691237feb0ad70ce000b4753b553117e65e67dba74652ed",
+        "scorer_source_sha256": "314dab361fbe843ebdc86d3af406226e0aa2d2c18799299d34d9d2c3d810931a",
+        "quality_scope": "Partial-reference numeric diagnostics; normal termination is not correct OCR."
+      }
+    },
+    {
+      "name": "reserved-2",
+      "condition": "reserved",
+      "status": "complete",
+      "summary": {
+        "condition": "reserved",
+        "complete": true,
+        "capacity_eligible": true,
+        "consumers": {
+          "urgent": {
+            "scheduled": 300,
+            "terminal": 300,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "success": 294,
+              "incomplete": 6
+            },
+            "normal_completions": 294,
+            "deadline_met": 293,
+            "deadline_misses": 7,
+            "deadline_attainment": 0.9766666666666667,
+            "all_e2e_p50_s": 0.8900665539549664,
+            "all_e2e_p99_s": 42.057174739893526,
+            "all_e2e_p95_s": 2.8486135998973623,
+            "success_e2e_p95_s": 2.261278201942332,
+            "max_wait_s": 0.7938579079927877,
+            "deferred": 80,
+            "never_dispatched": 0,
+            "completed_per_s_during_arrivals": 0.9766666666666667,
+            "completed_per_s_including_drain": 0.8325329500000869,
+            "completion_time_s": null,
+            "last_terminal_s": 314.40350481297355,
+            "unfinished_work": 6,
+            "timeouts": 0,
+            "truncations": 6,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 213,
+            "successful_requests_missing_reference_numbers": 207,
+            "macro_rouge_l_f1": 0.7789138998948039,
+            "numeric_matched": 2774,
+            "numeric_total": 3423,
+            "numeric_recall": 0.8104002337131172,
+            "verified_correct_output_count": null
+          },
+          "bulk": {
+            "scheduled": 1200,
+            "terminal": 1200,
+            "missing_outcomes": 0,
+            "interrupted_dispatches": 0,
+            "status_counts": {
+              "success": 1132,
+              "incomplete": 21,
+              "queue_expired": 47
+            },
+            "normal_completions": 1132,
+            "deadline_met": null,
+            "deadline_misses": null,
+            "deadline_attainment": null,
+            "all_e2e_p50_s": 36.763515546917915,
+            "all_e2e_p99_s": 67.68825067591388,
+            "all_e2e_p95_s": 60.016103964997455,
+            "success_e2e_p95_s": 57.10960847197566,
+            "max_wait_s": 60.06242148892488,
+            "deferred": 1190,
+            "never_dispatched": 47,
+            "completed_per_s_during_arrivals": 3.3966666666666665,
+            "completed_per_s_including_drain": 3.205535031973124,
+            "completion_time_s": null,
+            "last_terminal_s": 353.1134190559387,
+            "unfinished_work": 68,
+            "timeouts": 0,
+            "truncations": 21,
+            "http_failures": 0,
+            "generation_quality_failures": 0,
+            "requests_missing_reference_numbers": 873,
+            "successful_requests_missing_reference_numbers": 805,
+            "macro_rouge_l_f1": 0.7457663384091058,
+            "numeric_matched": 10595,
+            "numeric_total": 13629,
+            "numeric_recall": 0.777386455352557,
+            "verified_correct_output_count": null
+          }
+        },
+        "runtime": {
+          "elapsed_s": 353.139176052995,
+          "capacity_eligible": true,
+          "backend_execution_unknown": false,
+          "peak_upstream": 8,
+          "reserved_idle_slot_s_with_bulk_waiting": 173.39429930772167,
+          "status": "complete"
+        },
+        "trace_sha256": "7e758eaa950c5f094c03cf79841111f0294d1ea334da780fff7451c0e6878ea5",
+        "terminal_sha256": "0677c756b9d0616f6bf2d666b58079b85c4013afd231fe0e877164a7df9dde27",
+        "decisions_sha256": "2e452c5cdf8a37c6a7c77975080ca2187c2521767bb3cbd93d5721d8289252ce",
+        "dispatch_sha256": "9432d79b0aaff58ec1b87bfdce0dc5ef240d95509043eae51d558ddfa28363d9",
+        "metric_source_sha256": "cd1d4fd200388cc89691237feb0ad70ce000b4753b553117e65e67dba74652ed",
+        "scorer_source_sha256": "314dab361fbe843ebdc86d3af406226e0aa2d2c18799299d34d9d2c3d810931a",
+        "quality_scope": "Partial-reference numeric diagnostics; normal termination is not correct OCR."
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "repeat": 0,
+      "arms": [
+        "fifo-0",
+        "reserved-0"
+      ],
+      "comparable": true,
+      "delta": {
+        "urgent_deadline_attainment": 0.7166666666666667,
+        "urgent_success_e2e_p95_s": -3.3957679360173643,
+        "bulk_normal_completions": -40,
+        "bulk_completed_per_s_during_arrivals": -0.5366666666666666,
+        "bulk_completed_per_s_including_drain": -0.4541941553311881,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 40,
+        "bulk_max_wait_s": 32.05255516606849,
+        "reserved_idle_slot_s_with_bulk_waiting": 171.16797755414154
+      },
+      "fifo": {
+        "urgent_deadline_attainment": 0.2633333333333333,
+        "urgent_success_e2e_p95_s": 5.80915098299738,
+        "bulk_normal_completions": 1175,
+        "bulk_completed_per_s_during_arrivals": 3.9166666666666665,
+        "bulk_completed_per_s_including_drain": 3.6731324111020323,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 25,
+        "bulk_max_wait_s": 27.995491990004666,
+        "reserved_idle_slot_s_with_bulk_waiting": 0.0
+      },
+      "reserved": {
+        "urgent_deadline_attainment": 0.98,
+        "urgent_success_e2e_p95_s": 2.413383046980016,
+        "bulk_normal_completions": 1135,
+        "bulk_completed_per_s_during_arrivals": 3.38,
+        "bulk_completed_per_s_including_drain": 3.218938255770844,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 65,
+        "bulk_max_wait_s": 60.04804715607315,
+        "reserved_idle_slot_s_with_bulk_waiting": 171.16797755414154
+      },
+      "exclusion_reasons": []
+    },
+    {
+      "repeat": 1,
+      "arms": [
+        "fifo-1",
+        "reserved-1"
+      ],
+      "comparable": true,
+      "delta": {
+        "urgent_deadline_attainment": 0.7433333333333333,
+        "urgent_success_e2e_p95_s": -3.3334894051076844,
+        "bulk_normal_completions": -49,
+        "bulk_completed_per_s_during_arrivals": -0.5533333333333332,
+        "bulk_completed_per_s_including_drain": -0.4800910934145306,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 49,
+        "bulk_max_wait_s": 29.849505402962677,
+        "reserved_idle_slot_s_with_bulk_waiting": 184.89780682418495
+      },
+      "fifo": {
+        "urgent_deadline_attainment": 0.24,
+        "urgent_success_e2e_p95_s": 5.660650763078593,
+        "bulk_normal_completions": 1176,
+        "bulk_completed_per_s_during_arrivals": 3.92,
+        "bulk_completed_per_s_including_drain": 3.6640209311759717,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 24,
+        "bulk_max_wait_s": 30.437792857992463,
+        "reserved_idle_slot_s_with_bulk_waiting": 0.0
+      },
+      "reserved": {
+        "urgent_deadline_attainment": 0.9833333333333333,
+        "urgent_success_e2e_p95_s": 2.3271613579709083,
+        "bulk_normal_completions": 1127,
+        "bulk_completed_per_s_during_arrivals": 3.3666666666666667,
+        "bulk_completed_per_s_including_drain": 3.183929837761441,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 73,
+        "bulk_max_wait_s": 60.28729826095514,
+        "reserved_idle_slot_s_with_bulk_waiting": 184.89780682418495
+      },
+      "exclusion_reasons": []
+    },
+    {
+      "repeat": 2,
+      "arms": [
+        "fifo-2",
+        "reserved-2"
+      ],
+      "comparable": true,
+      "delta": {
+        "urgent_deadline_attainment": 0.65,
+        "urgent_success_e2e_p95_s": -2.817850806051865,
+        "bulk_normal_completions": -47,
+        "bulk_completed_per_s_during_arrivals": -0.5333333333333337,
+        "bulk_completed_per_s_including_drain": -0.4920968123968814,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 47,
+        "bulk_max_wait_s": 35.333936432842165,
+        "reserved_idle_slot_s_with_bulk_waiting": 173.39429930772167
+      },
+      "fifo": {
+        "urgent_deadline_attainment": 0.32666666666666666,
+        "urgent_success_e2e_p95_s": 5.079129007994197,
+        "bulk_normal_completions": 1179,
+        "bulk_completed_per_s_during_arrivals": 3.93,
+        "bulk_completed_per_s_including_drain": 3.6976318443700054,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 21,
+        "bulk_max_wait_s": 24.728485056082718,
+        "reserved_idle_slot_s_with_bulk_waiting": 0.0
+      },
+      "reserved": {
+        "urgent_deadline_attainment": 0.9766666666666667,
+        "urgent_success_e2e_p95_s": 2.261278201942332,
+        "bulk_normal_completions": 1132,
+        "bulk_completed_per_s_during_arrivals": 3.3966666666666665,
+        "bulk_completed_per_s_including_drain": 3.205535031973124,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 68,
+        "bulk_max_wait_s": 60.06242148892488,
+        "reserved_idle_slot_s_with_bulk_waiting": 173.39429930772167
+      },
+      "exclusion_reasons": []
+    }
+  ],
+  "comparable_pairs": 3,
+  "baseline_comparisons": [
+    {
+      "baseline": "urgent",
+      "policy": "fifo",
+      "repeat": 0,
+      "arms": [
+        "urgent-0",
+        "fifo-0"
+      ],
+      "comparable": true,
+      "delta": {
+        "urgent_deadline_attainment": -0.72,
+        "urgent_success_e2e_p95_s": 3.9722732310183346
+      },
+      "urgent": {
+        "urgent_deadline_attainment": 0.9833333333333333,
+        "urgent_success_e2e_p95_s": 1.8368777519790456
+      },
+      "fifo": {
+        "urgent_deadline_attainment": 0.2633333333333333,
+        "urgent_success_e2e_p95_s": 5.80915098299738
+      },
+      "exclusion_reasons": []
+    },
+    {
+      "baseline": "urgent",
+      "policy": "reserved",
+      "repeat": 0,
+      "arms": [
+        "urgent-0",
+        "reserved-0"
+      ],
+      "comparable": true,
+      "delta": {
+        "urgent_deadline_attainment": -0.0033333333333332993,
+        "urgent_success_e2e_p95_s": 0.5765052950009704
+      },
+      "urgent": {
+        "urgent_deadline_attainment": 0.9833333333333333,
+        "urgent_success_e2e_p95_s": 1.8368777519790456
+      },
+      "reserved": {
+        "urgent_deadline_attainment": 0.98,
+        "urgent_success_e2e_p95_s": 2.413383046980016
+      },
+      "exclusion_reasons": []
+    },
+    {
+      "baseline": "bulk",
+      "policy": "fifo",
+      "repeat": 0,
+      "arms": [
+        "bulk-0",
+        "fifo-0"
+      ],
+      "comparable": true,
+      "delta": {
+        "bulk_normal_completions": -3,
+        "bulk_completed_per_s_during_arrivals": -0.010000000000000231,
+        "bulk_completed_per_s_including_drain": -0.03221616316815101,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 3,
+        "bulk_max_wait_s": 0.8039428680203855
+      },
+      "bulk": {
+        "bulk_normal_completions": 1178,
+        "bulk_completed_per_s_during_arrivals": 3.9266666666666667,
+        "bulk_completed_per_s_including_drain": 3.7053485742701833,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 22,
+        "bulk_max_wait_s": 27.19154912198428
+      },
+      "fifo": {
+        "bulk_normal_completions": 1175,
+        "bulk_completed_per_s_during_arrivals": 3.9166666666666665,
+        "bulk_completed_per_s_including_drain": 3.6731324111020323,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 25,
+        "bulk_max_wait_s": 27.995491990004666
+      },
+      "exclusion_reasons": []
+    },
+    {
+      "baseline": "bulk",
+      "policy": "reserved",
+      "repeat": 0,
+      "arms": [
+        "bulk-0",
+        "reserved-0"
+      ],
+      "comparable": true,
+      "delta": {
+        "bulk_normal_completions": -43,
+        "bulk_completed_per_s_during_arrivals": -0.5466666666666669,
+        "bulk_completed_per_s_including_drain": -0.48641031849933913,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 43,
+        "bulk_max_wait_s": 32.85649803408887
+      },
+      "bulk": {
+        "bulk_normal_completions": 1178,
+        "bulk_completed_per_s_during_arrivals": 3.9266666666666667,
+        "bulk_completed_per_s_including_drain": 3.7053485742701833,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 22,
+        "bulk_max_wait_s": 27.19154912198428
+      },
+      "reserved": {
+        "bulk_normal_completions": 1135,
+        "bulk_completed_per_s_during_arrivals": 3.38,
+        "bulk_completed_per_s_including_drain": 3.218938255770844,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 65,
+        "bulk_max_wait_s": 60.04804715607315
+      },
+      "exclusion_reasons": []
+    },
+    {
+      "baseline": "urgent",
+      "policy": "fifo",
+      "repeat": 1,
+      "arms": [
+        "urgent-1",
+        "fifo-1"
+      ],
+      "comparable": true,
+      "delta": {
+        "urgent_deadline_attainment": -0.7433333333333333,
+        "urgent_success_e2e_p95_s": 3.7666486060479656
+      },
+      "urgent": {
+        "urgent_deadline_attainment": 0.9833333333333333,
+        "urgent_success_e2e_p95_s": 1.8940021570306271
+      },
+      "fifo": {
+        "urgent_deadline_attainment": 0.24,
+        "urgent_success_e2e_p95_s": 5.660650763078593
+      },
+      "exclusion_reasons": []
+    },
+    {
+      "baseline": "urgent",
+      "policy": "reserved",
+      "repeat": 1,
+      "arms": [
+        "urgent-1",
+        "reserved-1"
+      ],
+      "comparable": true,
+      "delta": {
+        "urgent_deadline_attainment": 0.0,
+        "urgent_success_e2e_p95_s": 0.43315920094028115
+      },
+      "urgent": {
+        "urgent_deadline_attainment": 0.9833333333333333,
+        "urgent_success_e2e_p95_s": 1.8940021570306271
+      },
+      "reserved": {
+        "urgent_deadline_attainment": 0.9833333333333333,
+        "urgent_success_e2e_p95_s": 2.3271613579709083
+      },
+      "exclusion_reasons": []
+    },
+    {
+      "baseline": "bulk",
+      "policy": "fifo",
+      "repeat": 1,
+      "arms": [
+        "bulk-1",
+        "fifo-1"
+      ],
+      "comparable": true,
+      "delta": {
+        "bulk_normal_completions": 0,
+        "bulk_completed_per_s_during_arrivals": 0.0,
+        "bulk_completed_per_s_including_drain": -0.02783727659593449,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 0,
+        "bulk_max_wait_s": 3.5575799819780514
+      },
+      "bulk": {
+        "bulk_normal_completions": 1176,
+        "bulk_completed_per_s_during_arrivals": 3.92,
+        "bulk_completed_per_s_including_drain": 3.691858207771906,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 24,
+        "bulk_max_wait_s": 26.88021287601441
+      },
+      "fifo": {
+        "bulk_normal_completions": 1176,
+        "bulk_completed_per_s_during_arrivals": 3.92,
+        "bulk_completed_per_s_including_drain": 3.6640209311759717,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 24,
+        "bulk_max_wait_s": 30.437792857992463
+      },
+      "exclusion_reasons": []
+    },
+    {
+      "baseline": "bulk",
+      "policy": "reserved",
+      "repeat": 1,
+      "arms": [
+        "bulk-1",
+        "reserved-1"
+      ],
+      "comparable": true,
+      "delta": {
+        "bulk_normal_completions": -49,
+        "bulk_completed_per_s_during_arrivals": -0.5533333333333332,
+        "bulk_completed_per_s_including_drain": -0.5079283700104651,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 49,
+        "bulk_max_wait_s": 33.40708538494073
+      },
+      "bulk": {
+        "bulk_normal_completions": 1176,
+        "bulk_completed_per_s_during_arrivals": 3.92,
+        "bulk_completed_per_s_including_drain": 3.691858207771906,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 24,
+        "bulk_max_wait_s": 26.88021287601441
+      },
+      "reserved": {
+        "bulk_normal_completions": 1127,
+        "bulk_completed_per_s_during_arrivals": 3.3666666666666667,
+        "bulk_completed_per_s_including_drain": 3.183929837761441,
+        "bulk_completion_time_s": null,
+        "bulk_unfinished_work": 73,
+        "bulk_max_wait_s": 60.28729826095514
+      },
+      "exclusion_reasons": []
+    },
+    {
+      "baseline": "urgent",
+      "policy": "fifo",
+      "repeat": 2,
+      "arms": [
+        "urgent-2",
+        "fifo-2"
+      ],
+      "comparable": true,
+      "delta": {
+        "urgent_deadline_attainment": -0.6366666666666667,
+        "urgent_success_e2e_p95_s": 2.877514977939427
+      },
+      "urgent": {
+        "urgent_deadline_attainment": 0.9633333333333334,
+        "urgent_success_e2e_p95_s": 2.2016140300547704
+      },
+      "fifo": {
+        "urgent_deadline_attainment": 0.32666666666666666,
+        "urgent_success_e2e_p95_s": 5.079129007994197
+      },
+      "exclusion_reasons": []
+    },
+    {
+      "baseline": "urgent",
+      "policy": "reserved",
+      "repeat": 2,
+      "arms": [
+        "urgent-2",
+        "reserved-2"
+      ],
+      "comparable": true,
+      "delta": {
+        "urgent_deadline_attainment": 0.013333333333333308,
+        "urgent_success_e2e_p95_s": 0.05966417188756168
+      },
+      "urgent": {
+        "urgent_deadline_attainment": 0.9633333333333334,
+        "urgent_success_e2e_p95_s": 2.2016140300547704
+      },
+      "reserved": {
+        "urgent_deadline_attainment": 0.9766666666666667,
+        "urgent_success_e2e_p95_s": 2.261278201942332
+      },
+      "exclusion_reasons": []
+    },
+    {
+      "baseline": "bulk",
+      "policy": "fifo",
+      "repeat": 2,
+      "arms": [
+        "bulk-2",
+        "fifo-2"
+      ],
+      "comparable": false,
+      "delta": null,
+      "exclusion_reasons": [
+        "bulk-2 is missing, incomplete or capacity-ineligible"
+      ]
+    },
+    {
+      "baseline": "bulk",
+      "policy": "reserved",
+      "repeat": 2,
+      "arms": [
+        "bulk-2",
+        "reserved-2"
+      ],
+      "comparable": false,
+      "delta": null,
+      "exclusion_reasons": [
+        "bulk-2 is missing, incomplete or capacity-ineligible"
+      ]
+    }
+  ],
+  "comparable_baseline_comparisons": 10,
+  "delta_convention": "pairs: reserved minus FIFO; baseline_comparisons: mixed policy minus isolated baseline, for the baseline class only; attainment is a fraction, not percentage points",
+  "scope": "Warmed repeated inputs, one model and GPU. No fresh-ingress or OCR correctness claim. Missing and uncertain trials are not capacity evidence."
+}
