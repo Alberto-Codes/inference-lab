@@ -194,4 +194,6 @@ The [independent review](shared-capacity-review.md) records acceptance and judgm
 This experiment establishes a local shared-capacity tradeoff under the frozen workload.
 It does not establish enterprise scale, fresh-input capacity, availability, security,
 tenant isolation, multi-model operation or production deadline guarantees.
-No new release, experiment tag or companion post is published.
+[Release v0.3.0](../releases/v0.3.0.md) and the companion article
+[I gave urgent receipts priority. The bulk import paid for it.](https://alberto.codes/blog/2026-10-28-urgent-receipts-bulk-import)
+form one coordinated publication pair.
